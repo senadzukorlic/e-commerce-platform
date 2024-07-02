@@ -82,11 +82,12 @@ export default function NavBar() {
           <MenuItem onClick={handleClose} component={Link} to="/women">
             Women
           </MenuItem>
-          <MenuItem onClick={handleClose} component={Link} to="/sport">
-            Sport
-          </MenuItem>
+
           <MenuItem onClick={handleClose} component={Link} to="/electronics">
             Electronics
+          </MenuItem>
+          <MenuItem onClick={handleClose} component={Link} to="/sport">
+            Sport
           </MenuItem>
         </Menu>
 

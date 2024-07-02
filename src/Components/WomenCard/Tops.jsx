@@ -1,47 +1,41 @@
 import * as React from "react"
 import { useState, useEffect } from "react"
-// import { Outlet } from "react-router-dom"
 
 import { Card, Typography, Button, CardActionArea } from "@mui/material"
 
-import { GetData } from "../Api/Requests"
-import { ParentDiv, Imagee, CardText, ButtonCard } from "../items.styled/"
-import NavBar from "../MUI/NavBar"
-// import Tab from "../MUI/Tab"
-import Tabb from "./ElectronicsCard/ElectronicTab"
+import { GetData } from "../../Api/Requests"
+import {
+  ParentDiv,
+  Imagee,
+  CardText,
+  ButtonCard,
+  GlobalStyles,
+  CategoryH1,
+} from "../../items.styled"
+import NavBar from "../../MUI/NavBar"
+import WomenTab from "../WomenCard/WomenTab"
 
-export function Electronics() {
+export function Tops() {
   const [data, setData] = useState([])
 
   useEffect(() => {
     async function fetchData() {
       const response = await GetData()
+      console.log(response)
       setData(response)
     }
     fetchData()
   }, [])
 
-  const categories = ["laptops", "mobile-accessories", "smartphones", "tablets"]
-
   return (
     <>
+      <GlobalStyles />
       <NavBar />
-      <h1
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          fontFamily: "sans-serif",
-          color: "gray",
-        }}
-      >
-        Electronics
-      </h1>
-      <Tabb />
-
+      <CategoryH1>Men</CategoryH1>
+      <WomenTab />
       <ParentDiv>
         {data
-          .filter((item) => categories.includes(item.category.toLowerCase()))
+          .filter((item) => item.category.toLowerCase() === "tops")
           .map((item) => (
             <Card
               key={item.id}
@@ -88,5 +82,3 @@ export function Electronics() {
     </>
   )
 }
-
-//.filter((item) => item.category.toLowerCase() === "electronics")

@@ -3,42 +3,39 @@ import { useState, useEffect } from "react"
 
 import { Card, Typography, Button, CardActionArea } from "@mui/material"
 
-import { GetData } from "../Api/Requests"
-import { ParentDiv, Imagee, CardText, ButtonCard } from "../items.styled/"
-import NavBar from "../MUI/NavBar"
-import Tab from "../MUI/Tab"
+import { GetData } from "../../Api/Requests"
+import {
+  ParentDiv,
+  Imagee,
+  CardText,
+  ButtonCard,
+  GlobalStyles,
+  CategoryH1,
+} from "../../items.styled"
+import NavBar from "../../MUI/NavBar"
+import MenTab from "../MenCard/MenTab"
 
-export function Sport() {
+export function Shoes() {
   const [data, setData] = useState([])
 
   useEffect(() => {
     async function fetchData() {
       const response = await GetData()
+      console.log(response)
       setData(response)
     }
     fetchData()
   }, [])
 
-  const categories = ["sports-accessories"]
-
   return (
     <>
+      <GlobalStyles />
       <NavBar />
-      <h1
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          fontFamily: "sans-serif",
-          color: "gray",
-        }}
-      >
-        Sport
-      </h1>
-      <Tab />
+      <CategoryH1>Men</CategoryH1>
+      <MenTab />
       <ParentDiv>
         {data
-          .filter((item) => categories.includes(item.category.toLowerCase()))
+          .filter((item) => item.category.toLowerCase() === "mens-shoes")
           .map((item) => (
             <Card
               key={item.id}

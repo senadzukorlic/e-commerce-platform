@@ -6,7 +6,7 @@ import { useState } from "react"
 
 import { BoxTab, CenteredContainer } from "../../items.styled"
 
-export default function Tabb() {
+export default function ElectronicTab() {
   const location = useLocation()
   const path = location.pathname
 

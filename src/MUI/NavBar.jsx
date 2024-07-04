@@ -22,8 +22,9 @@ import { useState } from "react"
 import "./MUI.css"
 import logo from "./JacpiStore.png"
 
-export default function NavBar() {
+export default function NavBar({ setInputValue }) {
   const [anchorEl, setAnchorEl] = useState(null)
+  const [input, setInput] = useState("")
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
@@ -31,6 +32,16 @@ export default function NavBar() {
 
   const handleClose = () => {
     setAnchorEl(null)
+  }
+
+  const handleInputSubmit = (e) => {
+    e.preventDefault()
+    setInput("")
+  }
+
+  const handleInputChange = (e) => {
+    setInput(e.target.value)
+    setInputValue(e.target.value)
   }
 
   const open = Boolean(anchorEl)
@@ -91,7 +102,14 @@ export default function NavBar() {
           </MenuItem>
         </Menu>
 
-        <OutlinedInput className="input" placeholder="Search..." />
+        <form onSubmit={handleInputSubmit}>
+          <OutlinedInput
+            className="input"
+            placeholder="Search..."
+            value={input}
+            onChange={handleInputChange}
+          />
+        </form>
         <div className="iconContainer">
           <IconButton
             size="large"

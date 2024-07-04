@@ -17,6 +17,7 @@ import ElectronicTab from "../ElectronicsCard/ElectronicTab"
 import NavBar from "../../MUI/NavBar"
 export function MobileAccessories() {
   const [data, setData] = useState([])
+  const [inputValue, setInputValue] = useState("")
 
   useEffect(() => {
     async function fetchData() {
@@ -29,7 +30,7 @@ export function MobileAccessories() {
   return (
     <>
       <GlobalStyles />
-      <NavBar />
+      <NavBar setInputValue={setInputValue} />
       <CategoryH1>Electronics</CategoryH1>
       <ElectronicTab />
       <ParentDiv>
@@ -37,48 +38,56 @@ export function MobileAccessories() {
           .filter(
             (item) => item.category.toLowerCase() === "mobile-accessories"
           )
-          .map((item) => (
-            <Card
-              key={item.id}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                textAlign: "center",
-                alignItems: "center",
-                height: 550,
-                width: 350,
-                backgroundColor: "whitesmoke",
-                borderRadius: 5,
-                margin: "90px 30px",
-              }}
-            >
-              <CardActionArea>
-                <Imagee
-                  component="img"
-                  height="330"
-                  width="270"
-                  image={item.images[0]}
-                  alt={item.title}
-                />
-                <CardText>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {item.title}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {item.price}€
-                  </Typography>
-                </CardText>
-              </CardActionArea>
-              <ButtonCard>
-                <Button size="Medium" color="inherit">
-                  Buy
-                </Button>
-                <Button size="medium" color="inherit">
-                  Add to Card
-                </Button>
-              </ButtonCard>
-            </Card>
-          ))}
+          .map((item) => {
+            if (
+              !inputValue ||
+              item.title.toLowerCase().includes(inputValue.toLowerCase())
+            ) {
+              return (
+                <Card
+                  key={item.id}
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    textAlign: "center",
+                    alignItems: "center",
+                    height: 550,
+                    width: 350,
+                    backgroundColor: "whitesmoke",
+                    borderRadius: 5,
+                    margin: "90px 30px",
+                  }}
+                >
+                  <CardActionArea>
+                    <Imagee
+                      component="img"
+                      height="330"
+                      width="270"
+                      image={item.images[0]}
+                      alt={item.title}
+                    />
+                    <CardText>
+                      <Typography gutterBottom variant="h5" component="div">
+                        {item.title}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {item.price}€
+                      </Typography>
+                    </CardText>
+                  </CardActionArea>
+                  <ButtonCard>
+                    <Button size="Medium" color="inherit">
+                      Buy
+                    </Button>
+                    <Button size="medium" color="inherit">
+                      Add to Card
+                    </Button>
+                  </ButtonCard>
+                </Card>
+              )
+            }
+            return null
+          })}
       </ParentDiv>
     </>
   )

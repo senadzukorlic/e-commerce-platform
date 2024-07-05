@@ -2,15 +2,17 @@ import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 
 import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  OutlinedInput,
-  Stack,
-  Button,
-  Menu,
-  MenuItem,
-} from "@mui/material"
+  Logo,
+  IconDiv,
+  NavBarAppBar,
+  NavBarToolbar,
+  NavBarStack,
+  NavBarButton,
+  NavBarMenu,
+  NavBarInput,
+  NavBarIconButton,
+  NavBarMenuItem,
+} from "./NavBarStyles"
 
 import {
   LanguageRounded,
@@ -21,7 +23,6 @@ import {
 
 import logo from "./JacpiStore.png"
 import DrawerR from "./Drawer"
-import "./MUI.css"
 
 export default function NavBar({ setInputValue }) {
   const [anchorEl, setAnchorEl] = useState(null)
@@ -62,24 +63,13 @@ export default function NavBar({ setInputValue }) {
 
   return (
     <>
-      <AppBar
-        position="static"
-        className="appBar"
-        style={{ backgroundColor: "gray" }}
-        ref={appBarRef}
-      >
-        <Toolbar className="toolBar">
-          <img src={logo} alt="Logo" className="logo" />
+      <NavBarAppBar ref={appBarRef}>
+        <NavBarToolbar>
+          <Logo src={logo} alt="Logo" />
 
-          <Stack
-            direction="row"
-            spacing={4}
-            alignItems="center"
-            className="stackCategories"
-          >
-            <Button
+          <NavBarStack>
+            <NavBarButton
               size="large" //ne diraj
-              style={{ color: "white" }}
               id="resources-button" //klasu ne diraj
               onClick={toggleDrawer(true)}
               aria-controls={open ? "resources-menu" : undefined}
@@ -87,88 +77,83 @@ export default function NavBar({ setInputValue }) {
               aria-expanded={open ? "true" : undefined}
             >
               Clothes
-            </Button>
-            <Button size="large" style={{ color: "white" }}>
-              On Sale
-            </Button>
-            <Button size="large" style={{ color: "white" }}>
-              About
-            </Button>
-          </Stack>
+            </NavBarButton>
+            <NavBarButton size="large">On Sale</NavBarButton>
+            <NavBarButton size="large">About</NavBarButton>
+          </NavBarStack>
 
-          <Menu
+          <NavBarMenu
             id="resources-menu" //klasu ne diraj
             anchorEl={anchorEl}
             open={open}
             MenuListProps={{ "aria-labelledby": "resources-button" }}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose} component={Link} to="/men">
+            <NavBarMenuItem onClick={handleClose} component={Link} to="/men">
               Men
-            </MenuItem>
-            <MenuItem onClick={handleClose} component={Link} to="/women">
+            </NavBarMenuItem>
+            <NavBarMenuItem onClick={handleClose} component={Link} to="/women">
               Women
-            </MenuItem>
+            </NavBarMenuItem>
 
-            <MenuItem onClick={handleClose} component={Link} to="/electronics">
+            <NavBarMenuItem
+              onClick={handleClose}
+              component={Link}
+              to="/electronics"
+            >
               Electronics
-            </MenuItem>
-            <MenuItem onClick={handleClose} component={Link} to="/sport">
+            </NavBarMenuItem>
+            <NavBarMenuItem onClick={handleClose} component={Link} to="/sport">
               Sport
-            </MenuItem>
-          </Menu>
+            </NavBarMenuItem>
+          </NavBarMenu>
 
           <form onSubmit={handleInputSubmit}>
-            <OutlinedInput
-              className="input"
+            <NavBarInput
               placeholder="Search..."
               value={input}
               onChange={handleInputChange}
             />
           </form>
-          <div className="iconContainer">
-            <IconButton
+          <IconDiv>
+            <NavBarIconButton
               size="large"
               edge="end"
               color="inherit"
               aria-label="search"
-              className="iconButton"
             >
               <SearchRounded />
-            </IconButton>
+            </NavBarIconButton>
 
-            <IconButton
+            <NavBarIconButton
               size="large"
               edge="end"
               color="inherit"
               aria-label="star"
-              className="iconButton"
             >
               <StarOutlineRounded />
-            </IconButton>
+            </NavBarIconButton>
 
-            <IconButton
+            <NavBarIconButton
               size="large"
               edge="end"
               color="inherit"
               aria-label="shopping-bag"
-              className="iconButton"
             >
               <ShoppingBagRounded />
-            </IconButton>
+            </NavBarIconButton>
 
-            <IconButton
+            <NavBarIconButton
               size="large"
               edge="end"
               color="inherit"
               aria-label="language"
-              className="iconButton"
             >
               <LanguageRounded />
-            </IconButton>
-          </div>
-        </Toolbar>
-      </AppBar>
+            </NavBarIconButton>
+          </IconDiv>
+        </NavBarToolbar>
+      </NavBarAppBar>
       <DrawerR
         open={drawerOpen}
         onClose={toggleDrawer(false)}

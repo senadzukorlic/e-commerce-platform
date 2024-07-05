@@ -8,6 +8,7 @@ import {
   Menu,
   OutlinedInput,
   IconButton,
+  MenuItem,
 } from "@mui/material"
 
 export const Logo = styled("img")`
@@ -21,20 +22,20 @@ export const IconDiv = styled("div")`
   margin-right: 40px;
 `
 
-export const NavBarAppBarMui = styled(AppBar)`
+export const NavBarAppBar = styled(AppBar)`
   height: 70px;
   display: flex;
   align-items: center;
   background-color: gray;
   position: static;
 `
-export const NavBarToolbarMui = styled(Toolbar)`
+export const NavBarToolbar = styled(Toolbar)`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 `
-export const NavBarStackMui = styled(Stack)(({ theme }) => ({
+export const NavBarStack = styled(Stack)(({ theme }) => ({
   marginRight: "auto",
   marginLeft: "30px",
   flexDirection: "row",
@@ -42,39 +43,39 @@ export const NavBarStackMui = styled(Stack)(({ theme }) => ({
   gap: theme.spacing(4),
 }))
 
-export const NavBarButtonMui = styled(Button)(({ theme }) => ({
+export const NavBarButton = styled(Button)(({ theme }) => ({
   color: "white",
-  fontSize: theme.typography.pxToRem(18),
+  fontSize: theme.typography.pxToRem(14),
   padding: theme.spacing(1.5, 3),
 }))
 
-export const NavBarMenuMui = styled(Menu)(({ theme }) => ({
+export const NavBarMenu = styled(Menu)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   borderRadius: theme.shape.borderRadius,
   width: "300px",
 }))
 
-export const NavBarInputMui = styled(OutlinedInput)(({ theme }) => ({
-  // Stilovi za koren
+export const NavBarInput = styled(OutlinedInput)(({ theme }) => ({
   border: "1px solid whitesmoke",
   borderRadius: "4px",
   padding: "5px",
   height: "30px",
   marginRight: "30px",
+  color: "whitesmoke",
 
-  // Stilovi za placeholder
   "& .MuiInputBase-input::placeholder": {
     color: "whitesmoke",
     opacity: 1,
-    fontSize: "14px",
+    fontSize: "16px",
   },
 
-  // Stilovi za kada je fokusiran
   "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-    borderColor: "transparent",
+    borderColor: "inherit",
   },
 }))
 
 export const NavBarIconButton = styled(IconButton)(({ theme }) => ({
   marginLeft: "10px",
 }))
+
+export const NavBarMenuItem = styled(MenuItem)``

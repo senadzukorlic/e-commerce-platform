@@ -42,8 +42,8 @@
 
 .input input::placeholder {
   color: whitesmoke; /* Boja teksta placeholder-a */
-  /* opacity: 1; */
-  /* font-size: 14px; */
+  opacity: 1;
+  font-size: 14px;
 }
 
 /* Stilizovanje za OutlinedInput kada je fokusiran */

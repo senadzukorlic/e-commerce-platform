@@ -78,9 +78,9 @@ export default function NavBar({ setInputValue }) {
             className="stackCategories"
           >
             <Button
-              size="large"
+              size="large" //ne diraj
               style={{ color: "white" }}
-              id="resources-button"
+              id="resources-button" //klasu ne diraj
               onClick={toggleDrawer(true)}
               aria-controls={open ? "resources-menu" : undefined}
               aria-haspopup="true"
@@ -97,7 +97,7 @@ export default function NavBar({ setInputValue }) {
           </Stack>
 
           <Menu
-            id="resources-menu"
+            id="resources-menu" //klasu ne diraj
             anchorEl={anchorEl}
             open={open}
             MenuListProps={{ "aria-labelledby": "resources-button" }}

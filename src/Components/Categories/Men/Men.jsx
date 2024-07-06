@@ -1,10 +1,9 @@
 import * as React from "react"
 import { useState, useEffect } from "react"
-// import { Outlet } from "react-router-dom"
 
 import { Card, Typography, Button, CardActionArea } from "@mui/material"
 
-import { GetData } from "../Api/Requests"
+import { GetData } from "../../../Api/Requests"
 import {
   ParentDiv,
   Imagee,
@@ -14,29 +13,29 @@ import {
   CategoryH1,
 } from "../items.styled/"
 import NavBar from "../MUI/NavBar"
-import ElectronicTab from "./ElectronicsCard/ElectronicTab"
+import MenTab from "./MenTab"
 
-export function Electronics() {
+export function Men() {
   const [data, setData] = useState([])
   const [inputValue, setInputValue] = useState("")
 
   useEffect(() => {
     async function fetchData() {
       const response = await GetData()
+      console.log(response)
       setData(response)
     }
     fetchData()
   }, [])
 
-  const categories = ["laptops", "mobile-accessories", "smartphones", "tablets"]
+  const categories = ["mens-watches", "mens-shoes", "mens-shirts"]
 
   return (
     <>
       <GlobalStyles />
       <NavBar setInputValue={setInputValue} />
-      <CategoryH1>Electronics</CategoryH1>
-      <ElectronicTab />
-
+      <CategoryH1>Men</CategoryH1>
+      <MenTab />
       <ParentDiv>
         {data
           .filter((item) => categories.includes(item.category.toLowerCase()))
@@ -94,3 +93,7 @@ export function Electronics() {
     </>
   )
 }
+
+//83,85,87,88,93,94
+
+//za top ponudu 87,93,86 ako zafali 174,78

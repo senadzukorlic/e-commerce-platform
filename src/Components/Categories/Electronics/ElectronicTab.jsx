@@ -4,26 +4,24 @@ import Tab from "@mui/material/Tab"
 import { Link, useLocation } from "react-router-dom"
 import { useState } from "react"
 
-import { BoxTab, CenteredContainer } from "../../items.styled"
+import { BoxTab, CenteredContainer } from "../../../items.styled"
 
-export default function WomenTab() {
+export default function ElectronicTab() {
   const location = useLocation()
   const path = location.pathname
 
   const getValueFromPath = (path) => {
     switch (path) {
-      case "/women":
+      case "/electronics":
         return 0
-      case "/tops":
+      case "/mobile-accessories":
         return 1
-      case "/womens-dresses":
+      case "/laptops":
         return 2
-      case "/womens-bags":
+      case "/smartphones":
         return 3
-      case "/womens-shoes":
+      case "/tablets":
         return 4
-      case "/womens-watches":
-        return 5
       default:
         return 0
     }
@@ -45,12 +43,15 @@ export default function WomenTab() {
           scrollButtons="auto"
           aria-label="scrollable auto tabs example"
         >
-          <Tab label="all" component={Link} to="/women" />
-          <Tab label="Tops" component={Link} to="/tops" />
-          <Tab label="Women Dresses" component={Link} to="/womens-dresses" />
-          <Tab label="Women Bags" component={Link} to="/womens-bags" />
-          <Tab label="Women Watches" component={Link} to="/womens-watches" />
-          <Tab label="Women Shoes" component={Link} to="/womens-shoes" />
+          <Tab label="all" component={Link} to="/electronics" />
+          <Tab
+            label="Mobile Accessories"
+            component={Link}
+            to="/mobile-accessories"
+          />
+          <Tab label="Laptops" component={Link} to="/laptops" />
+          <Tab label="Smartphones" component={Link} to="/smartphones" />
+          <Tab label="Tablets" component={Link} to="/tablets" />
         </Tabs>
       </BoxTab>
     </CenteredContainer>

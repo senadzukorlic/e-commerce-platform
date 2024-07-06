@@ -1,4 +1,4 @@
-import { GlobalStyles } from "../items.styled"
+import { GlobalStyles } from "../../items.styled"
 import {
   Container,
   HomeH3,
@@ -7,9 +7,9 @@ import {
   HomePDiv,
   HomeTitleDiv,
   HomeParentDiv,
-} from "../items.styled"
+} from "./HomeStyles"
 import NavBar from "../MUI/NavBar"
-import Buttons from "./Home/Buttons"
+import Buttons from "./Buttons"
 
 export default function Home() {
   return (

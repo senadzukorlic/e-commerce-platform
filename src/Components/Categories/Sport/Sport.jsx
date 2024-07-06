@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 
 import { Card, Typography, Button, CardActionArea } from "@mui/material"
 
-import { GetData } from "../../Api/Requests"
+import { GetData } from "../../../Api/Requests"
 import {
   ParentDiv,
   Imagee,
@@ -11,18 +11,16 @@ import {
   ButtonCard,
   GlobalStyles,
   CategoryH1,
-} from "../../items.styled"
-import NavBar from "../../MUI/NavBar"
-import MenTab from "../MenCard/MenTab"
+} from "../items.styled/"
+import NavBar from "../MUI/NavBar"
 
-export function Watches() {
+export function Sport() {
   const [data, setData] = useState([])
   const [inputValue, setInputValue] = useState("")
 
   useEffect(() => {
     async function fetchData() {
       const response = await GetData()
-      console.log(response)
       setData(response)
     }
     fetchData()
@@ -32,11 +30,13 @@ export function Watches() {
     <>
       <GlobalStyles />
       <NavBar setInputValue={setInputValue} />
-      <CategoryH1>Men</CategoryH1>
-      <MenTab />
+      <CategoryH1>Sport</CategoryH1>
+
       <ParentDiv>
         {data
-          .filter((item) => item.category.toLowerCase() === "mens-watches")
+          .filter(
+            (item) => item.category.toLowerCase() === "sports-accessories"
+          )
           .map((item) => {
             if (
               !inputValue ||

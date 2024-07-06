@@ -13,7 +13,7 @@ import {
   CategoryH1,
 } from "../../items.styled"
 import NavBar from "../../MUI/NavBar"
-import ElectronicTab from "../ElectronicsCard/ElectronicTab"
+import ElectronicTab from "./ElectronicTab"
 
 export function Laptops() {
   const [data, setData] = useState([])

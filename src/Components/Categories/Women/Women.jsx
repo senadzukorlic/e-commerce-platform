@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 
 import { Card, Typography, Button, CardActionArea } from "@mui/material"
 
-import { GetData } from "../Api/Requests"
+import { GetData } from "../../../Api/Requests"
 import {
   ParentDiv,
   Imagee,
@@ -13,29 +13,34 @@ import {
   CategoryH1,
 } from "../items.styled/"
 import NavBar from "../MUI/NavBar"
-import MenTab from "./MenCard/MenTab"
+import WomenTab from "./WomenTab"
 
-export function Men() {
+export function Women() {
   const [data, setData] = useState([])
   const [inputValue, setInputValue] = useState("")
 
   useEffect(() => {
     async function fetchData() {
       const response = await GetData()
-      console.log(response)
       setData(response)
     }
     fetchData()
   }, [])
 
-  const categories = ["mens-watches", "mens-shoes", "mens-shirts"]
+  const categories = [
+    "tops",
+    "womens-bags",
+    "womens-dresses",
+    "womens-shoes",
+    "womens-watches",
+  ]
 
   return (
     <>
       <GlobalStyles />
       <NavBar setInputValue={setInputValue} />
-      <CategoryH1>Men</CategoryH1>
-      <MenTab />
+      <CategoryH1>Women</CategoryH1>
+      <WomenTab />
       <ParentDiv>
         {data
           .filter((item) => categories.includes(item.category.toLowerCase()))
@@ -93,3 +98,4 @@ export function Men() {
     </>
   )
 }
+//162,178,181,188,189,173,174

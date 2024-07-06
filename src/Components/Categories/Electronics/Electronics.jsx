@@ -1,9 +1,10 @@
 import * as React from "react"
 import { useState, useEffect } from "react"
+// import { Outlet } from "react-router-dom"
 
 import { Card, Typography, Button, CardActionArea } from "@mui/material"
 
-import { GetData } from "../Api/Requests"
+import { GetData } from "../../../Api/Requests"
 import {
   ParentDiv,
   Imagee,
@@ -13,8 +14,9 @@ import {
   CategoryH1,
 } from "../items.styled/"
 import NavBar from "../MUI/NavBar"
+import ElectronicTab from "./ElectronicTab"
 
-export function Sport() {
+export function Electronics() {
   const [data, setData] = useState([])
   const [inputValue, setInputValue] = useState("")
 
@@ -26,17 +28,18 @@ export function Sport() {
     fetchData()
   }, [])
 
+  const categories = ["laptops", "mobile-accessories", "smartphones", "tablets"]
+
   return (
     <>
       <GlobalStyles />
       <NavBar setInputValue={setInputValue} />
-      <CategoryH1>Sport</CategoryH1>
+      <CategoryH1>Electronics</CategoryH1>
+      <ElectronicTab />
 
       <ParentDiv>
         {data
-          .filter(
-            (item) => item.category.toLowerCase() === "sports-accessories"
-          )
+          .filter((item) => categories.includes(item.category.toLowerCase()))
           .map((item) => {
             if (
               !inputValue ||
@@ -91,3 +94,5 @@ export function Sport() {
     </>
   )
 }
+
+//101,99,78,79,106

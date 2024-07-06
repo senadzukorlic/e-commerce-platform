@@ -4,7 +4,7 @@ import Tab from "@mui/material/Tab"
 import { Link, useLocation } from "react-router-dom"
 import { useState } from "react"
 
-import { BoxTab, CenteredContainer } from "../../items.styled"
+import { BoxTab, CenteredContainer } from "../../../items.styled"
 
 export default function MenTab() {
   const location = useLocation()

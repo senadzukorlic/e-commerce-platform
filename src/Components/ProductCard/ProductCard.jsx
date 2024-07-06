@@ -1,7 +1,15 @@
 import { useContext } from "react"
 import { DataContext } from "../../Context/DataContext"
 import { Card, Typography, Button, CardActionArea } from "@mui/material"
-import { ParentDiv, Imagee, CardText, ButtonCard } from "./ProductCardStyles"
+import {
+  ParentDiv,
+  Imagee,
+  CardText,
+  ButtonCard,
+  HeartButton,
+  ImageWrapper,
+  ButtonHeArT,
+} from "./ProductCardStyles"
 
 export function ProductData({ categories }) {
   const { data, inputValue } = useContext(DataContext)
@@ -31,13 +39,19 @@ export function ProductData({ categories }) {
                 }}
               >
                 <CardActionArea>
-                  <Imagee
-                    component="img"
-                    height="330"
-                    width="270"
-                    image={item.images[0]}
-                    alt={item.title}
-                  />
+                  <ImageWrapper>
+                    <Imagee
+                      component="img"
+                      height="330"
+                      width="270"
+                      image={item.images[0]}
+                      alt={item.title}
+                    />
+                    <HeartButton>
+                      <ButtonHeArT />
+                    </HeartButton>
+                  </ImageWrapper>
+
                   <CardText>
                     <Typography gutterBottom variant="h5" component="div">
                       {item.title}
@@ -46,6 +60,7 @@ export function ProductData({ categories }) {
                       {item.price}€
                     </Typography>
                   </CardText>
+                  <HeartButton />
                 </CardActionArea>
                 <ButtonCard>
                   <Button size="Medium" color="inherit">

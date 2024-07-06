@@ -1,4 +1,3 @@
-import { GlobalStyles } from "../../items.styled"
 import {
   Container,
   HomeH3,
@@ -8,14 +7,16 @@ import {
   HomeTitleDiv,
   HomeParentDiv,
 } from "./HomeStyles"
-import NavBar from "../MUI/NavBar"
+import { format, addDays } from "date-fns"
 import Buttons from "./Buttons"
 
 export default function Home() {
+  const today = new Date()
+  const startDate = format(today, "dd.MM.yyyy")
+  const endDate = format(addDays(today, 4), "dd.MM.yyyy")
+
   return (
     <HomeParentDiv>
-      <GlobalStyles />
-      <NavBar />
       <Container>
         <HomeTitleDiv>
           <HomeH3>
@@ -28,8 +29,8 @@ export default function Home() {
           <Buttons />
 
           <HomeP>
-            The offer is valid online, on marked items, from 03.07.2024. until
-            07.07.2024, or until the stock runs out. Cannot be combined with
+            The offer is valid online, on marked items, from {startDate} until
+            {endDate}, or until the stock runs out. Cannot be combined with
             other discounts. Offer may vary in stores and online.
           </HomeP>
         </HomePDiv>

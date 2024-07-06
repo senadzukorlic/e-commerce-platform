@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react"
-import { GetData } from "../../Api/Requests"
-
+import { GetData } from "../Api/Requests"
 export const DataContext = createContext()
 
 export function DataProvider({ children }) {

@@ -10,7 +10,7 @@ export async function GetData() {
     const data = response.data.products
     return data
   } catch (error) {
-    console.log(`Data was not successfully fetched`)
+    console.log(`Data was not successfully fetched`, error)
   }
 }
 

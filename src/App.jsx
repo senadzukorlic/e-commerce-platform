@@ -1,31 +1,46 @@
 import { Routes } from "react-router-dom"
 import { Route } from "react-router-dom"
+import NavBar from "./Components/NavBar/NavBar"
 
-import Home from "./Components/Home"
+import Home from "./Components/Home/Home"
 
-import { Men } from "./Components/Men"
-import { Shirts } from "./Components/MenCard/Shirts"
-import { Shoes } from "./Components/MenCard/Shoes"
-import { Watches } from "./Components/MenCard/Watches"
+import Men from "./Components/Categories/Men/Men"
+import Shirts from "./Components/Categories/Men/Shirts"
+import Shoes from "./Components/Categories/Men/Shoes"
+import Watches from "./Components/Categories/Men/Watches"
 
-import { Women } from "./Components/Women"
-import { Bags } from "./Components/WomenCard/Bags"
-import { Dresses } from "./Components/WomenCard/Dresses"
-import { WShoes } from "./Components/WomenCard/Shoes"
-import { Tops } from "./Components/WomenCard/Tops"
-import { WWatches } from "./Components/WomenCard/Watches"
+import Women from "./Components/Categories/Women/Women"
+import Bags from "./Components/Categories/Women/Bags"
+import Dresses from "./Components/Categories/Women/Dresses"
+import WShoes from "./Components/Categories/Women/Shoes"
+import Tops from "./Components/Categories/Women/Tops"
+import WWatches from "./Components/Categories/Women/Watches"
 
-import { Sport } from "./Components/Sport"
+import Sport from "./Components/Categories/Sport/Sport"
 
-import { Electronics } from "./Components/Electronics"
-import { Laptops } from "./Components/ElectronicsCard/Laptops"
-import { Smartphones } from "./Components/ElectronicsCard/Smartphones"
-import { Tablets } from "./Components/ElectronicsCard/Tablets"
-import { MobileAccessories } from "./Components/ElectronicsCard/MobileAccessories"
+import Electronics from "./Components/Categories/Electronics/Electronics"
+import Laptops from "./Components/Categories/Electronics/Laptops"
+import Smartphones from "./Components/Categories/Electronics/Smartphones"
+import Tablets from "./Components/Categories/Electronics/Tablets"
+import MobileAccessories from "./Components/Categories/Electronics/MobileAccessories"
+
+import { createGlobalStyle } from "styled-components"
+
+const GlobalStyles = createGlobalStyle`
+  html,body {
+  
+    margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+`
 
 function App() {
   return (
     <>
+      <GlobalStyles />
+      <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
 

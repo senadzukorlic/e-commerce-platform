@@ -3,13 +3,13 @@ import { DataContext } from "../../Context/DataContext"
 import { Card, Typography, Button, CardActionArea } from "@mui/material"
 import { ParentDiv, Imagee, CardText, ButtonCard } from "./ProductCardStyles"
 
-export function ProductData({ category }) {
+export function ProductData({ categories }) {
   const { data, inputValue } = useContext(DataContext)
 
   return (
     <ParentDiv>
       {data
-        .filter((item) => item.category.toLowerCase() === category)
+        .filter((item) => categories.includes(item.category.toLowerCase()))
         .map((item) => {
           if (
             !inputValue ||

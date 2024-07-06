@@ -1,4 +1,3 @@
-ParentDiv, Imagee, CardText, ButtonCard
 import { styled } from "@mui/material/styles"
 
 import CardMedia from "@mui/material/CardMedia"

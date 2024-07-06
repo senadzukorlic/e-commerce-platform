@@ -1,93 +1,18 @@
-import * as React from "react"
-import { useState, useEffect } from "react"
+import React from "react"
+import { ProductData } from "../../ProductCard/ProductCard"
+import { CategoryH1 } from "./TabStyles"
+import ElectronicTab from "./ElectronicTab"
 
-import { Card, Typography, Button, CardActionArea } from "@mui/material"
+const categories = ["smartphones"]
 
-import { GetData } from "../../Api/Requests"
-import {
-  ParentDiv,
-  Imagee,
-  CardText,
-  ButtonCard,
-  GlobalStyles,
-  CategoryH1,
-} from "../../items.styled"
-import NavBar from "../../MUI/NavBar"
-import ElectronicTab from "../ElectronicsCard/ElectronicTab"
-
-export function Smartphones() {
-  const [data, setData] = useState([])
-  const [inputValue, setInputValue] = useState("")
-
-  useEffect(() => {
-    async function fetchData() {
-      const response = await GetData()
-      setData(response)
-    }
-    fetchData()
-  }, [])
-
+function Smartphones() {
   return (
     <>
-      <GlobalStyles />
-      <NavBar setInputValue={setInputValue} />
-      <CategoryH1>Electronics</CategoryH1>
+      <CategoryH1>Smartphones</CategoryH1>
       <ElectronicTab />
-
-      <ParentDiv>
-        {data
-          .filter((item) => item.category.toLowerCase() === "smartphones")
-          .map((item) => {
-            if (
-              !inputValue ||
-              item.title.toLowerCase().includes(inputValue.toLowerCase())
-            ) {
-              return (
-                <Card
-                  key={item.id}
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    textAlign: "center",
-                    alignItems: "center",
-                    height: 550,
-                    width: 350,
-                    backgroundColor: "whitesmoke",
-                    borderRadius: 5,
-                    margin: "90px 30px",
-                  }}
-                >
-                  <CardActionArea>
-                    <Imagee
-                      component="img"
-                      height="330"
-                      width="270"
-                      image={item.images[0]}
-                      alt={item.title}
-                    />
-                    <CardText>
-                      <Typography gutterBottom variant="h5" component="div">
-                        {item.title}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {item.price}€
-                      </Typography>
-                    </CardText>
-                  </CardActionArea>
-                  <ButtonCard>
-                    <Button size="Medium" color="inherit">
-                      Buy
-                    </Button>
-                    <Button size="medium" color="inherit">
-                      Add to Card
-                    </Button>
-                  </ButtonCard>
-                </Card>
-              )
-            }
-            return null
-          })}
-      </ParentDiv>
+      <ProductData categories={categories} />
     </>
   )
 }
+
+export default Smartphones

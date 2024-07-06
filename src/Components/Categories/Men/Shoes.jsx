@@ -1,93 +1,18 @@
-import * as React from "react"
-import { useState, useEffect } from "react"
+import React from "react"
+import { ProductData } from "../../ProductCard/ProductCard"
+import { CategoryH1 } from "./TabStyles"
+import MenTab from "./MenTab"
 
-import { Card, Typography, Button, CardActionArea } from "@mui/material"
+const categories = ["mens-shoes"]
 
-import { GetData } from "../../Api/Requests"
-import {
-  ParentDiv,
-  Imagee,
-  CardText,
-  ButtonCard,
-  GlobalStyles,
-  CategoryH1,
-} from "../../items.styled"
-import NavBar from "../../MUI/NavBar"
-import MenTab from "../MenCard/MenTab"
-
-export function Shoes() {
-  const [data, setData] = useState([])
-  const [inputValue, setInputValue] = useState("")
-
-  useEffect(() => {
-    async function fetchData() {
-      const response = await GetData()
-      console.log(response)
-      setData(response)
-    }
-    fetchData()
-  }, [])
-
+function Shoes() {
   return (
     <>
-      <GlobalStyles />
-      <NavBar setInputValue={setInputValue} />
-      <CategoryH1>Men</CategoryH1>
+      <CategoryH1>Shoes</CategoryH1>
       <MenTab />
-      <ParentDiv>
-        {data
-          .filter((item) => item.category.toLowerCase() === "mens-shoes")
-          .map((item) => {
-            if (
-              !inputValue ||
-              item.title.toLowerCase().includes(inputValue.toLowerCase())
-            ) {
-              return (
-                <Card
-                  key={item.id}
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    textAlign: "center",
-                    alignItems: "center",
-                    height: 550,
-                    width: 350,
-                    backgroundColor: "whitesmoke",
-                    borderRadius: 5,
-                    margin: "90px 30px",
-                  }}
-                >
-                  <CardActionArea>
-                    <Imagee
-                      component="img"
-                      height="330"
-                      width="270"
-                      image={item.images[0]}
-                      alt={item.title}
-                    />
-                    <CardText>
-                      <Typography gutterBottom variant="h5" component="div">
-                        {item.title}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {item.price}€
-                      </Typography>
-                    </CardText>
-                  </CardActionArea>
-                  <ButtonCard>
-                    <Button size="Medium" color="inherit">
-                      Buy
-                    </Button>
-                    <Button size="medium" color="inherit">
-                      Add to Card
-                    </Button>
-                  </ButtonCard>
-                </Card>
-              )
-            }
-            return null
-          })}
-      </ParentDiv>
+      <ProductData categories={categories} />
     </>
   )
 }
+
+export default Shoes

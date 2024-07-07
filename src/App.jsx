@@ -26,6 +26,8 @@ import MobileAccessories from "./Components/Categories/Electronics/MobileAccesso
 
 import { createGlobalStyle } from "styled-components"
 
+import { ShoppingCart } from "./Components/ShoppingCart/ShoppingCart"
+
 const GlobalStyles = createGlobalStyle`
   html,body {
   
@@ -61,6 +63,7 @@ function App() {
         <Route path="/smartphones" element={<Smartphones />} />
         <Route path="/tablets" element={<Tablets />} />
         <Route path="/mobile-accessories" element={<MobileAccessories />} />
+        <Route path="/shopping-cart" element={<ShoppingCart />} />
 
         <Route path="/sport" element={<Sport />} />
       </Routes>

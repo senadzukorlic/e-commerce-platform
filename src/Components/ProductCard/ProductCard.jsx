@@ -1,6 +1,6 @@
 import { useContext } from "react"
-import { DataContext } from "../../Context/DataContext"
-import { Card, Typography, Button, CardActionArea } from "@mui/material"
+import { DataContext } from "../../Context/CreateContext"
+import { Typography, Button, CardActionArea } from "@mui/material"
 import {
   ParentDiv,
   Imagee,
@@ -9,10 +9,27 @@ import {
   HeartButton,
   ImageWrapper,
   ButtonHeArT,
+  StyledCard,
 } from "./ProductCardStyles"
 
 export function ProductData({ categories }) {
-  const { data, inputValue } = useContext(DataContext)
+  const { data, inputValue, setCartCount, setCartData } =
+    useContext(DataContext)
+
+  const handleAddToCart = (item) => {
+    setCartData((prevCartData) => {
+      const isItemInCart = prevCartData.some(
+        (cartItem) => cartItem.id === item.id
+      )
+      if (isItemInCart) {
+        return prevCartData // ako je stavka već u korpi, ne dodaj ništa
+      }
+      console.log("Adding item to cart:", item)
+      setCartCount((currentValue) => currentValue + 1) // ažuriraj broj stavki u korpi
+
+      return [...prevCartData, item] // dodaj novu stavku u korpu
+    })
+  }
 
   return (
     <ParentDiv>
@@ -24,29 +41,10 @@ export function ProductData({ categories }) {
             item.title.toLowerCase().includes(inputValue.toLowerCase())
           ) {
             return (
-              <Card
-                key={item.id}
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  textAlign: "center",
-                  alignItems: "center",
-                  height: 550,
-                  width: 350,
-                  backgroundColor: "whitesmoke",
-                  borderRadius: 5,
-                  margin: "90px 30px",
-                }}
-              >
+              <StyledCard key={item.id}>
                 <CardActionArea>
                   <ImageWrapper>
-                    <Imagee
-                      component="img"
-                      height="330"
-                      width="270"
-                      image={item.images[0]}
-                      alt={item.title}
-                    />
+                    <Imagee image={item.images[0]} alt={item.title} />
                     <HeartButton>
                       <ButtonHeArT />
                     </HeartButton>
@@ -66,11 +64,15 @@ export function ProductData({ categories }) {
                   <Button size="Medium" color="inherit">
                     Buy
                   </Button>
-                  <Button size="medium" color="inherit">
+                  <Button
+                    size="medium"
+                    color="inherit"
+                    onClick={() => handleAddToCart(item)}
+                  >
                     Add to Card
                   </Button>
                 </ButtonCard>
-              </Card>
+              </StyledCard>
             )
           }
           return null

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useContext } from "react"
 import { Link } from "react-router-dom"
 
 import {
@@ -14,32 +14,20 @@ import {
   NavBarMenuItem,
 } from "./NavBarStyles"
 
-import {
-  LanguageRounded,
-  ShoppingBagRounded,
-  StarOutlineRounded,
-  SearchRounded,
-} from "@mui/icons-material"
+import { StarOutlineRounded, SearchRounded } from "@mui/icons-material"
+import { DataContext } from "../../Context/CreateContext"
+import HomeIcon from "@mui/icons-material/Home"
+import PersonIcon from "@mui/icons-material/Person"
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
+import Badge from "@mui/material/Badge"
 
 import logo from "./JacpiStore.png"
 import DrawerR from "./Drawer"
 
-export default function NavBar({ setInputValue }) {
+export default function NavBar() {
   const [anchorEl, setAnchorEl] = useState(null)
-  const [input, setInput] = useState("")
+  const { setInputValue, inputValue, cartCount } = useContext(DataContext)
   const [drawerOpen, setDrawerOpen] = useState(false)
-  const [appBarHeight, setAppBarHeight] = useState(0)
-  const appBarRef = useRef(null)
-
-  useEffect(() => {
-    if (appBarRef.current) {
-      setAppBarHeight(appBarRef.current.clientHeight)
-    }
-  }, [])
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
 
   const handleClose = () => {
     setAnchorEl(null)
@@ -47,12 +35,7 @@ export default function NavBar({ setInputValue }) {
 
   const handleInputSubmit = (e) => {
     e.preventDefault()
-    setInput("")
-  }
-
-  const handleInputChange = (e) => {
-    setInput(e.target.value)
-    setInputValue(e.target.value)
+    setInputValue("")
   }
 
   const toggleDrawer = (open) => () => {
@@ -63,14 +46,14 @@ export default function NavBar({ setInputValue }) {
 
   return (
     <>
-      <NavBarAppBar ref={appBarRef}>
+      <NavBarAppBar>
         <NavBarToolbar>
           <Logo src={logo} alt="Logo" />
 
           <NavBarStack>
             <NavBarButton
-              size="large" //ne diraj
-              id="resources-button" //klasu ne diraj
+              size="large"
+              id="resources-button"
               onClick={toggleDrawer(true)}
               aria-controls={open ? "resources-menu" : undefined}
               aria-haspopup="true"
@@ -83,7 +66,7 @@ export default function NavBar({ setInputValue }) {
           </NavBarStack>
 
           <NavBarMenu
-            id="resources-menu" //klasu ne diraj
+            id="resources-menu"
             anchorEl={anchorEl}
             open={open}
             MenuListProps={{ "aria-labelledby": "resources-button" }}
@@ -111,8 +94,8 @@ export default function NavBar({ setInputValue }) {
           <form onSubmit={handleInputSubmit}>
             <NavBarInput
               placeholder="Search..."
-              value={input}
-              onChange={handleInputChange}
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
             />
           </form>
           <IconDiv>
@@ -124,7 +107,16 @@ export default function NavBar({ setInputValue }) {
             >
               <SearchRounded />
             </NavBarIconButton>
-
+            <NavBarIconButton
+              size="large"
+              edge="end"
+              color="inherit"
+              aria-label="search"
+              component={Link}
+              to="/"
+            >
+              <HomeIcon />
+            </NavBarIconButton>
             <NavBarIconButton
               size="large"
               edge="end"
@@ -135,12 +127,16 @@ export default function NavBar({ setInputValue }) {
             </NavBarIconButton>
 
             <NavBarIconButton
-              size="large"
+              size="small"
               edge="end"
               color="inherit"
               aria-label="shopping-bag"
+              component={Link}
+              to="/shopping-cart"
             >
-              <ShoppingBagRounded />
+              <Badge color="secondary" badgeContent={cartCount}>
+                <ShoppingCartIcon />
+              </Badge>
             </NavBarIconButton>
 
             <NavBarIconButton
@@ -149,16 +145,12 @@ export default function NavBar({ setInputValue }) {
               color="inherit"
               aria-label="language"
             >
-              <LanguageRounded />
+              <PersonIcon />
             </NavBarIconButton>
           </IconDiv>
         </NavBarToolbar>
       </NavBarAppBar>
-      <DrawerR
-        open={drawerOpen}
-        onClose={toggleDrawer(false)}
-        appBarHeight={appBarHeight}
-      />
+      <DrawerR open={drawerOpen} onClose={toggleDrawer(false)} />
     </>
   )
 }

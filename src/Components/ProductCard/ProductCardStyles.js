@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles"
 import CardMedia from "@mui/material/CardMedia"
 import CardContent from "@mui/material/CardContent"
 import CardActions from "@mui/material/CardActions"
-import { Box } from "@mui/material"
+import { Box, IconButton } from "@mui/material"
 import { Card } from "@mui/material"
 import FavoriteIcon from "@mui/icons-material/Favorite"
 
@@ -12,7 +12,7 @@ export const StyledCard = styled(Card)`
   flex-direction: column;
   text-align: center;
   align-items: center;
-  height: 550px;
+  height: 600px;
   width: 350px;
   background-color: whitesmoke;
   border-radius: 15px;
@@ -33,7 +33,7 @@ export const Imagee = styled(CardMedia)`
 export const CardText = styled(CardContent)`
   background-color: whitesmoke;
 `
-export const ButtonCard = styled(CardActions)`
+export const ButtonCard = styled(CardContent)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,6 +46,38 @@ export const ButtonCard = styled(CardActions)`
 export const ButtonHeArT = styled(FavoriteIcon)`
   background-color: whitesmoke;
 `
+export const IconButtonHeart = styled(IconButton)`
+  position: absolute;
+  bottom: 18px;
+  right: 0px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: whitesmoke;
+  /* border: 1px solid black; */
+  border-radius: 50%;
+  color: red;
+  transition: all 0.3s ease;
+  /* width: 50px;
+  height: 40px;
+
+  /* position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background-color: whitesmoke;
+  border-radius: 50%;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  transition: all 0.3s ease;
+  &:hover {
+    color: black;
+  } */
+`
 
 export const HeartButton = styled(Box)`
   position: absolute;
@@ -55,7 +87,7 @@ export const HeartButton = styled(Box)`
   border-radius: 50%;
   padding: 8px;
   display: flex;
-  align-items: center;
+  align-items: e;
   justify-content: center;
   color: black;
   transition: all 0.3s ease;

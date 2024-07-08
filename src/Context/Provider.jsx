@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { GetData, DisplayUpdatedProducts } from "../Api/Requests"
 import { DataContext } from "./CreateContext"
-// import { SaleContext } from "./CreateContext"
 
 export function DataProvider({ children }) {
   const [data, setData] = useState([])
@@ -33,18 +32,3 @@ export function DataProvider({ children }) {
     </DataContext.Provider>
   )
 }
-// export function CartData({ children }) {
-//   const [data, setData] = useState([])
-
-//   useEffect(() => {
-//     async function fetchData() {
-//       const response = await DisplayUpdatedProducts()
-//       setData(response)
-//     }
-//     fetchData()
-//   }, [])
-
-//   return (
-//     <SaleContext.Provider value={{ data }}>{children}</SaleContext.Provider>
-//   )
-// }

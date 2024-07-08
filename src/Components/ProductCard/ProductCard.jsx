@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { DataContext } from "../../Context/CreateContext"
-import { Typography, Button, CardActionArea } from "@mui/material"
+import { Typography, Button, CardActionArea, CardContent } from "@mui/material"
 import {
   ParentDiv,
   Imagee,
@@ -10,6 +10,7 @@ import {
   ImageWrapper,
   ButtonHeArT,
   StyledCard,
+  IconButtonHeart,
 } from "./ProductCardStyles"
 
 export function ProductData({ categories }) {
@@ -22,12 +23,11 @@ export function ProductData({ categories }) {
         (cartItem) => cartItem.id === item.id
       )
       if (isItemInCart) {
-        return prevCartData // ako je stavka već u korpi, ne dodaj ništa
+        return prevCartData
       }
-      console.log("Adding item to cart:", item)
-      setCartCount((currentValue) => currentValue + 1) // ažuriraj broj stavki u korpi
+      setCartCount((currentValue) => currentValue + 1)
 
-      return [...prevCartData, item] // dodaj novu stavku u korpu
+      return [...prevCartData, item]
     })
   }
 
@@ -42,12 +42,12 @@ export function ProductData({ categories }) {
           ) {
             return (
               <StyledCard key={item.id}>
-                <CardActionArea>
+                <CardContent>
                   <ImageWrapper>
                     <Imagee image={item.images[0]} alt={item.title} />
-                    <HeartButton>
+                    <IconButtonHeart>
                       <ButtonHeArT />
-                    </HeartButton>
+                    </IconButtonHeart>
                   </ImageWrapper>
 
                   <CardText>
@@ -58,8 +58,10 @@ export function ProductData({ categories }) {
                       {item.price}€
                     </Typography>
                   </CardText>
-                  <HeartButton />
-                </CardActionArea>
+                  {/* <IconButton>
+                    <HeartButton />
+                  </IconButton> */}
+                </CardContent>
                 <ButtonCard>
                   <Button size="Medium" color="inherit">
                     Buy

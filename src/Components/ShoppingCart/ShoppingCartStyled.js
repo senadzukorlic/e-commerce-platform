@@ -43,6 +43,16 @@ export const StyledItemCardDiv = styled("div")`
   flex-direction: column;
 `
 
+export const EmptyItemCard = styled(Card)`
+  display: flex;
+  flex-wrap: row;
+  justify-content: space-around;
+  height: 300px;
+  width: 750px;
+  background-color: whitesmoke;
+  margin: 90px 60px;
+`
+
 export const StyledItemCard = styled(Card)`
   display: flex;
   flex-wrap: row;

@@ -7,6 +7,7 @@ export function DataProvider({ children }) {
   const [inputValue, setInputValue] = useState("")
   const [cartCount, setCartCount] = useState(0)
   const [cartData, setCartData] = useState([])
+  const [total, setTotal] = useState(0)
 
   useEffect(() => {
     async function fetchData() {
@@ -26,6 +27,8 @@ export function DataProvider({ children }) {
         setCartCount,
         cartData,
         setCartData,
+        total,
+        setTotal,
       }}
     >
       {children}

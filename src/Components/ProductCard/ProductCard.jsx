@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { DataContext } from "../../Context/CreateContext"
 import { Typography, Button, CardActionArea, CardContent } from "@mui/material"
 import {
@@ -14,7 +14,7 @@ import {
 } from "./ProductCardStyles"
 
 export function ProductData({ categories }) {
-  const { data, inputValue, setCartCount, setCartData } =
+  const { data, inputValue, setCartCount, setCartData, setTotal } =
     useContext(DataContext)
 
   const handleAddToCart = (item) => {
@@ -25,9 +25,17 @@ export function ProductData({ categories }) {
       if (isItemInCart) {
         return prevCartData
       }
+      const updatedCartData = [...prevCartData, item]
+
       setCartCount((currentValue) => currentValue + 1)
 
-      return [...prevCartData, item]
+      const total = updatedCartData.reduce((accumulator, cartItem) => {
+        return accumulator + cartItem.price
+      }, 0)
+
+      setTotal(total)
+
+      return updatedCartData
     })
   }
 

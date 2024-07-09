@@ -7,6 +7,8 @@ export function DataProvider({ children }) {
   const [inputValue, setInputValue] = useState("")
   const [cartCount, setCartCount] = useState(0)
   const [cartData, setCartData] = useState([])
+  const [productDetail, setProductDetail] = useState([])
+
   const [total, setTotal] = useState(0)
 
   useEffect(() => {
@@ -29,6 +31,8 @@ export function DataProvider({ children }) {
         setCartData,
         total,
         setTotal,
+        productDetail,
+        setProductDetail,
       }}
     >
       {children}

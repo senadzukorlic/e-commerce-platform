@@ -1,42 +1,21 @@
 import { useContext, useState } from "react"
 import { DataContext } from "../../Context/CreateContext"
-import { Typography, Button, CardActionArea, CardContent } from "@mui/material"
+import { Typography, CardActionArea } from "@mui/material"
+import { Link } from "react-router-dom"
 import {
   ParentDiv,
   Imagee,
   CardText,
-  ButtonCard,
-  HeartButton,
   ImageWrapper,
-  ButtonHeArT,
   StyledCard,
-  IconButtonHeart,
 } from "./ProductCardStyles"
 
 export function ProductData({ categories }) {
-  const { data, inputValue, setCartCount, setCartData, setTotal } =
-    useContext(DataContext)
+  const { data, inputValue, setProductDetail } = useContext(DataContext)
 
-  const handleAddToCart = (item) => {
-    setCartData((prevCartData) => {
-      const isItemInCart = prevCartData.some(
-        (cartItem) => cartItem.id === item.id
-      )
-      if (isItemInCart) {
-        return prevCartData
-      }
-      const updatedCartData = [...prevCartData, item]
-
-      setCartCount((currentValue) => currentValue + 1)
-
-      const total = updatedCartData.reduce((accumulator, cartItem) => {
-        return accumulator + cartItem.price
-      }, 0)
-
-      setTotal(total)
-
-      return updatedCartData
-    })
+  const addItemToProductPage = (item) => {
+    const newItem = data.filter((dataItem) => dataItem.id === item.id)
+    setProductDetail(newItem)
   }
 
   return (
@@ -50,12 +29,13 @@ export function ProductData({ categories }) {
           ) {
             return (
               <StyledCard key={item.id}>
-                <CardContent>
+                <CardActionArea
+                  onClick={() => addItemToProductPage(item)}
+                  component={Link}
+                  to="/product-detail-page"
+                >
                   <ImageWrapper>
                     <Imagee image={item.images[0]} alt={item.title} />
-                    <IconButtonHeart>
-                      <ButtonHeArT />
-                    </IconButtonHeart>
                   </ImageWrapper>
 
                   <CardText>
@@ -66,19 +46,7 @@ export function ProductData({ categories }) {
                       {item.price}€
                     </Typography>
                   </CardText>
-                </CardContent>
-                <ButtonCard>
-                  <Button size="Medium" color="inherit">
-                    Buy
-                  </Button>
-                  <Button
-                    size="medium"
-                    color="inherit"
-                    onClick={() => handleAddToCart(item)}
-                  >
-                    Add to Card
-                  </Button>
-                </ButtonCard>
+                </CardActionArea>
               </StyledCard>
             )
           }

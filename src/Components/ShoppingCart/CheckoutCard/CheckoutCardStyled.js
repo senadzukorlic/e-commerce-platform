@@ -1,6 +1,7 @@
 import { styled } from "@mui/material/styles"
 import { Card } from "@mui/material"
 import Button from "@mui/material/Button"
+
 export const StyledCheckoutCard = styled(Card)`
   display: flex;
   flex-direction: column;
@@ -27,6 +28,14 @@ export const LineDiv1 = styled("div")`
   width: 430px;
   height: 0px;
 `
+
+export const SmallDiv = styled("div")`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 430px;
+`
+
 export const LineDiv2 = styled("div")`
   border: 1px solid black;
   width: 430px;

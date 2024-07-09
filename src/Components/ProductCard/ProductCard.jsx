@@ -66,9 +66,6 @@ export function ProductData({ categories }) {
                       {item.price}€
                     </Typography>
                   </CardText>
-                  {/* <IconButton>
-                    <HeartButton />
-                  </IconButton> */}
                 </CardContent>
                 <ButtonCard>
                   <Button size="Medium" color="inherit">

@@ -56,27 +56,12 @@ export const IconButtonHeart = styled(IconButton)`
   justify-content: center;
 
   background-color: whitesmoke;
-  /* border: 1px solid black; */
   border-radius: 50%;
-  color: red;
-  transition: all 0.3s ease;
-  /* width: 50px;
-  height: 40px;
-
-  /* position: absolute;
-  bottom: 16px;
-  right: 16px;
-  background-color: whitesmoke;
-  border-radius: 50%;
-  padding: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: black;
   transition: all 0.3s ease;
   &:hover {
-    color: black;
-  } */
+    color: red;
+  }
 `
 
 export const HeartButton = styled(Box)`

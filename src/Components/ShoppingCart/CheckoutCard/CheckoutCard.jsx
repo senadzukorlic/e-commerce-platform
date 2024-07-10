@@ -36,7 +36,7 @@ export function CheckoutCard() {
 
         <SmallDiv>
           <P2>Order value</P2>
-          <P2>{total > 0 ? `${totalWithDiscount.toFixed(2)}€` : `0€`}</P2>
+          <P2>{total > 0 ? `${total.toFixed(2)}€` : `0€`}</P2>
         </SmallDiv>
         <SmallDiv>
           <P2>Discount </P2>
@@ -49,7 +49,7 @@ export function CheckoutCard() {
         <LineDiv2></LineDiv2>
         <SmallDiv>
           <H3>Total: </H3>
-          <H3>{total > 0 ? `${total.toFixed(2)}€` : `0€`}</H3>
+          <H3>{total > 0 ? `${totalWithDiscount.toFixed(2)}€` : `0€`}</H3>
         </SmallDiv>
 
         <CheckoutButton>Continue to checkout</CheckoutButton>

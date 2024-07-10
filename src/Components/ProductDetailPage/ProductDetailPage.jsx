@@ -1,5 +1,5 @@
 import { useContext, useState } from "react"
-import { DataContext } from "../../../Context/CreateContext"
+import { DataContext } from "../../Context/CreateContext"
 import {
   Card,
   CardContent,
@@ -7,9 +7,15 @@ import {
   Typography,
   Button,
   Box,
-  MenuItem,
-  Select,
 } from "@mui/material"
+
+import {
+  CardProductDetail,
+  ParentDiv,
+  Image,
+  CardContentImageStyled,
+  ButtonSize,
+} from "./ProductDetailPageStyle"
 
 export function ProductDetailPage() {
   const { productDetail, setCartData, setCartCount, setTotal } =
@@ -21,14 +27,6 @@ export function ProductDetailPage() {
 
   const handleSizeChange = (event) => {
     setSize(event.target.value)
-  }
-
-  if (!productDetail || productDetail.length === 0) {
-    return (
-      <Typography variant="h6" color="text.secondary">
-        Proizvod nije pronađen
-      </Typography>
-    )
   }
 
   const handleAddToCart = (item) => {
@@ -54,53 +52,50 @@ export function ProductDetailPage() {
   }
 
   return (
-    <>
+    <ParentDiv>
       {productDetail ? (
-        <Card sx={{ maxWidth: 345 }}>
-          <CardMedia
-            component="img"
-            height="140"
-            image={item.images[0]}
-            alt={item.title}
-          />
+        <CardProductDetail>
+          <CardContentImageStyled>
+            <Image
+              component="img"
+              height="140"
+              image={item.images[0]}
+              alt={item.title}
+            />
+          </CardContentImageStyled>
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography gutterBottom variant="h4" component="div">
               {item.title}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="h6" color="text.secondary">
               {item.price}€
             </Typography>
+
             <Box sx={{ mt: 2 }}>
-              <Select
-                value={size}
-                onChange={handleSizeChange}
-                displayEmpty
-                fullWidth
-              >
-                <MenuItem value="" disabled>
-                  Odaberi veličinu
-                </MenuItem>
-                <MenuItem value={"S"}>S</MenuItem>
-                <MenuItem value={"M"}>M</MenuItem>
-                <MenuItem value={"L"}>L</MenuItem>
-                <MenuItem value={"XL"}>XL</MenuItem>
-              </Select>
-            </Box>
-            <Box sx={{ mt: 2 }}>
+              <Typography variant="h5" sx={{ fontFamily: "Roboto" }}>
+                Select size
+              </Typography>
+              <ButtonSize variant="outlined">XS </ButtonSize>
+              <ButtonSize variant="outlined">S </ButtonSize>
+              <ButtonSize variant="outlined">M </ButtonSize>
+              <ButtonSize variant="outlined">L </ButtonSize>
+              <ButtonSize variant="outlined">XL </ButtonSize>
+              <ButtonSize variant="outlined">XLL </ButtonSize>
+
               <Button
                 variant="contained"
-                color="primary"
+                sx={{ backgroundColor: "black", color: "white" }}
                 fullWidth
                 onClick={() => handleAddToCart(item)}
               >
-                Dodaj u korpu
+                Add
               </Button>
             </Box>
           </CardContent>
-        </Card>
+        </CardProductDetail>
       ) : (
         <h1>NEma nista</h1>
       )}
-    </>
+    </ParentDiv>
   )
 }

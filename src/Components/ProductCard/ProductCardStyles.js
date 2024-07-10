@@ -12,7 +12,7 @@ export const StyledCard = styled(Card)`
   flex-direction: column;
   text-align: center;
   align-items: center;
-  height: 600px;
+  height: 460px;
   width: 350px;
   background-color: whitesmoke;
   border-radius: 15px;
@@ -21,7 +21,7 @@ export const StyledCard = styled(Card)`
 export const ParentDiv = styled("div")`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 `
 export const Imagee = styled(CardMedia)`
   border-color: whitesmoke;

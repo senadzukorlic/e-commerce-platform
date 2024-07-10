@@ -42,7 +42,7 @@ export function ProductData({ categories }) {
                     <Typography gutterBottom variant="h5" component="div">
                       {item.title}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="h6" color="text.secondary">
                       {item.price}€
                     </Typography>
                   </CardText>

@@ -27,7 +27,7 @@ import MobileAccessories from "./Components/Categories/Electronics/MobileAccesso
 import { createGlobalStyle } from "styled-components"
 
 import { ShoppingCart } from "./Components/ShoppingCart/ShoppingCart"
-import { ProductDetailPage } from "./Components/ProductCard/ProductDetailPage/ProductDetailPage"
+import { ProductDetailPage } from "./Components/ProductDetailPage/ProductDetailPage"
 
 const GlobalStyles = createGlobalStyle`
   html,body {
@@ -36,6 +36,7 @@ const GlobalStyles = createGlobalStyle`
   padding: 0;
   width: 100%;
   overflow-x: hidden;
+ 
 }
 `
 

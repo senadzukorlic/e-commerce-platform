@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { DataContext } from "../../Context/CreateContext"
 import {
   Card,
@@ -24,11 +24,29 @@ export function ProductDetailPage() {
   const item = productDetail[0]
 
   const [size, setSize] = useState("")
+  const [images, setImages] = useState([])
+  const [prevNext, setPrexNext] = useState(0)
 
-  const handleSizeChange = (event) => {
-    setSize(event.target.value)
+  useEffect(() => {
+    if (productDetail.length > 0) {
+      setImages(productDetail[0].images)
+    }
+  }, [productDetail])
+
+  const productImages = () => {
+    if (productDetail)
+      setImages((currentImage) => {
+        return [...currentImage, productDetail[0].images]
+      })
   }
 
+  const plus = () => {
+    setPrexNext((current) => current + 1)
+  }
+
+  const minus = () => {
+    setPrexNext((current) => current - 1)
+  }
   const handleAddToCart = (item) => {
     setCartData((prevCartData) => {
       const isItemInCart = prevCartData.some(
@@ -46,6 +64,7 @@ export function ProductDetailPage() {
       }, 0)
 
       setTotal(total)
+      productImages()
 
       return updatedCartData
     })
@@ -56,12 +75,31 @@ export function ProductDetailPage() {
       {productDetail ? (
         <CardProductDetail>
           <CardContentImageStyled>
+            <button
+              onClick={minus}
+              style={{
+                width: "30px",
+                height: "30px",
+              }}
+            >
+              {"<"}
+            </button>
+
             <Image
               component="img"
               height="140"
-              image={item.images[0]}
+              image={images[prevNext]}
               alt={item.title}
             />
+            <button
+              onClick={plus}
+              style={{
+                width: "30px",
+                height: "30px",
+              }}
+            >
+              {">"}
+            </button>
           </CardContentImageStyled>
           <CardContent>
             <Typography gutterBottom variant="h4" component="div">
@@ -72,16 +110,21 @@ export function ProductDetailPage() {
             </Typography>
 
             <Box sx={{ mt: 2 }}>
-              <Typography variant="h5" sx={{ fontFamily: "Roboto" }}>
+              <Typography
+                style={{ paddingBottom: "20px" }}
+                variant="h5"
+                sx={{ fontFamily: "Roboto" }}
+              >
                 Select size
               </Typography>
-              <ButtonSize variant="outlined">XS </ButtonSize>
-              <ButtonSize variant="outlined">S </ButtonSize>
-              <ButtonSize variant="outlined">M </ButtonSize>
-              <ButtonSize variant="outlined">L </ButtonSize>
-              <ButtonSize variant="outlined">XL </ButtonSize>
-              <ButtonSize variant="outlined">XLL </ButtonSize>
-
+              <div style={{ paddingBottom: "20px" }}>
+                <ButtonSize variant="outlined">XS</ButtonSize>
+                <ButtonSize variant="outlined">S </ButtonSize>
+                <ButtonSize variant="outlined">M </ButtonSize>
+                <ButtonSize variant="outlined">L </ButtonSize>
+                <ButtonSize variant="outlined">XL </ButtonSize>
+                <ButtonSize variant="outlined">XLL </ButtonSize>
+              </div>
               <Button
                 variant="contained"
                 sx={{ backgroundColor: "black", color: "white" }}
@@ -94,7 +137,7 @@ export function ProductDetailPage() {
           </CardContent>
         </CardProductDetail>
       ) : (
-        <h1>NEma nista</h1>
+        <h1>Nema nista</h1>
       )}
     </ParentDiv>
   )

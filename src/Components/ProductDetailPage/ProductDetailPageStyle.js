@@ -32,6 +32,10 @@ export const CardContentImageStyled = styled(CardContent)`
   margin-right: 40px;
   width: 45vw;
   height: 70vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: "center";
+  align-items: center;
 `
 
 export const ButtonSize = styled(Button)`

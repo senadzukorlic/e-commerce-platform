@@ -35,7 +35,7 @@ export function ProductData({ categories }) {
                   to="/product-detail-page"
                 >
                   <ImageWrapper>
-                    <Imagee image={item.images[0]} alt={item.title} />
+                    <Imagee image={item.images[0]} />
                   </ImageWrapper>
 
                   <CardText>

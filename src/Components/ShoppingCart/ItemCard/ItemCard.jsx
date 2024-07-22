@@ -94,7 +94,7 @@ export function ItemCard() {
                   <p>Total:</p>
                 </PDiv>
                 <PDiv>
-                  <p>XS</p>
+                  <p>{item.size}</p>
                   <p>{item.price}</p>
                 </PDiv>
               </ItemInfoDiv>

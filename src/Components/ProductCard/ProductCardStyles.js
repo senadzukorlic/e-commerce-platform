@@ -2,10 +2,8 @@ import { styled } from "@mui/material/styles"
 
 import CardMedia from "@mui/material/CardMedia"
 import CardContent from "@mui/material/CardContent"
-import CardActions from "@mui/material/CardActions"
-import { Box, IconButton } from "@mui/material"
+import { Box } from "@mui/material"
 import { Card } from "@mui/material"
-import FavoriteIcon from "@mui/icons-material/Favorite"
 
 export const StyledCard = styled(Card)`
   display: flex;
@@ -25,7 +23,7 @@ export const ParentDiv = styled("div")`
 `
 export const Imagee = styled(CardMedia)`
   border-color: whitesmoke;
-  background-color: whitesmoke;
+
   position: relative;
   height: 330px;
   width: 270px;
@@ -43,44 +41,6 @@ export const ButtonCard = styled(CardContent)`
   color: black;
 `
 
-export const ButtonHeArT = styled(FavoriteIcon)`
-  background-color: whitesmoke;
-`
-export const IconButtonHeart = styled(IconButton)`
-  position: absolute;
-  bottom: 18px;
-  right: 0px;
-  padding: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background-color: whitesmoke;
-  border-radius: 50%;
-  color: black;
-  transition: all 0.3s ease;
-  &:hover {
-    color: red;
-  }
-`
-
-export const HeartButton = styled(Box)`
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-  background-color: whitesmoke;
-  border-radius: 50%;
-  padding: 8px;
-  display: flex;
-  align-items: e;
-  justify-content: center;
-  color: black;
-  transition: all 0.3s ease;
-
-  &:hover {
-    color: red;
-  }
-`
 export const ImageWrapper = styled(Box)`
   position: relative;
   display: flex;

@@ -1,60 +1,11 @@
-// import { Card, styled, CardMedia, CardContent, Button } from "@mui/material"
-
-// export const ParentDiv = styled("div")`
-//   display: flex;
-//   flex-wrap: row;
-//   justify-content: space-around;
-//   height: 100vh;
-//   padding-top: 50px;
-// `
-// export const CardProductDetail = styled(Card)`
-//   display: flex;
-//   flex-wrap: row;
-//   justify-content: space-around;
-//   border-radius: 20px;
-//   padding: 20px;
-//   width: 30%;
-//   height: 75vh;
-//   background-color: whitesmoke;
-// `
-
-// export const CardContentImageStyled = styled(CardContent)`
-//   margin-right: 40px;
-//   padding-top: 200px;
-//   background-color: red;
-//   width: 35vw;
-//   height: 40vh;
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: "center";
-//   align-items: center;
-//   position: relative;
-//   /* background-color: green; */
-// `
-
-// export const Image = styled(CardMedia)`
-//   background-color: green;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: start;
-//   align-items: center;
-//   width: 45vw;
-//   height: 20vh;
-//   background-color: white;
-// `
-
-// export const ButtonSize = styled(Button)`
-//   color: black;
-//   border-color: black;
-
-//   &:hover {
-//     color: white;
-//     background-color: black;
-//     border-color: black;
-//   }
-// `
-
-import { Card, styled, CardMedia, CardContent, Button } from "@mui/material"
+import {
+  Card,
+  styled,
+  CardMedia,
+  CardContent,
+  Button,
+  IconButton,
+} from "@mui/material"
 
 export const ParentDiv = styled("div")`
   display: flex;
@@ -63,7 +14,7 @@ export const ParentDiv = styled("div")`
   padding-top: 50px;
   padding-left: 140px;
   background-color: "red";
-  gap: 40px;
+  gap: 60px;
 `
 
 export const CardProductDetail = styled(Card)`
@@ -73,19 +24,19 @@ export const CardProductDetail = styled(Card)`
   border: none;
   box-shadow: none;
   padding: 20px;
-  width: 25%;
+  width: 35%;
   background-color: white;
 `
 
 export const CardContentImageStyled = styled(CardContent)`
   position: relative;
-  width: 35%; /* Adjust as needed */
+  width: 35%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: red; */
-  overflow: hidden; /* Ensures content doesn't overflow */
+
+  /* overflow: hidden;  */
 `
 
 export const Image = styled(CardMedia)`
@@ -94,7 +45,12 @@ export const Image = styled(CardMedia)`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: whitesmoke;
+  background: linear-gradient(
+    to right,
+    rgb(190, 190, 190),
+    rgb(210, 210, 210),
+    rgb(190, 190, 190)
+  );
 `
 
 export const ButtonSize = styled(Button)`
@@ -102,8 +58,50 @@ export const ButtonSize = styled(Button)`
   border-color: black;
 
   &:hover {
-    color: white;
-    background-color: black;
-    border-color: black;
+    background-color: white;
+    border: 2px solid black;
   }
+`
+export const AddToBagButton = styled(Button)`
+  background-color: black;
+  color: white;
+  font-weight: bolder;
+  height: 45px;
+  border-radius: 20px;
+  border: 1px solid gray;
+  transition: background-color 0.1s ease, color 0.1s ease,
+    border-color 0.1s ease;
+  &:hover {
+    background-color: gray;
+  }
+`
+export const FavoriteButton = styled(Button)`
+  background-color: white;
+  color: black;
+  font-weight: bolder;
+  height: 45px;
+  border-radius: 20px;
+  border: 1px solid gray;
+  transition: background-color 0.1s ease, color 0.1s ease,
+    border-color 0.1s ease;
+  &:hover {
+    background-color: white;
+    border: 2px solid black;
+  }
+`
+export const SizeButtonDiv = styled("div")`
+  padding-bottom: 20px;
+  height: 3vh;
+  display: flex;
+  align-items: center;
+`
+export const ArrowButton = styled(IconButton)`
+  position: absolute;
+  bottom: 30px;
+
+  background-color: white;
+  color: gray;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
 `

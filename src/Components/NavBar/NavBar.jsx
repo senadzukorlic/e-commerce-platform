@@ -122,6 +122,8 @@ export default function NavBar() {
               edge="end"
               color="inherit"
               aria-label="star"
+              component={Link}
+              to="/favorite"
             >
               <StarOutlineRounded />
             </NavBarIconButton>

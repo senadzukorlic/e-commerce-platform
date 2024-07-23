@@ -28,6 +28,7 @@ import { createGlobalStyle } from "styled-components"
 
 import { ShoppingCart } from "./Components/ShoppingCart/ShoppingCart"
 import { ProductDetailPage } from "./Components/ProductDetailPage/ProductDetailPage"
+import { Favorite } from "./Components/Favorite/Favorite"
 
 const GlobalStyles = createGlobalStyle`
   html,body {
@@ -69,6 +70,7 @@ function App() {
         <Route path="/product-detail-page" element={<ProductDetailPage />} />
 
         <Route path="/sport" element={<Sport />} />
+        <Route path="/favorite" element={<Favorite />} />
       </Routes>
     </>
   )

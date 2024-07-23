@@ -140,3 +140,21 @@ export const Select = styled(MuiSelect)`
 `
 
 export const MenuItemStyled = styled(MenuItem)``
+
+/////////////////////////////////////////////////////////////
+export const HeartIcon = styled("svg")({
+  width: "20px",
+  height: "20px",
+  color: "red",
+  cursor: "pointer",
+  display: "flex",
+
+  alignItems: "center",
+  "& path": {
+    fill: "currentColor",
+    transition: "fill 0.3s ease",
+  },
+  "&:hover": {
+    color: "darkred",
+  },
+})

@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import { DataContext } from "../../Context/CreateContext"
 import { CardContent, Typography, Box } from "@mui/material"
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material"
+import { Link } from "react-router-dom"
 import {
   CardProductDetail,
   ParentDiv,
@@ -128,13 +129,15 @@ export function ProductDetailPage() {
                 </AddToBagButton>
                 <br />
                 <br />
-                <FavoriteButton
-                  variant="contained"
-                  fullWidth
-                  onClick={() => handleAddToCart(item)}
-                >
-                  Favorite
-                </FavoriteButton>
+                <Link to="/favorite">
+                  <FavoriteButton
+                    variant="contained"
+                    fullWidth
+                    onClick={() => handleAddToCart(item)}
+                  >
+                    Favorite
+                  </FavoriteButton>
+                </Link>
               </Box>
             </CardContent>
           </CardProductDetail>

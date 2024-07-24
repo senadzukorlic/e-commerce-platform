@@ -13,7 +13,7 @@ export const EmptyItemCard = styled(Card)`
   flex-wrap: row;
   justify-content: space-around;
   height: 300px;
-  width: 750px;
+  width: 650px;
   background-color: whitesmoke;
   margin: 90px 60px;
 `
@@ -27,41 +27,46 @@ export const H1 = styled("h1")`
 export const StyledItemCard = styled(Card)`
   display: flex;
   flex-wrap: row;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 300px;
-  width: 750px;
+  width: 650px;
   background-color: whitesmoke;
-  margin: 90px 60px;
+  margin: 90px 40px;
 `
 
 export const CardContentImageStyled = styled(CardContent)`
-  margin-right: 20px;
-  width: 270px;
+  width: 200px;
   height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
 `
 
 export const Image = styled(CardMedia)`
   margin: 20px;
   width: 160px;
   height: 220px;
-  margin-left: 50px;
+  margin-left: 30px;
   background-color: white;
 `
 
 export const CardContentTitleStyled = styled(CardContent)`
   margin: 20px;
-  width: 430px;
+  width: 390px;
   height: 240px;
 `
 export const TitleAndIconDiv = styled("div")`
   display: flex;
   flex-wrap: row;
   justify-content: space-between;
+  margin-right: 50px;
+  width: 95%;
 `
 
 export const TitleDiv = styled("div")`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  height: 150px;
   justify-content: start;
   font-size: large;
   font-family: "Roboto";
@@ -77,6 +82,7 @@ export const ItemInfoDiv = styled("div")`
   display: flex;
   flex-wrap: row;
   justify-content: space-around;
+  /* background-color: red; */
   font-size: large;
   font-family: "Roboto";
   font-weight: 500;
@@ -92,7 +98,7 @@ export const PDiv = styled("div")`
   font-weight: 400;
   font-size: small;
   height: 55px;
-  margin-right: 60px;
+  margin-right: 50px;
 `
 
 export const IconDiv = styled("div")`
@@ -110,15 +116,15 @@ export const HeartButton = styled(IconButton)`
   justify-content: center;
   align-items: center;
   background-color: whitesmoke;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   color: red;
   transition: all 0.3s ease;
   width: 50px;
-  height: 40px;
+  height: 42px;
 
   &:hover {
-    color: black;
+    border-color: black;
   }
 `
 
@@ -141,7 +147,6 @@ export const Select = styled(MuiSelect)`
 
 export const MenuItemStyled = styled(MenuItem)``
 
-/////////////////////////////////////////////////////////////
 export const HeartIcon = styled("svg")({
   width: "20px",
   height: "20px",

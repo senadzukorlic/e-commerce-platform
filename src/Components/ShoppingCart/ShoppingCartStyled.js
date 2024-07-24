@@ -27,7 +27,7 @@ export const P = styled("p")`
 export const ItemAndCheckoutDiv = styled("div")`
   display: flex;
   flex-wrap: row;
-  justify-content: space-around;
+  justify-content: center;
 `
 
 export const StyledItemCardDiv = styled("div")`

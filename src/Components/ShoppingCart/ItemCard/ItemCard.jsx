@@ -86,7 +86,8 @@ export function ItemCard() {
             <CardContentTitleStyled>
               <TitleAndIconDiv>
                 <TitleDiv gutterBottom variant="p">
-                  {item.title} <br />
+                  {item.title}
+                  <br />
                   {item.price}€
                 </TitleDiv>
                 <IconDiv1>
@@ -101,16 +102,16 @@ export function ItemCard() {
                   <p>Colour:</p>
                 </PDiv>
                 <PDiv>
-                  <p>{item.sku}</p>
-                  <p>White</p>
+                  <p style={{ fontWeight: "bolder" }}>{item.sku}</p>
+                  <p style={{ fontWeight: "bolder" }}>White</p>
                 </PDiv>
                 <PDiv>
                   <p>Size:</p>
                   <p>Total:</p>
                 </PDiv>
                 <PDiv>
-                  <p>{item.size}</p>
-                  <p>{item.price}</p>
+                  <p style={{ fontWeight: "bolder" }}>{item.size}</p>
+                  <p style={{ fontWeight: "bolder" }}>{item.price}</p>
                 </PDiv>
               </ItemInfoDiv>
               <IconDiv>

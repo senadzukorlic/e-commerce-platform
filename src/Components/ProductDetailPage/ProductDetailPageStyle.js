@@ -9,11 +9,10 @@ import {
 
 export const ParentDiv = styled("div")`
   display: flex;
-  align-items: stretch; /* Ensures all children are the same height */
-  justify-content: center; /* Space out the children evenly */
+  align-items: stretch;
+  justify-content: center;
   padding-top: 50px;
   padding-left: 140px;
-  background-color: "red";
   gap: 60px;
 `
 

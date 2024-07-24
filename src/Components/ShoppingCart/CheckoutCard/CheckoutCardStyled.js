@@ -7,15 +7,15 @@ export const StyledCheckoutCard = styled(Card)`
   flex-direction: column;
   text-align: center;
   align-items: start;
-  height: 700px;
-  width: 430px;
+  height: 500px;
+  width: 330px;
   background-color: whitesmoke;
   margin: 90px 30px;
   padding: 30px;
 `
 
 export const SignInButton = styled(Button)`
-  width: 430px;
+  width: 330px;
   height: 50px;
   border: 2px solid black;
   color: black;
@@ -25,7 +25,7 @@ export const SignInButton = styled(Button)`
 
 export const LineDiv1 = styled("div")`
   border: 1px solid gray;
-  width: 430px;
+  width: 330px;
   height: 0px;
 `
 
@@ -33,12 +33,12 @@ export const SmallDiv = styled("div")`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 430px;
+  width: 330px;
 `
 
 export const LineDiv2 = styled("div")`
   border: 1px solid black;
-  width: 430px;
+  width: 330px;
   height: 0px;
 `
 
@@ -57,7 +57,7 @@ export const H3 = styled("h3")`
   color: black;
 `
 export const CheckoutButton = styled(Button)`
-  width: 430px;
+  width: 330px;
   height: 50px;
   border: 2px solid black;
   background-color: black;

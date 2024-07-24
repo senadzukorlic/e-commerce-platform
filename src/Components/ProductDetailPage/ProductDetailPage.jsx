@@ -86,13 +86,12 @@ export function ProductDetailPage() {
             <CardContent style={{ border: "none" }}>
               <Typography gutterBottom variant="h4" component="div">
                 {item.title}
-                {item.id}
               </Typography>
               <Typography
                 variant="p"
                 color="black"
                 fontFamily="Roboto"
-                fontWeight="600"
+                fontWeight="500"
                 fontSize="22px"
               >
                 {item.price}€
@@ -112,8 +111,10 @@ export function ProductDetailPage() {
                       variant="outlined"
                       onClick={() => handleSizeClick(sizeOption)}
                       style={{
-                        backgroundColor: size === sizeOption ? "gray" : "white",
+                        backgroundColor:
+                          size === sizeOption ? "black" : "white",
                         color: size === sizeOption ? "white" : "black",
+                        // borderColor: size === sizeOption ? "white" : "black",
                       }}
                     >
                       {sizeOption}

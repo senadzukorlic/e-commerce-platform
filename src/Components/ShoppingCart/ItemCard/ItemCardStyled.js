@@ -10,8 +10,9 @@ import { Select as MuiSelect } from "@mui/material"
 
 export const EmptyItemCard = styled(Card)`
   display: flex;
-  flex-wrap: row;
-  justify-content: space-around;
+  flex-wrap: column;
+  justify-content: center;
+  align-items: center;
   height: 300px;
   width: 650px;
   background-color: whitesmoke;

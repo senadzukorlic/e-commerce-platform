@@ -62,16 +62,16 @@ export const ButtonSize = styled(Button)`
   }
 `
 export const AddToBagButton = styled(Button)`
+  border: 2px solid black;
   background-color: black;
   color: white;
-  font-weight: bolder;
   height: 45px;
-  border-radius: 20px;
-  border: 1px solid gray;
   transition: background-color 0.1s ease, color 0.1s ease,
     border-color 0.1s ease;
   &:hover {
-    background-color: gray;
+    color: black;
+    background-color: whitesmoke;
+    font-weight: bold;
   }
 `
 export const FavoriteButton = styled(Button)`
@@ -79,13 +79,11 @@ export const FavoriteButton = styled(Button)`
   color: black;
   font-weight: bolder;
   height: 45px;
-  border-radius: 20px;
-  border: 1px solid gray;
+  border: 2px solid black;
   transition: background-color 0.1s ease, color 0.1s ease,
     border-color 0.1s ease;
   &:hover {
     background-color: white;
-    border: 2px solid black;
   }
 `
 export const SizeButtonDiv = styled("div")`

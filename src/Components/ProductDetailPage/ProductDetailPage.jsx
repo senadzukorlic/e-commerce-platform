@@ -122,7 +122,7 @@ export function ProductDetailPage() {
                   ))}
                 </SizeButtonDiv>
                 <AddToBagButton
-                  variant="contained"
+                  // variant="contained"
                   fullWidth
                   onClick={() => handleAddToCart(item)}
                 >

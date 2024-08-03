@@ -14,6 +14,7 @@ export function DataProvider({ children }) {
   useEffect(() => {
     async function fetchData() {
       const response = await GetData()
+
       setData(response)
     }
     fetchData()

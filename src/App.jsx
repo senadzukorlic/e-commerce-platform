@@ -9,12 +9,7 @@ import Shirts from "./Components/Categories/Men/Shirts"
 import Shoes from "./Components/Categories/Men/Shoes"
 import Watches from "./Components/Categories/Men/Watches"
 
-import Women from "./Components/Categories/Women/Women"
-import Bags from "./Components/Categories/Women/Bags"
-import Dresses from "./Components/Categories/Women/Dresses"
-import WShoes from "./Components/Categories/Women/Shoes"
-import Tops from "./Components/Categories/Women/Tops"
-import WWatches from "./Components/Categories/Women/Watches"
+import Women from "./Pages/Women/Women"
 
 import Sport from "./Components/Categories/Sport/Sport"
 
@@ -55,11 +50,6 @@ function App() {
         <Route path="/mens-watches" element={<Watches />} />
 
         <Route path="/women" element={<Women />} />
-        <Route path="/tops" element={<Tops />} />
-        <Route path="/womens-dresses" element={<Dresses />} />
-        <Route path="/womens-bags" element={<Bags />} />
-        <Route path="/womens-shoes" element={<WShoes />} />
-        <Route path="/womens-watches" element={<WWatches />} />
 
         <Route path="/electronics" element={<Electronics />} />
         <Route path="/laptops" element={<Laptops />} />

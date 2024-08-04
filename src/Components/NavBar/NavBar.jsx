@@ -1,6 +1,6 @@
 import { useState, useContext } from "react"
 import { Link } from "react-router-dom"
-
+import { LogIn } from "../SignIn"
 import {
   Logo,
   IconDiv,
@@ -41,6 +41,9 @@ export default function NavBar() {
   const toggleDrawer = (open) => () => {
     setDrawerOpen(open)
   }
+  const [isModalOpen, setOpen] = useState(false)
+  const handleModalOpen = () => setOpen(true)
+  const handleModalClose = () => setOpen(false)
 
   const open = Boolean(anchorEl)
 
@@ -146,6 +149,7 @@ export default function NavBar() {
               edge="end"
               color="inherit"
               aria-label="language"
+              onClick={handleModalOpen}
             >
               <PersonIcon />
             </NavBarIconButton>
@@ -153,6 +157,7 @@ export default function NavBar() {
         </NavBarToolbar>
       </NavBarAppBar>
       <DrawerR open={drawerOpen} onClose={toggleDrawer(false)} />
+      <LogIn open={isModalOpen} handleClose={handleModalClose} />
     </>
   )
 }

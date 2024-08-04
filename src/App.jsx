@@ -12,6 +12,7 @@ import { ShoppingCart } from "./Pages/ShoppingCart/ShoppingCart"
 import { ProductDetailPage } from "./Pages/ProductDetailPage/ProductDetailPage"
 import { Favorite } from "./Pages/Favorite/Favorite"
 import { createGlobalStyle } from "styled-components"
+import { LogIn } from "./Components/SignIn"
 
 const GlobalStyles = createGlobalStyle`
   html,body {
@@ -20,7 +21,7 @@ const GlobalStyles = createGlobalStyle`
   padding: 0;
   width: 100%;
   overflow-x: hidden;
- 
+ font-family: "Roboto";
 }
 `
 

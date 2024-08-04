@@ -1,6 +1,6 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { DataContext } from "../../../Context/CreateContext"
-
+import { LogIn } from "../../../Components/SignIn"
 import {
   StyledCheckoutCard,
   SignInButton,
@@ -16,6 +16,10 @@ import {
 export function CheckoutCard() {
   const { total } = useContext(DataContext)
 
+  const [isModalOpen, setOpen] = useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
+
   const toalAndDiscout = () => {
     if (total <= 30) {
       return total + delivery
@@ -29,7 +33,9 @@ export function CheckoutCard() {
     <>
       <StyledCheckoutCard>
         <P1>Log in to use your personal offers!</P1>
-        <SignInButton>Sign in</SignInButton>
+
+        <SignInButton onClick={handleOpen}>Sign in</SignInButton>
+
         <br />
         <br />
         <LineDiv1></LineDiv1>
@@ -58,6 +64,7 @@ export function CheckoutCard() {
           checkout.
         </P2>
       </StyledCheckoutCard>
+      <LogIn open={isModalOpen} handleClose={handleClose} />
     </>
   )
 }

@@ -1,19 +1,11 @@
-import React, { useState, useContext, useEffect } from "react"
+import React, { useState, useContext } from "react"
 import { DataContext } from "../../Context/CreateContext"
-import { Typography, CardActionArea } from "@mui/material"
-import { Link } from "react-router-dom"
-import {
-  ParentDiv,
-  Imagee,
-  CardText,
-  ImageWrapper,
-  StyledCard,
-} from "../../Components/ProductCard/ProductCardStyles"
-import { BoxTab, CenteredContainer, CategoryH1 } from "./TabStyles"
-import Tabs from "@mui/material/Tabs"
-import Tab from "@mui/material/Tab"
+import { useFilterItems } from "../../Hooks/useFilterItems"
+import { CategoryH1 } from "./TabStyles"
+import { Pagination } from "../../Components/Pagination/index"
+import { ProductData } from "../../Components/ProductCard/ProductCard"
 
-const allCategories = [
+const womenClothes = [
   "tops",
   "womens-dresses",
   "womens-bags",
@@ -22,7 +14,7 @@ const allCategories = [
 ]
 
 const categories = [
-  { label: "All", category: allCategories },
+  { label: "All", category: womenClothes },
   { label: "Women Dresses", category: ["womens-dresses"] },
   { label: "Tops", category: ["tops"] },
 
@@ -32,73 +24,26 @@ const categories = [
 ]
 
 function Women() {
-  const { data, inputValue, setProductDetail } = useContext(DataContext)
-  const [activeCategory, setActiveCategory] = useState(allCategories)
+  const { data } = useContext(DataContext)
+  const [activeCategory, setActiveCategory] = useState(womenClothes)
 
   const handleTabChange = (event, newValue) => {
     setActiveCategory(newValue)
   }
 
-  const filteredItems = data.filter((item) => {
-    return activeCategory.includes(item.category.toLowerCase())
-  })
-
-  const addItemToProductPage = (item) => {
-    const newItem = data.filter((dataItem) => dataItem.id === item.id)
-    setProductDetail(newItem)
-  }
+  const filteredItems = useFilterItems(data, activeCategory)
 
   return (
     <>
       <CategoryH1>Women</CategoryH1>
-      <CenteredContainer>
-        <BoxTab>
-          <Tabs
-            value={activeCategory}
-            onChange={handleTabChange}
-            variant="scrollable"
-            scrollButtons="auto"
-            aria-label="scrollable auto tabs example"
-          >
-            {categories.map((cat) => (
-              <Tab key={cat.label} label={cat.label} value={cat.category} />
-            ))}
-          </Tabs>
-        </BoxTab>
-      </CenteredContainer>
 
-      <ParentDiv>
-        {filteredItems.map((item) => {
-          if (
-            !inputValue ||
-            item.title.toLowerCase().includes(inputValue.toLowerCase())
-          ) {
-            return (
-              <StyledCard key={item.id}>
-                <CardActionArea
-                  onClick={() => addItemToProductPage(item)}
-                  component={Link}
-                  to="/product-detail-page"
-                >
-                  <ImageWrapper>
-                    <Imagee image={item.images[0]} />
-                  </ImageWrapper>
+      <Pagination
+        value={activeCategory}
+        onChange={handleTabChange}
+        categories={categories}
+      />
 
-                  <CardText>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {item.title}
-                    </Typography>
-                    <Typography variant="h6" color="text.secondary">
-                      {item.price}€
-                    </Typography>
-                  </CardText>
-                </CardActionArea>
-              </StyledCard>
-            )
-          }
-          return null
-        })}
-      </ParentDiv>
+      <ProductData filteredItems={filteredItems} />
     </>
   )
 }

@@ -10,7 +10,7 @@ import {
   StyledCard,
 } from "./ProductCardStyles"
 
-export function ProductData({ categories }) {
+export function ProductData({ filteredItems }) {
   const { data, inputValue, setProductDetail } = useContext(DataContext)
 
   const addItemToProductPage = (item) => {
@@ -20,38 +20,36 @@ export function ProductData({ categories }) {
 
   return (
     <ParentDiv>
-      {data
-        .filter((item) => categories.includes(item.category.toLowerCase()))
-        .map((item) => {
-          if (
-            !inputValue ||
-            item.title.toLowerCase().includes(inputValue.toLowerCase())
-          ) {
-            return (
-              <StyledCard key={item.id}>
-                <CardActionArea
-                  onClick={() => addItemToProductPage(item)}
-                  component={Link}
-                  to="/product-detail-page"
-                >
-                  <ImageWrapper>
-                    <Imagee image={item.images[0]} />
-                  </ImageWrapper>
+      {filteredItems.map((item) => {
+        if (
+          !inputValue ||
+          item.title.toLowerCase().includes(inputValue.toLowerCase())
+        ) {
+          return (
+            <StyledCard key={item.id}>
+              <CardActionArea
+                onClick={() => addItemToProductPage(item)}
+                component={Link}
+                to="/product-detail-page"
+              >
+                <ImageWrapper>
+                  <Imagee image={item.images[0]} />
+                </ImageWrapper>
 
-                  <CardText>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {item.title}
-                    </Typography>
-                    <Typography variant="h6" color="text.secondary">
-                      {item.price}€
-                    </Typography>
-                  </CardText>
-                </CardActionArea>
-              </StyledCard>
-            )
-          }
-          return null
-        })}
+                <CardText>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {item.title}
+                  </Typography>
+                  <Typography variant="h6" color="text.secondary">
+                    {item.price}€
+                  </Typography>
+                </CardText>
+              </CardActionArea>
+            </StyledCard>
+          )
+        }
+        return null
+      })}
     </ParentDiv>
   )
 }

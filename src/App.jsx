@@ -4,20 +4,13 @@ import NavBar from "./Components/NavBar/NavBar"
 
 import Home from "./Components/Home/Home"
 
-import Men from "./Components/Categories/Men/Men"
-import Shirts from "./Components/Categories/Men/Shirts"
-import Shoes from "./Components/Categories/Men/Shoes"
-import Watches from "./Components/Categories/Men/Watches"
+import Men from "./Pages/Men/Men"
 
 import Women from "./Pages/Women/Women"
 
-import Sport from "./Components/Categories/Sport/Sport"
+import Sport from "./Pages/Sport/Sport"
 
-import Electronics from "./Components/Categories/Electronics/Electronics"
-import Laptops from "./Components/Categories/Electronics/Laptops"
-import Smartphones from "./Components/Categories/Electronics/Smartphones"
-import Tablets from "./Components/Categories/Electronics/Tablets"
-import MobileAccessories from "./Components/Categories/Electronics/MobileAccessories"
+import Electronics from "./Pages/Electronics/Electronics"
 
 import { createGlobalStyle } from "styled-components"
 
@@ -45,17 +38,10 @@ function App() {
         <Route path="/" element={<Home />} />
 
         <Route path="/men" element={<Men />} />
-        <Route path="/mens-shirts" element={<Shirts />} />
-        <Route path="/mens-shoes" element={<Shoes />} />
-        <Route path="/mens-watches" element={<Watches />} />
-
         <Route path="/women" element={<Women />} />
 
         <Route path="/electronics" element={<Electronics />} />
-        <Route path="/laptops" element={<Laptops />} />
-        <Route path="/smartphones" element={<Smartphones />} />
-        <Route path="/tablets" element={<Tablets />} />
-        <Route path="/mobile-accessories" element={<MobileAccessories />} />
+
         <Route path="/shopping-cart" element={<ShoppingCart />} />
         <Route path="/product-detail-page" element={<ProductDetailPage />} />
 

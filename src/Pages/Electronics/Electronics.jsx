@@ -3,11 +3,11 @@ import { DataContext } from "../../Context/CreateContext"
 import { useFilterItems } from "../../Hooks/useFilterItems"
 import { Pagination } from "../../Components/Pagination/index"
 import { ProductData } from "../../Components/ProductCard/ProductCard"
-import { womenCategories, womenClothes } from "../../Config/categories"
+import { electronics, electronicsCategories } from "../../Config/categories"
 
-function Women() {
+function Electronics() {
   const { data } = useContext(DataContext)
-  const [activeCategory, setActiveCategory] = useState(womenClothes)
+  const [activeCategory, setActiveCategory] = useState(electronics)
 
   const handleTabChange = (event, newValue) => {
     setActiveCategory(newValue)
@@ -20,8 +20,8 @@ function Women() {
       <Pagination
         value={activeCategory}
         onChange={handleTabChange}
-        categories={womenCategories}
-        categoryName="Women"
+        categories={electronicsCategories}
+        categoryName="Electronics"
       />
 
       <ProductData filteredItems={filteredItems} />
@@ -29,4 +29,4 @@ function Women() {
   )
 }
 
-export default Women
+export default Electronics

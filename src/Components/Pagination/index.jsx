@@ -1,10 +1,11 @@
-import { BoxTab, CenteredContainer } from "./Style"
+import { BoxTab, CategoryH1, CenteredContainer } from "./Style"
 import Tabs from "@mui/material/Tabs"
 import Tab from "@mui/material/Tab"
 
-export function Pagination({ value, onChange, categories }) {
+export function Pagination({ value, onChange, categories, categoryName }) {
   return (
     <>
+      <CategoryH1>{categoryName}</CategoryH1>
       <CenteredContainer>
         <BoxTab>
           <Tabs

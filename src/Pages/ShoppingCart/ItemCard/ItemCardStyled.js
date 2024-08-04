@@ -83,7 +83,6 @@ export const ItemInfoDiv = styled("div")`
   display: flex;
   flex-wrap: row;
   justify-content: space-around;
-  /* background-color: red; */
   font-size: large;
   font-family: "Roboto";
   font-weight: 500;

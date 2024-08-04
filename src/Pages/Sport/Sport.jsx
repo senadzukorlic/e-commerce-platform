@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react"
 import { DataContext } from "../../Context/CreateContext"
 import { useFilterItems } from "../../Hooks/useFilterItems"
 import { Pagination } from "../../Components/Pagination"
-import { ProductData } from "../../Components/ProductCard/ProductCard"
+import { ProductData } from "../ProductCard/ProductCard"
 import { sportsCategories } from "../../Config/categories"
 function Sport() {
   const { data } = useContext(DataContext)

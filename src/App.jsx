@@ -2,21 +2,16 @@ import { Routes } from "react-router-dom"
 import { Route } from "react-router-dom"
 import NavBar from "./Components/NavBar/NavBar"
 
-import Home from "./Components/Home/Home"
-
+import Home from "./Pages/Home/Home"
 import Men from "./Pages/Men/Men"
-
 import Women from "./Pages/Women/Women"
-
 import Sport from "./Pages/Sport/Sport"
-
 import Electronics from "./Pages/Electronics/Electronics"
 
+import { ShoppingCart } from "./Pages/ShoppingCart/ShoppingCart"
+import { ProductDetailPage } from "./Pages/ProductDetailPage/ProductDetailPage"
+import { Favorite } from "./Pages/Favorite/Favorite"
 import { createGlobalStyle } from "styled-components"
-
-import { ShoppingCart } from "./Components/ShoppingCart/ShoppingCart"
-import { ProductDetailPage } from "./Components/ProductDetailPage/ProductDetailPage"
-import { Favorite } from "./Components/Favorite/Favorite"
 
 const GlobalStyles = createGlobalStyle`
   html,body {
@@ -39,13 +34,10 @@ function App() {
 
         <Route path="/men" element={<Men />} />
         <Route path="/women" element={<Women />} />
-
         <Route path="/electronics" element={<Electronics />} />
-
+        <Route path="/sport" element={<Sport />} />
         <Route path="/shopping-cart" element={<ShoppingCart />} />
         <Route path="/product-detail-page" element={<ProductDetailPage />} />
-
-        <Route path="/sport" element={<Sport />} />
         <Route path="/favorite" element={<Favorite />} />
       </Routes>
     </>

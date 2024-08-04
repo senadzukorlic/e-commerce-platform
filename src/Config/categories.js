@@ -1,5 +1,3 @@
-// src/config/categories.js
-
 export const womenClothes = [
   "tops",
   "womens-dresses",

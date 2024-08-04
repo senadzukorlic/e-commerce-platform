@@ -4,8 +4,6 @@ import Box from "@mui/material/Box"
 import DeleteIcon from "@mui/icons-material/Delete"
 import FavoriteIcon from "@mui/icons-material/Favorite"
 
-// import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded"
-
 import {
   EmptyItemCard,
   HeartIcon,

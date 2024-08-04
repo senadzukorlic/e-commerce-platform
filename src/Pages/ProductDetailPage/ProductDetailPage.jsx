@@ -114,18 +114,13 @@ export function ProductDetailPage() {
                         backgroundColor:
                           size === sizeOption ? "black" : "white",
                         color: size === sizeOption ? "white" : "black",
-                        // borderColor: size === sizeOption ? "white" : "black",
                       }}
                     >
                       {sizeOption}
                     </ButtonSize>
                   ))}
                 </SizeButtonDiv>
-                <AddToBagButton
-                  // variant="contained"
-                  fullWidth
-                  onClick={() => handleAddToCart(item)}
-                >
+                <AddToBagButton fullWidth onClick={() => handleAddToCart(item)}>
                   Add to Bag
                 </AddToBagButton>
                 <br />

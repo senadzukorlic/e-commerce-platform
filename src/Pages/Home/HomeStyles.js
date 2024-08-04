@@ -42,7 +42,7 @@ export const HomeP = styled("p")`
   font-weight: 300;
   color: black;
   font-size: 15px;
-  margin: 7px; /* Uklanja sav vertikalni razmak */
+  margin: 7px;
   padding: 10px;
 `
 export const HomePDiv = styled("div")`

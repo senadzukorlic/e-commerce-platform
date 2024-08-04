@@ -18,7 +18,7 @@ export const ParentDiv = styled("div")`
 
 export const CardProductDetail = styled(Card)`
   display: flex;
-  flex-direction: column; /* Makes sure content is stacked vertically */
+  flex-direction: column;
   border-radius: 20px;
   border: none;
   box-shadow: none;
@@ -34,8 +34,6 @@ export const CardContentImageStyled = styled(CardContent)`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  /* overflow: hidden;  */
 `
 
 export const Image = styled(CardMedia)`

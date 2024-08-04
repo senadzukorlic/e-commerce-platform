@@ -1,4 +1,3 @@
-// src/Components/Favorite/Favorite.js
 import React from "react"
 
 export const Favorite = () => {

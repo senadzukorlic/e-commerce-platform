@@ -1,4 +1,3 @@
-// styles.js
 import styled from "styled-components"
 import { Box, Modal } from "@mui/material"
 import { Link } from "react-router-dom"

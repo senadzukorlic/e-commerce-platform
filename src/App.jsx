@@ -7,12 +7,12 @@ import Men from "./Pages/Men/Men"
 import Women from "./Pages/Women/Women"
 import Sport from "./Pages/Sport/Sport"
 import Electronics from "./Pages/Electronics/Electronics"
+import ForgotPassword from "./Pages/ForgotPassword"
 
 import { ShoppingCart } from "./Pages/ShoppingCart/ShoppingCart"
 import { ProductDetailPage } from "./Pages/ProductDetailPage/ProductDetailPage"
 import { Favorite } from "./Pages/Favorite/Favorite"
 import { createGlobalStyle } from "styled-components"
-import { LogIn } from "./Components/SignIn"
 
 const GlobalStyles = createGlobalStyle`
   html,body {
@@ -40,6 +40,7 @@ function App() {
         <Route path="/shopping-cart" element={<ShoppingCart />} />
         <Route path="/product-detail-page" element={<ProductDetailPage />} />
         <Route path="/favorite" element={<Favorite />} />
+        <Route path="forgot-password" element={<ForgotPassword />} />
       </Routes>
     </>
   )

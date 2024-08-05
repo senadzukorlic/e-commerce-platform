@@ -40,6 +40,9 @@ export function LogIn({ open, handleClose }) {
   const handleSubmit = (e) => {
     e.preventDefault()
   }
+  const handleForgotPasswordClick = () => {
+    handleClose()
+  }
   return (
     <StyledModal
       open={open}
@@ -83,7 +86,12 @@ export function LogIn({ open, handleClose }) {
             <input type="checkbox" id="checkbox1" />
             <StyledLabel htmlFor="checkbox1">Remember me</StyledLabel>
             <ForgotPassword>
-              <ForgotLink>Forgot password?</ForgotLink>
+              <ForgotLink
+                to="/forgot-password"
+                onClick={handleForgotPasswordClick}
+              >
+                Forgot password?
+              </ForgotLink>
             </ForgotPassword>
           </OptionsContainer>
           <ButtonsContainer>

@@ -32,7 +32,7 @@ export const StyledItemCard = styled(Card)`
   height: 300px;
   width: 650px;
   background-color: whitesmoke;
-  margin: 90px 40px;
+  margin: 40px 40px;
 `
 
 export const CardContentImageStyled = styled(CardContent)`

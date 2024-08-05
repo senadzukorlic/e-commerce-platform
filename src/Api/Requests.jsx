@@ -8,7 +8,6 @@ export async function GetData() {
       `https://dummyjson.com/products?limit=${limit}&skip=${skip}`
     )
     const data = response.data.products
-    console.log(data)
     return data
   } catch (error) {
     console.log(`Data was not successfully fetched`, error)

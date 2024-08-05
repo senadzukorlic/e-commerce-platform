@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react"
 import { DataContext } from "../../Context/CreateContext"
 import { useFilterItems } from "../../Hooks/useFilterItems"
 import { Pagination } from "../../Components/Pagination/index"
-import { ProductData } from "../ProductCard/ProductCard"
+import { ProductData } from "../../Components/ProductCard/ProductCard"
 import { electronics, electronicsCategories } from "../../Config/categories"
 
 function Electronics() {

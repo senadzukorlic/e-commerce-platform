@@ -28,6 +28,7 @@ export function ProductData({ filteredItems }) {
           return (
             <StyledCard key={item.id}>
               <CardActionArea
+                style={{ height: "460px" }}
                 onClick={() => addItemToProductPage(item)}
                 component={Link}
                 to="/product-detail-page"

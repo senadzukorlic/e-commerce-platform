@@ -1,6 +1,6 @@
 // ForgotPasswordStyles.js
 import styled from "styled-components"
-import { CheckoutButton } from "../ShoppingCart/CheckoutCard/CheckoutCardStyled"
+import { SubmitButton } from "../../Components/Buttons/SubmitButtons"
 
 export const ForgotPasswordForm = styled.form`
   padding-top: 50px;
@@ -54,4 +54,7 @@ export const SubmitContainer = styled.div`
   padding-top: 20px;
 `
 
-export { CheckoutButton }
+export const Submit = styled(SubmitButton)`
+  width: 150px;
+  background-color: red;
+`

@@ -7,7 +7,7 @@ import {
   EmailLabel,
   EmailInput,
   SubmitContainer,
-  CheckoutButton,
+  Submit,
 } from "./style"
 
 function ForgotPassword() {
@@ -22,7 +22,7 @@ function ForgotPassword() {
         <EmailLabel htmlFor="email">Email</EmailLabel>
         <EmailInput type="text" id="email" />
         <SubmitContainer>
-          <CheckoutButton type="submit">Submit</CheckoutButton>
+          <Submit type="submit">Submit</Submit>
         </SubmitContainer>
       </InputContainer>
     </ForgotPasswordForm>

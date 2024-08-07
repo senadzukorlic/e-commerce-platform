@@ -16,7 +16,7 @@ import {
 } from "./ProductDetailPageStyle"
 
 export function ProductDetailPage() {
-  const { productDetail, setCartData, cartData, setCartCount, setTotal } =
+  const { productDetail, setCartData, setCartCount, setTotal } =
     useContext(DataContext)
 
   const item = productDetail[0]

@@ -12,6 +12,7 @@ import {
   NavBarInput,
   NavBarIconButton,
   NavBarMenuItem,
+  AboutLink,
 } from "./NavBarStyles"
 
 import { StarOutlineRounded, SearchRounded } from "@mui/icons-material"
@@ -65,7 +66,9 @@ export default function NavBar() {
               Clothes
             </NavBarButton>
             <NavBarButton size="large">On Sale</NavBarButton>
-            <NavBarButton size="large">About</NavBarButton>
+            <NavBarButton size="large">
+              <AboutLink to="about-us">About</AboutLink>{" "}
+            </NavBarButton>
           </NavBarStack>
 
           <NavBarMenu

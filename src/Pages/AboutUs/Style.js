@@ -3,19 +3,19 @@ import { CardMedia, Typography, Link } from "@mui/material"
 
 export const StyledAboutUsContainer = styled("div")`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-evenly;
   align-items: center;
   /* background-color: green; */
-  height: 480px;
+  height: 90vh;
 `
 
 export const StyledPersonCard = styled("div")`
   background-color: whitesmoke;
-  margin-top: 30px;
+  margin-top: 10px;
   width: 350px;
   border-radius: 20px;
-  height: 400px;
+  height: 410px;
   transition: transform 0.1s ease-in-out;
 
   &:hover {
@@ -96,4 +96,48 @@ export const StyledLink = styled(Link)(({ theme }) => ({
   svg: {
     fontSize: "3.5rem",
   },
+}))
+
+export const StyledProjectCard = styled("div")`
+  background-color: whitesmoke;
+  margin-top: 10px;
+  width: 750px;
+  border-radius: 20px;
+  height: 410px;
+  transition: transform 0.1s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+`
+
+export const StyledCardMedia2 = styled(CardMedia)(({ theme }) => ({
+  width: 180,
+  height: 70,
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  textAlign: "center",
+  textDecoration: "center",
+  border: "none",
+  boxShadow: theme.shadows[3],
+}))
+
+export const StyledImageContainer2 = styled("div")`
+  width: 100%;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+export const StyledTypographyDescription2 = styled(Typography)(({ theme }) => ({
+  fontSize: "18px",
+  fontWeight: 100,
+  color: "gray",
+  textAlign: "center",
+  width: "80%",
+  marginLeft: "80px",
 }))

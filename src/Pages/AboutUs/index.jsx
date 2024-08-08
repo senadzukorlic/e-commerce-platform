@@ -1,6 +1,7 @@
 import GitHubIcon from "@mui/icons-material/GitHub"
 import { LinkedIn } from "@mui/icons-material"
 import myPhoto from "../../Assets/IMG_6688.jpg"
+import logo from "../../Assets/JacpiStore.png"
 
 import {
   StyledCardMedia,
@@ -14,6 +15,10 @@ import {
   StyledPersonCard,
   StyledImageContainer,
   StyledSocialLinksContainer,
+  StyledProjectCard,
+  StyledCardMedia2,
+  StyledImageContainer2,
+  StyledTypographyDescription2,
 } from "./Style.js"
 
 const myInfo = [
@@ -25,6 +30,8 @@ const myInfo = [
 
     github: "https://github.com/senadzukorlic",
     linkedIn: "https://www.linkedin.com/in/senad-zukorlic-49343a276/",
+    aboutProject:
+      "Hello! This is my first application, which is an e-commerce platform. It was developed as part of my frontend studies. Users of this application can access products featured in the store, including clothing, electronics, and sports equipment. They can view detailed information about the products, read reviews, see additional product photos, select favorite items, create a personal account,choose product sizes, and make purchases using credit cards.The current version of the application was built using React. In the future, I plan to develop my own backend, rewrite parts of the code in TypeScript, and add more features to enhance the user experience.",
   },
 ]
 
@@ -57,6 +64,17 @@ export function AboutUs() {
             </StyledSocialLinksContainer>
           </StyledCardContent>
         </StyledPersonCard>
+      ))}
+      {myInfo.map((info) => (
+        <StyledProjectCard>
+          <StyledImageContainer2>
+            <StyledCardMedia2 component="img" image={logo} />
+          </StyledImageContainer2>
+
+          <StyledTypographyDescription2 variant="body2" color="text.secondary">
+            {info.aboutProject}
+          </StyledTypographyDescription2>
+        </StyledProjectCard>
       ))}
     </StyledAboutUsContainer>
   )

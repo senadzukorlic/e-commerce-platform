@@ -1,4 +1,6 @@
 import GitHubIcon from "@mui/icons-material/GitHub"
+import { LinkedIn } from "@mui/icons-material"
+import myPhoto from "../../Assets/IMG_6688.jpg"
 
 import {
   StyledCardMedia,
@@ -8,18 +10,19 @@ import {
   StyledLink,
   StyledCardContent,
   StyledTypographyDescription,
+  StyledAboutUsContainer,
+  StyledPersonCard,
+  StyledImageContainer,
+  StyledSocialLinksContainer,
 } from "./Style.js"
-import { LinkedIn } from "@mui/icons-material"
-import logo from "../../Assets/JacpiStore.png"
 
-const FirmInfo = [
+const myInfo = [
   {
     name: "Senad Zukorlic",
     city: "NOVI PAZAR, SERBIA",
-    position: "Frontend Developer",
-    description: "Senad work's in center NIT as a Web developer",
-    image:
-      "src/Components/AboutUs/WhatsApp Image 2024-07-11 at 14.37.03_61008c20.jpg",
+    description:
+      " Hi, I’m Senad, a 23-year-old web development student specializing in JavaScript, React, and TypeScript. Nice to meet you.",
+
     github: "https://github.com/senadzukorlic",
     linkedIn: "https://www.linkedin.com/in/senad-zukorlic-49343a276/",
   },
@@ -27,31 +30,12 @@ const FirmInfo = [
 
 export function AboutUs() {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      {FirmInfo.map((info) => (
-        <div style={{ backgroundColor: "red", marginTop: "30px" }}>
-          <div
-            style={{
-              width: "100%",
-              height: 150,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              textAlign: "center",
-              textDecoration: "center",
-              backgroundColor: "purple",
-            }}
-          >
-            <StyledCardMedia component="img" image={logo} />
-          </div>
+    <StyledAboutUsContainer>
+      {myInfo.map((info) => (
+        <StyledPersonCard key={info.name}>
+          <StyledImageContainer>
+            <StyledCardMedia component="img" image={myPhoto} />
+          </StyledImageContainer>
           <StyledCardContent>
             <StyledTypographyName gutterBottom variant="h1">
               {info.name}
@@ -60,31 +44,20 @@ export function AboutUs() {
               {info.city}
             </StyledTypographyCity>
             <LineDiv />
-
             <StyledTypographyDescription variant="body2" color="text.secondary">
               {info.description}
             </StyledTypographyDescription>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "row",
-                width: "100%",
-                height: "22vh",
-                gap: "60px",
-              }}
-            >
+            <StyledSocialLinksContainer>
               <StyledLink href={info.github} target="_blank">
                 <GitHubIcon />
               </StyledLink>
               <StyledLink href={info.linkedIn} target="_blank">
                 <LinkedIn />
               </StyledLink>
-            </div>
+            </StyledSocialLinksContainer>
           </StyledCardContent>
-        </div>
+        </StyledPersonCard>
       ))}
-    </div>
+    </StyledAboutUsContainer>
   )
 }

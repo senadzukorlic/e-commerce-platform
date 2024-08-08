@@ -1,65 +1,99 @@
 import { styled } from "@mui/material"
+import { CardMedia, Typography, Link } from "@mui/material"
 
-import { CardMedia, Typography, Link, CardContent } from "@mui/material"
+export const StyledAboutUsContainer = styled("div")`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: green; */
+  height: 480px;
+`
 
-export const StyledCardContent = styled(CardContent)`
-  background-color: blue;
+export const StyledPersonCard = styled("div")`
+  background-color: whitesmoke;
+  margin-top: 30px;
+  width: 350px;
+  border-radius: 20px;
+  height: 400px;
+  transition: transform 0.1s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+`
+
+export const StyledImageContainer = styled("div")`
+  width: 100%;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`
+
+export const StyledSocialLinksContainer = styled("div")`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  height: 18vh;
+  gap: 60px;
+`
+
+export const StyledCardContent = styled("div")`
+  height: 200px;
 `
 
 export const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
-  width: 150,
-  height: 150,
+  width: 120,
+  height: 120,
   display: "flex",
+  borderRadius: "50%",
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
   textAlign: "center",
   textDecoration: "center",
-  backgroundColor: "purple",
   border: "none",
   boxShadow: theme.shadows[3],
 }))
 
 export const StyledTypographyName = styled(Typography)(({ theme }) => ({
-  fontSize: "27px",
+  fontSize: "25px",
   fontWeight: 900,
   color: "inherit",
   textAlign: "center",
-  marginBottom: theme.spacing(0),
-  marginTop: theme.spacing(4),
+  paddingTop: "5px",
 }))
 
 export const StyledTypographyCity = styled(Typography)(({ theme }) => ({
-  fontSize: "13px",
+  fontSize: "12px",
   fontWeight: 900,
   color: "gray",
   textAlign: "center",
-  marginBottom: theme.spacing(1),
-  marginTop: theme.spacing(1),
 }))
 export const LineDiv = styled("div")(({ theme }) => ({
   borderTop: `2px solid ${theme.palette.divider}`,
   margin: `${theme.spacing(2)} 0`,
+  width: "90%",
+  marginLeft: "20px",
 }))
 export const StyledTypographyDescription = styled(Typography)(({ theme }) => ({
-  fontSize: "17px",
+  fontSize: "15px",
   fontWeight: 100,
   color: "gray",
   textAlign: "center",
-  marginBottom: theme.spacing(1),
-  marginTop: theme.spacing(5),
 }))
 
 export const StyledLink = styled(Link)(({ theme }) => ({
-  // position: "absolute",
-  // bottom: theme.spacing(2),
-  // left: "50%",
-  // transform: "translateX(-50%)",
   color: theme.palette.text.primary,
   "&:hover": {
     color: theme.palette.primary.main,
   },
   svg: {
-    fontSize: "4rem", // Znatno uvećajte veličinu ikone
+    fontSize: "3.5rem",
   },
 }))

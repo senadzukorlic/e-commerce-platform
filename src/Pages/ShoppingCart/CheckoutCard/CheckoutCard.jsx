@@ -11,6 +11,7 @@ import {
   H3,
   CheckoutButton,
   SmallDiv,
+  CheckoutLink,
 } from "./CheckoutCardStyled"
 
 export function CheckoutCard() {
@@ -58,7 +59,9 @@ export function CheckoutCard() {
           <H3>{total > 0 ? `${totalWithDiscount.toFixed(2)}€` : `0€`}</H3>
         </SmallDiv>
 
-        <CheckoutButton>Continue to checkout</CheckoutButton>
+        <CheckoutButton>
+          <CheckoutLink to="/checkout">Continue to checkout</CheckoutLink>
+        </CheckoutButton>
         <P2>
           Prices and delivery costs are not confirmed until you've reached the
           checkout.

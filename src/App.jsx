@@ -13,6 +13,7 @@ import { ShoppingCart } from "./Pages/ShoppingCart/ShoppingCart"
 import { ProductDetailPage } from "./Pages/ProductDetailPage/ProductDetailPage"
 import { Favorite } from "./Pages/Favorite/Favorite"
 import { AboutUs } from "./Pages/AboutUs"
+import { Checkout } from "./Pages/Checkout"
 import { createGlobalStyle } from "styled-components"
 
 const GlobalStyles = createGlobalStyle`
@@ -33,7 +34,6 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
-
         <Route path="/men" element={<Men />} />
         <Route path="/women" element={<Women />} />
         <Route path="/electronics" element={<Electronics />} />
@@ -43,6 +43,7 @@ function App() {
         <Route path="/favorite" element={<Favorite />} />
         <Route path="forgot-password" element={<ForgotPassword />} />
         <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </>
   )

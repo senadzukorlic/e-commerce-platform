@@ -1,5 +1,4 @@
 import React from "react"
-import { EmailInput, EmailLabel } from "../../ForgotPassword/style"
 import PhoneInput from "./PhoneInput"
 export function MyInformation() {
   return (

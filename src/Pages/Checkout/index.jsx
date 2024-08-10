@@ -7,7 +7,6 @@ export function Checkout() {
       style={{
         display: "flex",
         flexDirection: "column",
-        // justifyContent: "space-evenly",
       }}
     >
       <div>

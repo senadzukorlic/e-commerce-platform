@@ -3,16 +3,16 @@ import { DataContext } from "../../../Context/CreateContext"
 import { LogIn } from "../../../Components/SignIn"
 import {
   StyledCheckoutCard,
-  SignInButton,
   LineDiv1,
   P1,
   P2,
   LineDiv2,
   H3,
-  CheckoutButton,
   SmallDiv,
   CheckoutLink,
 } from "./CheckoutCardStyled"
+import { OutlinedButton } from "../../../Components/OutlinedButton"
+import { BlackButton } from "../../../Components/BlackButton"
 
 export function CheckoutCard() {
   const { total } = useContext(DataContext)
@@ -35,7 +35,11 @@ export function CheckoutCard() {
       <StyledCheckoutCard>
         <P1>Log in to use your personal offers!</P1>
 
-        <SignInButton onClick={handleOpen}>Sign in</SignInButton>
+        <OutlinedButton
+          buttonName="Sign in"
+          width={{ width: "330px" }}
+          onClick={handleOpen}
+        />
 
         <br />
         <br />
@@ -59,9 +63,12 @@ export function CheckoutCard() {
           <H3>{total > 0 ? `${totalWithDiscount.toFixed(2)}€` : `0€`}</H3>
         </SmallDiv>
 
-        <CheckoutButton>
-          <CheckoutLink to="/checkout">Continue to checkout</CheckoutLink>
-        </CheckoutButton>
+        <CheckoutLink to="/checkout">
+          <BlackButton
+            width={{ width: "330px" }}
+            buttonName="Continue to checkout"
+          ></BlackButton>
+        </CheckoutLink>
         <P2>
           Prices and delivery costs are not confirmed until you've reached the
           checkout.

@@ -13,12 +13,11 @@ import {
   ButtonsContainer,
   ForgotLink,
 } from "./style"
-import {
-  SignInButton,
-  CheckoutButton,
-} from "../../Pages/ShoppingCart/CheckoutCard/CheckoutCardStyled"
+
 import { PasswordInput } from "../PasswordInput"
 import { EmailInput } from "../EmailInput"
+import { OutlinedButton } from "../OutlinedButton"
+import { BlackButton } from "../BlackButton"
 
 export function LogIn({ open, handleClose }) {
   const [email, setEmail] = useState("")
@@ -88,8 +87,15 @@ export function LogIn({ open, handleClose }) {
             </ForgotPassword>
           </OptionsContainer>
           <ButtonsContainer>
-            <CheckoutButton type="submit">Sign In</CheckoutButton>
-            <SignInButton>Contine as guest</SignInButton>
+            <BlackButton
+              width={{ width: "330px" }}
+              buttonName="Sign In"
+              type="submit"
+            />
+            <OutlinedButton
+              width={{ width: "330px" }}
+              buttonName="Continue as guest"
+            />
           </ButtonsContainer>
         </StyledForm>
       </StyledBox>

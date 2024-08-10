@@ -5,9 +5,9 @@ import {
   ForgotPasswordParagraph,
   InputContainer,
   SubmitContainer,
-  Submit,
 } from "./style"
 import { EmailInput } from "../../Components/EmailInput"
+import { BlackButton } from "../../Components/BlackButton"
 
 function ForgotPassword() {
   return (
@@ -23,7 +23,11 @@ function ForgotPassword() {
           styleLabel={{ width: "51%" }}
         />
         <SubmitContainer>
-          <Submit type="submit">Submit</Submit>
+          <BlackButton
+            type="submit"
+            buttonName="Submit"
+            width={{ width: "20%" }}
+          />
         </SubmitContainer>
       </InputContainer>
     </ForgotPasswordForm>

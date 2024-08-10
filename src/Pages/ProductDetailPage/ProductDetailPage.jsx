@@ -9,11 +9,11 @@ import {
   Image,
   CardContentImageStyled,
   ButtonSize,
-  AddToBagButton,
-  FavoriteButton,
   SizeButtonDiv,
   ArrowButton,
 } from "./ProductDetailPageStyle"
+import { BlackButton } from "../../Components/BlackButton"
+import { OutlinedButton } from "../../Components/OutlinedButton"
 
 export function ProductDetailPage() {
   const { productDetail, setCartData, setCartCount, setTotal } =
@@ -120,19 +120,19 @@ export function ProductDetailPage() {
                     </ButtonSize>
                   ))}
                 </SizeButtonDiv>
-                <AddToBagButton fullWidth onClick={() => handleAddToCart(item)}>
-                  Add to Bag
-                </AddToBagButton>
+                <BlackButton
+                  buttonName="Add to Bag"
+                  width={{ width: "100%" }}
+                  onClick={() => handleAddToCart(item)}
+                />
                 <br />
                 <br />
                 <Link to="/favorite">
-                  <FavoriteButton
-                    variant="contained"
-                    fullWidth
+                  <OutlinedButton
+                    buttonName="Favorite"
+                    width={{ width: "100%" }}
                     onClick={() => handleAddToCart(item)}
-                  >
-                    Favorite
-                  </FavoriteButton>
+                  />
                 </Link>
               </Box>
             </CardContent>

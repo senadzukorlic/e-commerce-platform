@@ -15,15 +15,6 @@ export const StyledCheckoutCard = styled(Card)`
   padding: 30px;
 `
 
-export const SignInButton = styled(Button)`
-  width: 330px;
-  height: 50px;
-  border: 2px solid black;
-  color: black;
-  border-radius: 0px;
-  font-weight: 700;
-`
-
 export const LineDiv1 = styled("div")`
   border: 1px solid gray;
   width: 330px;
@@ -57,18 +48,7 @@ export const H3 = styled("h3")`
   font-family: "Roboto";
   color: black;
 `
-export const CheckoutButton = styled(Button)`
-  width: 330px;
-  height: 50px;
-  border: 2px solid black;
-  background-color: black;
-  color: white;
-  border-radius: 0px;
-  font-weight: 700;
-  &:hover {
-    color: black;
-  }
-`
+
 export const CheckoutLink = styled(Link)`
   text-decoration: none;
   color: white;

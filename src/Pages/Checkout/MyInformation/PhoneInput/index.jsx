@@ -12,7 +12,6 @@ const countries = [
   { label: "Serbia", code: "+381" },
   { label: "Bosnia", code: "+387" },
   { label: "Croatia", code: "+385" },
-  // Dodaj još država po potrebi
 ]
 
 function PhoneInput() {
@@ -29,21 +28,18 @@ function PhoneInput() {
   }
 
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+      }}
+    >
       <Box display="flex" alignItems="center" flexDirection="column">
-        <TextField
-          label="Phone Number"
+        <FormControl
           variant="outlined"
-          value={phoneNumber}
-          onChange={handlePhoneNumberChange}
-          style={{ flexGrow: 1, marginRight: 10 }}
-          InputProps={{
-            startAdornment: (
-              <div style={{ marginRight: 5 }}>{selectedCountry.code}</div>
-            ),
-          }}
-        />
-        <FormControl variant="outlined" style={{ minWidth: 120 }}>
+          style={{ width: "75%", borderRadius: "0px" }}
+        >
           <InputLabel id="country-select-label">Country</InputLabel>
           <Select
             labelId="country-select-label"
@@ -51,6 +47,7 @@ function PhoneInput() {
             value={selectedCountry.label}
             onChange={handleCountryChange}
             label="Country"
+            style={{ borderRadius: "0px" }}
           >
             {countries.map((country) => (
               <MenuItem key={country.label} value={country.label}>
@@ -58,7 +55,22 @@ function PhoneInput() {
               </MenuItem>
             ))}
           </Select>
+          <br />
         </FormControl>
+        <TextField
+          label="Phone Number"
+          variant="outlined"
+          value={phoneNumber}
+          onChange={handlePhoneNumberChange}
+          InputProps={{
+            startAdornment: <div>{selectedCountry.code}</div>,
+          }}
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              borderRadius: "0px",
+            },
+          }}
+        />
       </Box>
     </div>
   )

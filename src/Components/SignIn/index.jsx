@@ -8,9 +8,6 @@ import {
   StyledParagraph,
   InputContainer,
   StyledLabel,
-  StyledInput,
-  PasswordContainer,
-  PasswordToggle,
   OptionsContainer,
   ForgotPassword,
   ButtonsContainer,
@@ -20,6 +17,8 @@ import {
   SignInButton,
   CheckoutButton,
 } from "../../Pages/ShoppingCart/CheckoutCard/CheckoutCardStyled"
+import { PasswordInput } from "../PasswordInput"
+import { EmailInput } from "../EmailInput"
 
 export function LogIn({ open, handleClose }) {
   const [email, setEmail] = useState("")
@@ -60,27 +59,21 @@ export function LogIn({ open, handleClose }) {
             </StyledParagraph>
           </HeaderContainer>
           <InputContainer>
-            <StyledLabel htmlFor="email">Email</StyledLabel>
-            <StyledInput
-              type="email"
-              id="email"
+            <EmailInput
               value={email}
               onChange={handleEmailChange}
-              required
+              styleLabel={{ width: "70%" }}
+              styleInput={{ width: "71%" }}
             />
-            <StyledLabel htmlFor="password">Password</StyledLabel>
-            <PasswordContainer>
-              <StyledInput
-                type={showPassword ? "text" : "password"}
-                id="password"
-                value={password}
-                onChange={handlePasswordChange}
-                required
-              />
-              <PasswordToggle type="button" onClick={togglePasswordVisibility}>
-                {showPassword ? "Hide" : "Show"}
-              </PasswordToggle>
-            </PasswordContainer>
+            <PasswordInput
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={handlePasswordChange}
+              setVisibility={togglePasswordVisibility}
+              booleanVisibility={showPassword ? "Hide" : "Show"}
+              styleLabel={{ width: "70%" }}
+              styleInput={{ width: "71%" }}
+            />
           </InputContainer>
           <OptionsContainer>
             <input type="checkbox" id="checkbox1" />

@@ -4,11 +4,10 @@ import {
   ForgotPasswordHeader,
   ForgotPasswordParagraph,
   InputContainer,
-  EmailLabel,
-  EmailInput,
   SubmitContainer,
   Submit,
 } from "./style"
+import { EmailInput } from "../../Components/EmailInput"
 
 function ForgotPassword() {
   return (
@@ -19,8 +18,10 @@ function ForgotPassword() {
         send you a link to reset your password.
       </ForgotPasswordParagraph>
       <InputContainer>
-        <EmailLabel htmlFor="email">Email</EmailLabel>
-        <EmailInput type="text" id="email" />
+        <EmailInput
+          styleInput={{ width: " 50%" }}
+          styleLabel={{ width: "51%" }}
+        />
         <SubmitContainer>
           <Submit type="submit">Submit</Submit>
         </SubmitContainer>

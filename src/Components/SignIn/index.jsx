@@ -59,6 +59,7 @@ export function LogIn({ open, handleClose }) {
           </HeaderContainer>
           <InputContainer>
             <EmailInput
+              labelName="Email"
               value={email}
               onChange={handleEmailChange}
               styleLabel={{ width: "70%" }}

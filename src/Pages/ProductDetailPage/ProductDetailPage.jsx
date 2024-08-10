@@ -16,8 +16,14 @@ import { BlackButton } from "../../Components/BlackButton"
 import { OutlinedButton } from "../../Components/OutlinedButton"
 
 export function ProductDetailPage() {
-  const { productDetail, setCartData, setCartCount, setTotal } =
-    useContext(DataContext)
+  const {
+    productDetail,
+    setCartData,
+    setCartCount,
+    setTotal,
+    setFavoriteItems,
+    favoriteItems,
+  } = useContext(DataContext)
 
   const item = productDetail[0]
   const sizeArray = ["XS", "S", "M", "L", "XL", "XXL"]
@@ -66,6 +72,23 @@ export function ProductDetailPage() {
 
       return updatedCartData
     })
+  }
+
+  const handleAddToFavorite = (item) => {
+    setFavoriteItems((prevFavoriteItems) => {
+      const isAlreadyFavorite = prevFavoriteItems.some(
+        (favoriteItem) => favoriteItem.id === item.id
+      )
+
+      if (isAlreadyFavorite) {
+        return prevFavoriteItems
+      }
+
+      return [...prevFavoriteItems, item]
+    })
+    if (favoriteItems) {
+      alert("Item is added to favorite")
+    }
   }
 
   return (
@@ -127,13 +150,12 @@ export function ProductDetailPage() {
                 />
                 <br />
                 <br />
-                <Link to="/favorite">
-                  <OutlinedButton
-                    buttonName="Favorite"
-                    width={{ width: "100%" }}
-                    onClick={() => handleAddToCart(item)}
-                  />
-                </Link>
+
+                <OutlinedButton
+                  buttonName="Favorite"
+                  width={{ width: "100%" }}
+                  onClick={() => handleAddToFavorite(item)}
+                />
               </Box>
             </CardContent>
           </CardProductDetail>

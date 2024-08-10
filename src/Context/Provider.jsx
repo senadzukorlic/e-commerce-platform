@@ -7,6 +7,7 @@ export function DataProvider({ children }) {
   const [inputValue, setInputValue] = useState("")
   const [cartCount, setCartCount] = useState(0)
   const [cartData, setCartData] = useState([])
+  const [favoriteItems, setFavoriteItems] = useState([])
   const [productDetail, setProductDetail] = useState([])
 
   const [total, setTotal] = useState(0)
@@ -16,6 +17,7 @@ export function DataProvider({ children }) {
       const response = await GetData()
 
       setData(response)
+      console.log(response)
     }
     fetchData()
   }, [])
@@ -34,6 +36,8 @@ export function DataProvider({ children }) {
         setTotal,
         productDetail,
         setProductDetail,
+        favoriteItems,
+        setFavoriteItems,
       }}
     >
       {children}

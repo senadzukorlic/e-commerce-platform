@@ -1,10 +1,16 @@
 import { StyledLabel, StyledInput } from "./style"
 
-export function EmailInput({ value, onChange, styleLabel, styleInput }) {
+export function EmailInput({
+  value,
+  onChange,
+  styleLabel,
+  styleInput,
+  labelName,
+}) {
   return (
     <>
       <StyledLabel style={styleLabel} htmlFor="email">
-        Email
+        {labelName}
       </StyledLabel>
       <StyledInput
         style={styleInput}

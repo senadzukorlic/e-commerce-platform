@@ -19,6 +19,7 @@ function ForgotPassword() {
       </ForgotPasswordParagraph>
       <InputContainer>
         <EmailInput
+          labelName="Email"
           styleInput={{ width: " 50%" }}
           styleLabel={{ width: "51%" }}
         />

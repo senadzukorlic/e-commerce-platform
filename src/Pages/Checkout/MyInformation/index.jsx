@@ -1,6 +1,7 @@
 import React from "react"
 import { EmailInput } from "../../../Components/EmailInput/index"
-
+import { RowDiv } from "../../../Components/RowDiv"
+import { ColumnDiv } from "../../../Components/ColumnDiv"
 import PhoneInput from "./PhoneInput"
 export function MyInformation() {
   return (
@@ -17,16 +18,24 @@ export function MyInformation() {
           flexDirection: "row",
         }}
       >
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <EmailInput
-            styleInput={{ width: "70%" }}
-            styleLabel={{ width: "71%" }}
-          />
-          <EmailInput
-            styleInput={{ width: "70%" }}
-            styleLabel={{ width: "71%" }}
-          />
-        </div>
+        <RowDiv>
+          <ColumnDiv>
+            {" "}
+            <EmailInput
+              labelName="Name"
+              styleInput={{ width: "70%" }}
+              styleLabel={{ width: "71%" }}
+            />
+          </ColumnDiv>
+
+          <ColumnDiv>
+            <EmailInput
+              labelName="Surname"
+              styleInput={{ width: "70%" }}
+              styleLabel={{ width: "71%" }}
+            />
+          </ColumnDiv>
+        </RowDiv>
       </div>
       <div>
         <input type="date" />

@@ -1,4 +1,6 @@
 import React from "react"
+import { EmailInput } from "../../../Components/EmailInput/index"
+
 import PhoneInput from "./PhoneInput"
 export function MyInformation() {
   return (
@@ -16,13 +18,14 @@ export function MyInformation() {
         }}
       >
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <EmailLabel htmlFor="FirstName">First Name</EmailLabel>
-          <EmailInput type="text" id="FirstName" />
-        </div>
-
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <EmailLabel htmlFor="LastName">Last Name</EmailLabel>
-          <EmailInput type="text" id="LastName" />
+          <EmailInput
+            styleInput={{ width: "70%" }}
+            styleLabel={{ width: "71%" }}
+          />
+          <EmailInput
+            styleInput={{ width: "70%" }}
+            styleLabel={{ width: "71%" }}
+          />
         </div>
       </div>
       <div>

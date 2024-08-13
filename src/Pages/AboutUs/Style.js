@@ -6,7 +6,6 @@ export const StyledAboutUsContainer = styled("div")`
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  /* background-color: green; */
   height: 90vh;
 `
 
@@ -121,7 +120,7 @@ export const StyledCardMedia2 = styled(CardMedia)(({ theme }) => ({
   textAlign: "center",
   textDecoration: "center",
   border: "none",
-  boxShadow: theme.shadows[3],
+  boxShadow: theme.shadows[7],
 }))
 
 export const StyledImageContainer2 = styled("div")`

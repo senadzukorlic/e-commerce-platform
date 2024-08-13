@@ -5,7 +5,7 @@ export function RowDiv({ children }) {
         display: "flex",
         flexDirection: "row",
         width: "100%",
-        backgroundColor: "red",
+        paddingLeft: "20px",
       }}
     >
       {children}

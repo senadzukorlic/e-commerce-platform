@@ -7,10 +7,10 @@ import {
   TitleParentDiv,
   H1,
   P,
-} from "./ShoppingCartStyled"
+} from "./style"
 
-import { ItemCard } from "./ItemCard/ItemCard"
-import { CheckoutCard } from "./CheckoutCard/CheckoutCard"
+import { ItemCard } from "./itemCard"
+import { CheckoutCard } from "./checkoutCard"
 
 export function ShoppingCart() {
   return (

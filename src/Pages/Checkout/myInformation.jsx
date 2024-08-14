@@ -1,8 +1,8 @@
 import React from "react"
-import { EmailInput } from "../../../Components/EmailInput/index"
-import { RowDiv } from "../../../Components/RowDiv"
-import { ColumnDiv } from "../../../Components/ColumnDiv"
-import PhoneInput from "./PhoneInput"
+import { Input } from "../../Components/Input/index"
+import { RowDiv } from "../../Components/RowDiv"
+import { ColumnDiv } from "../../Components/ColumnDiv"
+import PhoneInput from "./phoneInput"
 export function MyInformation() {
   return (
     <div
@@ -21,16 +21,18 @@ export function MyInformation() {
         <RowDiv>
           <ColumnDiv>
             {" "}
-            <EmailInput
+            <Input
               labelName="Name"
+              type="text"
               styleInput={{ width: "70%" }}
               styleLabel={{ width: "71%" }}
             />
           </ColumnDiv>
 
           <ColumnDiv>
-            <EmailInput
+            <Input
               labelName="Surname"
+              type="text"
               styleInput={{ width: "70%" }}
               styleLabel={{ width: "71%" }}
             />

@@ -15,7 +15,7 @@ import {
 } from "./style"
 
 import { PasswordInput } from "../PasswordInput"
-import { EmailInput } from "../EmailInput"
+import { Input } from "../Input"
 import { OutlinedButton } from "../OutlinedButton"
 import { BlackButton } from "../BlackButton"
 
@@ -58,8 +58,9 @@ export function LogIn({ open, handleClose }) {
             </StyledParagraph>
           </HeaderContainer>
           <InputContainer>
-            <EmailInput
+            <Input
               labelName="Email"
+              type="text"
               value={email}
               onChange={handleEmailChange}
               styleLabel={{ width: "70%" }}

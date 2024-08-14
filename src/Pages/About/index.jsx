@@ -19,7 +19,7 @@ import {
   StyledCardMedia2,
   StyledImageContainer2,
   StyledTypographyDescription2,
-} from "./Style.js"
+} from "./style.js"
 
 const myInfo = [
   {
@@ -35,7 +35,7 @@ const myInfo = [
   },
 ]
 
-export function AboutUs() {
+export function About() {
   return (
     <StyledAboutUsContainer>
       {myInfo.map((info) => (

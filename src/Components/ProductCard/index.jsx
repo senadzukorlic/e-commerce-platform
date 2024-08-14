@@ -1,17 +1,10 @@
-import { useContext } from "react"
-import { DataContext } from "../../Context/CreateContext"
+import { useDataContext } from "../../Hooks/useContext"
 import { Typography, CardActionArea } from "@mui/material"
 import { Link } from "react-router-dom"
-import {
-  ParentDiv,
-  Imagee,
-  CardText,
-  ImageWrapper,
-  StyledCard,
-} from "./ProductCardStyles"
+import { ParentDiv, Imagee, CardText, ImageWrapper, StyledCard } from "./style"
 
-export function ProductData({ filteredItems }) {
-  const { data, inputValue, setProductDetail } = useContext(DataContext)
+export function ProductCard({ filteredItems }) {
+  const { data, inputValue, setProductDetail } = useDataContext()
 
   const addItemToProductPage = (item) => {
     const newItem = data.filter((dataItem) => dataItem.id === item.id)

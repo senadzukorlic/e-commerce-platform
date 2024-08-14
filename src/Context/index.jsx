@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, createContext } from "react"
 import { GetData } from "../Api/Requests"
-import { DataContext } from "./CreateContext"
+
+export const DataContext = createContext()
 
 export function DataProvider({ children }) {
   const [data, setData] = useState([])

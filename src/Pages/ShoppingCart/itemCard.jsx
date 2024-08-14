@@ -1,5 +1,5 @@
-import { useContext, useState } from "react"
-import { DataContext } from "../../../Context/CreateContext"
+import { useState } from "react"
+import { useDataContext } from "../../Hooks/useContext"
 import Box from "@mui/material/Box"
 import DeleteIcon from "@mui/icons-material/Delete"
 import FavoriteIcon from "@mui/icons-material/Favorite"
@@ -23,12 +23,10 @@ import {
   QuantityDiv,
   Select,
   MenuItemStyled,
-} from "./ItemCardStyled"
+} from "./itemCardStyle"
 
 export function ItemCard() {
-  const { cartData, setCartData, setTotal, setCartCount } =
-    useContext(DataContext)
-
+  const { cartData, setCartData, setTotal, setCartCount } = useDataContext()
   const [favoriteItems, setFavoriteItems] = useState([])
 
   const handleQuantityChange = (itemId) => (event) => {

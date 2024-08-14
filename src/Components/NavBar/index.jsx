@@ -1,4 +1,4 @@
-import { useState, useContext } from "react"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import { LogIn } from "../SignIn"
 import {
@@ -13,21 +13,21 @@ import {
   NavBarIconButton,
   NavBarMenuItem,
   AboutLink,
-} from "./NavBarStyles"
+} from "./style"
 
 import { StarOutlineRounded, SearchRounded } from "@mui/icons-material"
-import { DataContext } from "../../Context/CreateContext"
+import { useDataContext } from "../../Hooks/useContext"
 import HomeIcon from "@mui/icons-material/Home"
 import PersonIcon from "@mui/icons-material/Person"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import Badge from "@mui/material/Badge"
 
-import logo from "./JacpiStore.png"
-import DrawerR from "./Drawer"
+import logo from "../../Assets/JacpiStore.png"
+import SideBar from "./sideBar"
 
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = useState(null)
-  const { setInputValue, inputValue, cartCount } = useContext(DataContext)
+  const { setInputValue, inputValue, cartCount } = useDataContext()
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   const handleClose = () => {
@@ -159,7 +159,7 @@ export default function NavBar() {
           </IconDiv>
         </NavBarToolbar>
       </NavBarAppBar>
-      <DrawerR open={drawerOpen} onClose={toggleDrawer(false)} />
+      <SideBar open={drawerOpen} onClose={toggleDrawer(false)} />
       <LogIn open={isModalOpen} handleClose={handleModalClose} />
     </>
   )

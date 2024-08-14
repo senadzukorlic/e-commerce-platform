@@ -1,12 +1,12 @@
-import React, { useState, useContext } from "react"
-import { DataContext } from "../../Context/CreateContext"
+import React, { useState } from "react"
+import { useDataContext } from "../../Hooks/useContext"
 import { useFilterItems } from "../../Hooks/useFilterItems"
 import { Pagination } from "../../Components/Pagination/index"
-import { ProductData } from "../../Components/ProductCard/ProductCard"
+import { ProductCard } from "../../Components/ProductCard"
 import { menCategories, menClothes } from "../../Config/categories"
 
 function Men() {
-  const { data } = useContext(DataContext)
+  const { data } = useDataContext()
   const [activeCategory, setActiveCategory] = useState(menClothes)
 
   const handleTabChange = (event, newValue) => {
@@ -24,7 +24,7 @@ function Men() {
         categoryName="Men"
       />
 
-      <ProductData filteredItems={filteredItems} />
+      <ProductCard filteredItems={filteredItems} />
     </>
   )
 }

@@ -1,12 +1,11 @@
 import React from "react"
-import { DataContext } from "../../Context/CreateContext"
-import { useContext } from "react"
+import { useDataContext } from "../../Hooks/useContext"
 import { BlackButton } from "../../Components/BlackButton"
 import { RowDiv } from "../../Components/RowDiv/index"
 import { ColumnDiv } from "../../Components/ColumnDiv/index"
-import { EmailInput } from "../../Components/EmailInput"
+import { Input } from "../../Components/Input"
 export function Favorite() {
-  const { favoriteItems } = useContext(DataContext)
+  const { favoriteItems } = useDataContext()
   return (
     <div style={{ height: "110vh" }}>
       <h1
@@ -64,7 +63,7 @@ export function Favorite() {
                 width: "100%",
               }}
             >
-              <EmailInput styleInput={{ width: "95%" }} />
+              <Input styleInput={{ width: "95%" }} type="text" />
               <BlackButton buttonName="Add to bag" width={{ width: "100%" }} />
             </div>
           </div>

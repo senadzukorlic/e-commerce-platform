@@ -1,8 +1,7 @@
-import { useContext, useEffect, useState } from "react"
-import { DataContext } from "../../Context/CreateContext"
+import { useEffect, useState } from "react"
+import { useDataContext } from "../../Hooks/useContext"
 import { CardContent, Typography, Box } from "@mui/material"
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material"
-import { Link } from "react-router-dom"
 import {
   CardProductDetail,
   ParentDiv,
@@ -11,7 +10,7 @@ import {
   ButtonSize,
   SizeButtonDiv,
   ArrowButton,
-} from "./ProductDetailPageStyle"
+} from "./style"
 import { BlackButton } from "../../Components/BlackButton"
 import { OutlinedButton } from "../../Components/OutlinedButton"
 
@@ -23,7 +22,7 @@ export function ProductDetailPage() {
     setTotal,
     setFavoriteItems,
     favoriteItems,
-  } = useContext(DataContext)
+  } = useDataContext()
 
   const item = productDetail[0]
   const sizeArray = ["XS", "S", "M", "L", "XL", "XXL"]

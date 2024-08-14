@@ -1,5 +1,5 @@
-import { CheckoutCard } from "../ShoppingCart/CheckoutCard/CheckoutCard"
-import { MyInformation } from "./MyInformation"
+import { CheckoutCard } from "../ShoppingCart/checkoutCard"
+import { MyInformation } from "./myInformation"
 
 export function Checkout() {
   return (

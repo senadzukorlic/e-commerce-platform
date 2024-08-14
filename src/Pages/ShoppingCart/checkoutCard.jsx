@@ -1,6 +1,6 @@
-import { useContext, useState } from "react"
-import { DataContext } from "../../../Context/CreateContext"
-import { LogIn } from "../../../Components/SignIn"
+import { useState } from "react"
+import { useDataContext } from "../../Hooks/useContext"
+import { LogIn } from "../../Components/SignIn"
 import {
   StyledCheckoutCard,
   LineDiv1,
@@ -10,12 +10,12 @@ import {
   H3,
   SmallDiv,
   CheckoutLink,
-} from "./CheckoutCardStyled"
-import { OutlinedButton } from "../../../Components/OutlinedButton"
-import { BlackButton } from "../../../Components/BlackButton"
+} from "./checkoutCardStyle"
+import { OutlinedButton } from "../../Components/OutlinedButton"
+import { BlackButton } from "../../Components/BlackButton"
 
 export function CheckoutCard() {
-  const { total } = useContext(DataContext)
+  const { total } = useDataContext()
 
   const [isModalOpen, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)

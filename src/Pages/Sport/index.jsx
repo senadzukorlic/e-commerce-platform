@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react"
-import { DataContext } from "../../Context/CreateContext"
+import { useDataContext } from "../../Hooks/useContext"
 import { useFilterItems } from "../../Hooks/useFilterItems"
 import { Pagination } from "../../Components/Pagination"
-import { ProductData } from "../../Components/ProductCard/ProductCard"
+import { ProductCard } from "../../Components/ProductCard"
 import { sportsCategories } from "../../Config/categories"
 function Sport() {
-  const { data } = useContext(DataContext)
+  const { data } = useDataContext()
   const [activeCategory, setActiveCategory] = useState(
     sportsCategories[0].category
   )
@@ -22,7 +22,7 @@ function Sport() {
         categories={sportsCategories}
         categoryName="Sports"
       />
-      <ProductData filteredItems={filteredItems} />
+      <ProductCard filteredItems={filteredItems} />
     </>
   )
 }

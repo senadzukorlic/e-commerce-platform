@@ -8,7 +8,7 @@ import ListItemButton from "@mui/material/ListItemButton"
 import ListItemText from "@mui/material/ListItemText"
 import { Link } from "react-router-dom"
 
-export default function DrawerR({ open, onClose }) {
+export default function SideBar({ open, onClose }) {
   const list = (
     <Box
       sx={{ width: 250 }}

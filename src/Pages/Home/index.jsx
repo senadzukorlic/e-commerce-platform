@@ -6,9 +6,9 @@ import {
   HomePDiv,
   HomeTitleDiv,
   HomeParentDiv,
-} from "./HomeStyles"
+} from "./style"
 import { format, addDays } from "date-fns"
-import Buttons from "./Buttons"
+import Buttons from "./buttons"
 
 export default function Home() {
   const today = new Date()

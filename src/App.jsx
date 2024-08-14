@@ -1,18 +1,18 @@
 import { Routes } from "react-router-dom"
 import { Route } from "react-router-dom"
-import NavBar from "./Components/NavBar/NavBar"
+import NavBar from "./Components/NavBar"
 
-import Home from "./Pages/Home/Home"
-import Men from "./Pages/Men/Men"
-import Women from "./Pages/Women/Women"
-import Sport from "./Pages/Sport/Sport"
-import Electronics from "./Pages/Electronics/Electronics"
+import Home from "./Pages/Home"
+import Men from "./Pages/Men"
+import Women from "./Pages/Women"
+import Sport from "./Pages/Sport"
+import Electronics from "./Pages/Electronics"
 import ForgotPassword from "./Pages/ForgotPassword"
 
-import { ShoppingCart } from "./Pages/ShoppingCart/ShoppingCart"
-import { ProductDetailPage } from "./Pages/ProductDetailPage/ProductDetailPage"
-import { Favorite } from "./Pages/Favorite/Favorite"
-import { AboutUs } from "./Pages/AboutUs"
+import { ShoppingCart } from "./Pages/ShoppingCart"
+import { ProductDetailPage } from "./Pages/ProductDetailPage"
+import { Favorite } from "./Pages/Favorite"
+import { About } from "./Pages/About"
 import { Checkout } from "./Pages/Checkout"
 import { createGlobalStyle } from "styled-components"
 
@@ -42,7 +42,7 @@ function App() {
         <Route path="/product-detail-page" element={<ProductDetailPage />} />
         <Route path="/favorite" element={<Favorite />} />
         <Route path="forgot-password" element={<ForgotPassword />} />
-        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/about-us" element={<About />} />
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </>

@@ -1,6 +1,5 @@
 import { styled } from "@mui/material/styles"
 import { Card } from "@mui/material"
-import Button from "@mui/material/Button"
 import { Link } from "react-router-dom"
 
 export const StyledCheckoutCard = styled(Card)`

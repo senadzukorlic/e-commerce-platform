@@ -15,5 +15,6 @@ export const ContentRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  padding-top: 20px;
   width: 100%;
 `

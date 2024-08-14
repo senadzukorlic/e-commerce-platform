@@ -1,6 +1,8 @@
 import React from "react"
 import { Input } from "../../Components/Input/index"
 import PhoneInput from "./phoneInput"
+import SelectInput from "../../Components/SelectInput"
+import { paymentMethods } from "../../Config/methods"
 import {
   Container,
   InnerContainer,
@@ -9,8 +11,17 @@ import {
   Column,
   PhoneInputWrapper,
 } from "./styleMyInformation"
+import { StyledLabel } from "../../Components/Input/style"
 
 export function MyInformation() {
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = React.useState(
+    paymentMethods[0].value
+  )
+
+  const handlePaymentMethodChange = (event) => {
+    setSelectedPaymentMethod(event.target.value)
+  }
+
   return (
     <Container>
       <InnerContainer>
@@ -70,6 +81,21 @@ export function MyInformation() {
         <PhoneInputWrapper>
           <PhoneInput />
         </PhoneInputWrapper>
+      </InnerContainer>
+
+      <InnerContainer>
+        <Header>Payment </Header>
+
+        <SelectInput
+          label="Select Payment Method"
+          justiflyContent="center"
+          align="center"
+          width="90%"
+          id="payment-method-select"
+          options={paymentMethods}
+          value={selectedPaymentMethod}
+          onChange={handlePaymentMethodChange}
+        />
       </InnerContainer>
     </Container>
   )

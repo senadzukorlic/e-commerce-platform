@@ -2,13 +2,9 @@ import React from "react"
 import { RowDiv } from "../../Components/RowDiv"
 import { ColumnDiv } from "../../Components/ColumnDiv"
 import { StyledLabel, StyledInput } from "../../Components/Input/style"
+import SelectInput from "../../Components/SelectInput"
 import styled from "styled-components"
-
-const countries = [
-  { label: "Serbia", code: "+381" },
-  { label: "Bosnia", code: "+387" },
-  { label: "Croatia", code: "+385" },
-]
+import { countries } from "../../Config/countries"
 
 const InputWrapper = styled.div`
   position: relative;
@@ -49,25 +45,17 @@ function PhoneInput() {
   return (
     <RowDiv width="100%">
       <ColumnDiv width="50%">
-        <StyledLabel htmlFor="country-select">Country</StyledLabel>
-        <select
+        <SelectInput
+          label="Country"
           id="country-select"
+          width="85%"
+          options={countries.map((country) => ({
+            label: country.label,
+            value: country.label,
+          }))}
           value={selectedCountry.label}
           onChange={handleCountryChange}
-          style={{
-            height: "40px",
-            border: "1px solid #ccc",
-            borderRadius: "0px",
-            paddingLeft: "7px",
-            width: "85%",
-          }}
-        >
-          {countries.map((country) => (
-            <option key={country.label} value={country.label}>
-              {country.label}
-            </option>
-          ))}
-        </select>
+        />
       </ColumnDiv>
 
       <ColumnDiv width="50%">

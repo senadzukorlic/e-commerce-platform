@@ -10,7 +10,6 @@ export const StyledCheckoutCard = styled(Card)`
   height: 500px;
   width: 330px;
   background-color: whitesmoke;
-  margin: 90px 30px;
   padding: 30px;
 `
 

@@ -27,12 +27,13 @@ export const P = styled("p")`
 export const ItemAndCheckoutDiv = styled("div")`
   display: flex;
   flex-wrap: row;
-  justify-content: center;
+  justify-content: space-evenly;
 `
 
 export const StyledItemCardDiv = styled("div")`
   display: flex;
   flex-direction: column;
+  gap: 30px;
 `
 
 export const DeleteButton = styled(IconButton)``

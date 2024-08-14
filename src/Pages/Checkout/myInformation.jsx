@@ -1,52 +1,76 @@
 import React from "react"
 import { Input } from "../../Components/Input/index"
-import { RowDiv } from "../../Components/RowDiv"
-import { ColumnDiv } from "../../Components/ColumnDiv"
 import PhoneInput from "./phoneInput"
+import {
+  Container,
+  InnerContainer,
+  Header,
+  Row,
+  Column,
+  PhoneInputWrapper,
+} from "./styleMyInformation"
+
 export function MyInformation() {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        backgroundColor: "whitesmoke",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-        }}
-      >
-        <RowDiv>
-          <ColumnDiv>
-            {" "}
+    <Container>
+      <InnerContainer>
+        <Header>My Information</Header>
+        <Input
+          labelName="Email"
+          type="text"
+          styleInput={{ width: "90%" }}
+          styleLabel={{ width: "92%" }}
+        />
+        <Row>
+          <Column>
             <Input
-              labelName="Name"
+              labelName="First name"
               type="text"
-              styleInput={{ width: "70%" }}
-              styleLabel={{ width: "71%" }}
+              styleInput={{ width: "81%" }}
+              styleLabel={{ width: "85%" }}
             />
-          </ColumnDiv>
+          </Column>
+          <Column>
+            <Input
+              labelName="Last name"
+              type="text"
+              styleInput={{ width: "81%" }}
+              styleLabel={{ width: "85%" }}
+            />
+          </Column>
+        </Row>
+      </InnerContainer>
 
-          <ColumnDiv>
+      <InnerContainer>
+        <Header>Billing Address</Header>
+        <Input
+          labelName="Address"
+          type="text"
+          styleInput={{ width: "90%" }}
+          styleLabel={{ width: "92%" }}
+        />
+        <Row>
+          <Column>
             <Input
-              labelName="Surname"
+              labelName="Town/City"
               type="text"
-              styleInput={{ width: "70%" }}
-              styleLabel={{ width: "71%" }}
+              styleInput={{ width: "81%" }}
+              styleLabel={{ width: "85%" }}
             />
-          </ColumnDiv>
-        </RowDiv>
-      </div>
-      <div>
-        <input type="date" />
-      </div>
-      <div
-        style={{ display: "flex", flexDirection: "row", paddingTop: "50px" }}
-      >
-        <PhoneInput />
-      </div>
-    </div>
+          </Column>
+          <Column>
+            <Input
+              labelName="Postal code"
+              type="text"
+              styleInput={{ width: "81%" }}
+              styleLabel={{ width: "85%" }}
+            />
+          </Column>
+        </Row>
+        <PhoneInputWrapper>
+          <PhoneInput />
+        </PhoneInputWrapper>
+      </InnerContainer>
+    </Container>
   )
 }

@@ -1,18 +1,37 @@
 import React from "react"
-import {
-  TextField,
-  MenuItem,
-  Select,
-  FormControl,
-  InputLabel,
-} from "@mui/material"
-import { Box } from "@mui/system"
+import { RowDiv } from "../../Components/RowDiv"
+import { ColumnDiv } from "../../Components/ColumnDiv"
+import { StyledLabel, StyledInput } from "../../Components/Input/style"
+import styled from "styled-components"
 
 const countries = [
   { label: "Serbia", code: "+381" },
   { label: "Bosnia", code: "+387" },
   { label: "Croatia", code: "+385" },
 ]
+
+const InputWrapper = styled.div`
+  position: relative;
+  width: 100%;
+`
+
+const Prefix = styled.span`
+  position: absolute;
+  font-size: 14px;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: black;
+  pointer-events: none;
+  line-height: 40px;
+`
+
+const InputWithPrefix = styled(StyledInput)`
+  padding-left: 50px;
+  width: 85%;
+  box-sizing: border-box;
+  line-height: 40px;
+`
 
 function PhoneInput() {
   const [selectedCountry, setSelectedCountry] = React.useState(countries[0])
@@ -28,51 +47,42 @@ function PhoneInput() {
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        width: "100%",
-      }}
-    >
-      <Box display="flex" alignItems="center" flexDirection="column">
-        <FormControl
-          variant="outlined"
-          style={{ width: "75%", borderRadius: "0px" }}
+    <RowDiv width="100%">
+      <ColumnDiv width="50%">
+        <StyledLabel htmlFor="country-select">Country</StyledLabel>
+        <select
+          id="country-select"
+          value={selectedCountry.label}
+          onChange={handleCountryChange}
+          style={{
+            height: "40px",
+            border: "1px solid #ccc",
+            borderRadius: "0px",
+            paddingLeft: "7px",
+            width: "85%",
+          }}
         >
-          <InputLabel id="country-select-label">Country</InputLabel>
-          <Select
-            labelId="country-select-label"
-            id="country-select"
-            value={selectedCountry.label}
-            onChange={handleCountryChange}
-            label="Country"
-            style={{ borderRadius: "0px" }}
-          >
-            {countries.map((country) => (
-              <MenuItem key={country.label} value={country.label}>
-                {country.label}
-              </MenuItem>
-            ))}
-          </Select>
-          <br />
-        </FormControl>
-        <TextField
-          label="Phone Number"
-          variant="outlined"
-          value={phoneNumber}
-          onChange={handlePhoneNumberChange}
-          InputProps={{
-            startAdornment: <div>{selectedCountry.code}</div>,
-          }}
-          sx={{
-            "& .MuiOutlinedInput-root": {
-              borderRadius: "0px",
-            },
-          }}
-        />
-      </Box>
-    </div>
+          {countries.map((country) => (
+            <option key={country.label} value={country.label}>
+              {country.label}
+            </option>
+          ))}
+        </select>
+      </ColumnDiv>
+
+      <ColumnDiv width="50%">
+        <StyledLabel htmlFor="phone-number">Phone Number</StyledLabel>
+        <InputWrapper>
+          <Prefix>{selectedCountry.code}</Prefix>
+          <InputWithPrefix
+            id="phone-number"
+            type="text"
+            value={phoneNumber}
+            onChange={handlePhoneNumberChange}
+          />
+        </InputWrapper>
+      </ColumnDiv>
+    </RowDiv>
   )
 }
 

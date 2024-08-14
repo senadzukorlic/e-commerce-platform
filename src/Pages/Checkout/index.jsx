@@ -1,27 +1,16 @@
+import React from "react"
 import { CheckoutCard } from "../ShoppingCart/checkoutCard"
 import { MyInformation } from "./myInformation"
+import { CheckoutContainer, Header, ContentRow } from "./style"
 
 export function Checkout() {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <div>
-        <h1>Checkout</h1>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-evenly",
-        }}
-      >
+    <CheckoutContainer>
+      <Header>Checkout</Header>
+      <ContentRow>
         <MyInformation />
         <CheckoutCard />
-      </div>
-    </div>
+      </ContentRow>
+    </CheckoutContainer>
   )
 }

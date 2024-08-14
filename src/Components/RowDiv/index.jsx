@@ -1,10 +1,11 @@
-export function RowDiv({ children }) {
+export function RowDiv({ children, width, color }) {
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "row",
-        width: "100%",
+        width: width,
+        backgroundColor: color,
         paddingLeft: "20px",
       }}
     >

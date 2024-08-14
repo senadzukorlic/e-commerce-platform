@@ -1,5 +1,14 @@
-export function ColumnDiv({ children }) {
+export function ColumnDiv({ children, width, color }) {
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>{children}</div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: width,
+        backgroundColor: color,
+      }}
+    >
+      {children}
+    </div>
   )
 }

@@ -10,6 +10,8 @@ export const FavoriteTitle = styled.h1`
   justify-content: center;
   align-items: center;
   padding-bottom: 20px;
+  color: gray;
+  font-family: "Roboto";
 `
 
 export const ItemsContainer = styled.div`

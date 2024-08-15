@@ -27,7 +27,8 @@ import SideBar from "./sideBar"
 
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = useState(null)
-  const { setInputValue, inputValue, cartCount } = useDataContext()
+  const { setInputValue, inputValue, cartCount, favoriteItems } =
+    useDataContext()
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   const handleClose = () => {
@@ -131,7 +132,18 @@ export default function NavBar() {
               component={Link}
               to="/favorite"
             >
-              <StarOutlineRounded />
+              <Badge
+                color="secondary"
+                badgeContent={favoriteItems.length}
+                sx={{
+                  "& .MuiBadge-badge": {
+                    backgroundColor: "#E4BC67",
+                    color: "white",
+                  },
+                }}
+              >
+                <StarOutlineRounded />
+              </Badge>
             </NavBarIconButton>
 
             <NavBarIconButton
@@ -142,7 +154,16 @@ export default function NavBar() {
               component={Link}
               to="/shopping-cart"
             >
-              <Badge color="secondary" badgeContent={cartCount}>
+              <Badge
+                color="secondary"
+                badgeContent={cartCount}
+                sx={{
+                  "& .MuiBadge-badge": {
+                    backgroundColor: "#E4BC67",
+                    color: "white",
+                  },
+                }}
+              >
                 <ShoppingCartIcon />
               </Badge>
             </NavBarIconButton>

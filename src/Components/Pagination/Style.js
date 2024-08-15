@@ -24,6 +24,6 @@ export const CategoryH1 = styled("h1")`
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: sans-serif;
+  font-family: "Roboto";
   color: gray;
 `

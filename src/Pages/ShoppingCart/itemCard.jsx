@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useDataContext } from "../../Hooks/useContext"
 import Box from "@mui/material/Box"
 import DeleteIcon from "@mui/icons-material/Delete"
@@ -26,8 +26,23 @@ import {
 } from "./itemCardStyle"
 
 export function ItemCard() {
-  const { cartData, setCartData, setTotal, setCartCount } = useDataContext()
-  const [favoriteItems, setFavoriteItems] = useState([])
+  const {
+    cartData,
+    setCartData,
+    setTotal,
+    setCartCount,
+    favoriteItems,
+    setFavoriteItems,
+  } = useDataContext()
+  const [favoriteButton, setFavoriteButton] = useState([])
+
+  useEffect(() => {
+    const initialFavoriteButtons = cartData
+      .filter((item) => favoriteItems.some((favItem) => favItem.id === item.id))
+      .map((item) => item.id)
+
+    setFavoriteButton(initialFavoriteButtons)
+  }, [cartData, favoriteItems])
 
   const handleQuantityChange = (itemId) => (event) => {
     setQuantities({
@@ -35,12 +50,14 @@ export function ItemCard() {
       [itemId]: event.target.value,
     })
   }
+
   const [quantities, setQuantities] = useState(
     cartData.reduce((acc, item) => {
       acc[item.id] = 1
       return acc
     }, {})
   )
+
   const deleteItem = (item) => {
     setCartData((currentItem) => {
       const updatedItems = currentItem.filter(
@@ -56,10 +73,19 @@ export function ItemCard() {
   }
 
   const setFavorite = (item) => {
-    setFavoriteItems((oldItems) => {
+    setFavoriteButton((oldItems) => {
       if (oldItems.includes(item.id)) {
+        setFavoriteItems((currentItems) =>
+          currentItems.filter((favItem) => favItem.id !== item.id)
+        )
         return oldItems.filter((id) => id !== item.id)
       } else {
+        setFavoriteItems((currentItems) => {
+          if (!currentItems.some((favItem) => favItem.id === item.id)) {
+            return [...currentItems, item]
+          }
+          return currentItems
+        })
         return [...oldItems, item.id]
       }
     })
@@ -112,7 +138,7 @@ export function ItemCard() {
               </ItemInfoDiv>
               <IconDiv>
                 <HeartButton onClick={() => setFavorite(item)}>
-                  {!favoriteItems.includes(item.id) ? (
+                  {!favoriteButton.includes(item.id) ? (
                     <HeartIcon
                       aria-hidden="true"
                       focusable="false"

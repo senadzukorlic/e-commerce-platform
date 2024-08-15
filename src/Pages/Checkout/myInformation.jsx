@@ -2,7 +2,7 @@ import React from "react"
 import { Input } from "../../Components/Input/index"
 import PhoneInput from "./phoneInput"
 import SelectInput from "../../Components/SelectInput"
-import { paymentMethods } from "../../Config/methods"
+import { paymentMethods } from "../../Config/paymentMethods"
 import {
   Container,
   InnerContainer,

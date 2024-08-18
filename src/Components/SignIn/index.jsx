@@ -18,6 +18,7 @@ import { PasswordInput } from "../PasswordInput"
 import { Input } from "../Input"
 import { OutlinedButton } from "../OutlinedButton"
 import { BlackButton } from "../BlackButton"
+import { Link } from "react-router-dom"
 
 export function LogIn({ open, handleClose }) {
   const [email, setEmail] = useState("")
@@ -68,6 +69,7 @@ export function LogIn({ open, handleClose }) {
             />
             <PasswordInput
               type={showPassword ? "text" : "password"}
+              label="Password"
               value={password}
               onChange={handlePasswordChange}
               setVisibility={togglePasswordVisibility}
@@ -94,10 +96,13 @@ export function LogIn({ open, handleClose }) {
               buttonName="Sign In"
               type="submit"
             />
-            <OutlinedButton
-              width={{ width: "330px" }}
-              buttonName="Continue as guest"
-            />
+            <Link to="/register">
+              <OutlinedButton
+                width={{ width: "330px" }}
+                buttonName="Become a member"
+                onClick={handleForgotPasswordClick}
+              />
+            </Link>
           </ButtonsContainer>
         </StyledForm>
       </StyledBox>

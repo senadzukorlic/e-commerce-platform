@@ -22,7 +22,7 @@ export const PasswordContainer = styled.div`
 
 export const PasswordToggle = styled.button`
   position: absolute;
-  right: 90px;
+  right: ${(props) => props.right || "90px"};
   top: 50%;
   transform: translateY(-50%);
   background: none;

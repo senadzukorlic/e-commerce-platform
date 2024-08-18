@@ -17,7 +17,6 @@ export const TitleParentDiv = styled("div")`
 export const H1 = styled("h1")`
   font-family: "Roboto";
   color: gray;
-  font-size: 40px;
 `
 export const P = styled("p")`
   font-family: "Roboto";

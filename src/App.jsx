@@ -14,6 +14,7 @@ import { ProductDetailPage } from "./Pages/ProductDetailPage"
 import { Favorite } from "./Pages/Favorite"
 import { About } from "./Pages/About"
 import { Checkout } from "./Pages/Checkout"
+import { Register } from "./Pages/Register"
 import { createGlobalStyle } from "styled-components"
 
 const GlobalStyles = createGlobalStyle`
@@ -44,6 +45,7 @@ function App() {
         <Route path="forgot-password" element={<ForgotPassword />} />
         <Route path="/about-us" element={<About />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </>
   )

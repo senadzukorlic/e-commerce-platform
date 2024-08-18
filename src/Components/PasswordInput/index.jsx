@@ -13,11 +13,13 @@ export function PasswordInput({
   booleanVisibility,
   styleLabel,
   styleInput,
+  right,
+  label,
 }) {
   return (
     <>
       <StyledLabel style={styleLabel} htmlFor="password">
-        Password
+        {label}
       </StyledLabel>
       <PasswordContainer>
         <StyledInput
@@ -28,7 +30,7 @@ export function PasswordInput({
           onChange={onChange}
           required
         />
-        <PasswordToggle type="button" onClick={setVisibility}>
+        <PasswordToggle type="button" onClick={setVisibility} right={right}>
           {booleanVisibility ? "Hide" : "Show"}
         </PasswordToggle>
       </PasswordContainer>

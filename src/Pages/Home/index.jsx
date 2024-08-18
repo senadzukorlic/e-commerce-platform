@@ -8,7 +8,7 @@ import {
   HomeParentDiv,
 } from "./style"
 import { format, addDays } from "date-fns"
-import AnotherButton from "./buttons"
+import AnotherButton from "./homeButtonsComp"
 
 export default function Home() {
   const today = new Date()

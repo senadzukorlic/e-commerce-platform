@@ -8,7 +8,7 @@ import {
   HomeParentDiv,
 } from "./style"
 import { format, addDays } from "date-fns"
-import Buttons from "./buttons"
+import AnotherButton from "./buttons"
 
 export default function Home() {
   const today = new Date()
@@ -26,7 +26,7 @@ export default function Home() {
           <HomeH3>Online exclusive</HomeH3>
         </HomeTitleDiv>
         <HomePDiv>
-          <Buttons />
+          <AnotherButton />
 
           <HomeP>
             The offer is valid online, on marked items, from {startDate} until

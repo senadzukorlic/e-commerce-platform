@@ -164,7 +164,10 @@ export function ItemCard() {
                     onChange={handleQuantityChange(item.id)}
                   >
                     {[...Array(10).keys()].map((number) => (
-                      <MenuItemStyled key={number + 1} value={number + 1}>
+                      <MenuItemStyled
+                        key={`quantity-${number + 1}`}
+                        value={number + 1}
+                      >
                         {number + 1}
                       </MenuItemStyled>
                     ))}

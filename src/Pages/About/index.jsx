@@ -66,7 +66,7 @@ export function About() {
         </StyledPersonCard>
       ))}
       {myInfo.map((info) => (
-        <StyledProjectCard>
+        <StyledProjectCard key={info.name}>
           <StyledImageContainer2>
             <StyledCardMedia2 component="img" image={logo} />
           </StyledImageContainer2>

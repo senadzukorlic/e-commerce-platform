@@ -16,7 +16,8 @@ import {
 import SelectInput from "../../Components/SelectInput"
 
 export function Favorite() {
-  const { favoriteItems } = useDataContext()
+  const { favoriteItems, setCartData, setCartCount, setTotal } =
+    useDataContext()
   const [selectedSizes, setSelectedSizes] = React.useState({})
 
   const handleSizeChange = (id, value) => {
@@ -24,6 +25,30 @@ export function Favorite() {
       ...prevSizes,
       [id]: value,
     }))
+  }
+
+  const handleAddToCart = (item) => {
+    const selectedSize = selectedSizes[item.id]
+
+    const itemWithSize = { ...item, size: selectedSize }
+
+    setCartData((prevCartData) => {
+      const updatedCartData = [...prevCartData, itemWithSize]
+
+      setCartCount((currentValue) => currentValue + 1)
+
+      const total = updatedCartData.reduce((accumulator, cartItem) => {
+        return accumulator + cartItem.price
+      }, 0)
+
+      setTotal(total)
+
+      return updatedCartData
+    })
+  }
+
+  const addItemToBag = (item) => {
+    handleAddToCart(item)
   }
 
   return (
@@ -43,7 +68,11 @@ export function Favorite() {
                 value={selectedSizes[items.id] || ""}
                 onChange={(e) => handleSizeChange(items.id, e.target.value)}
               />
-              <BlackButton buttonName="Add to bag" width={{ width: "100%" }} />
+              <BlackButton
+                buttonName="Add to bag"
+                onClick={() => addItemToBag(items)}
+                width={{ width: "100%" }}
+              />
             </ItemActions>
           </ItemCard>
         ))}

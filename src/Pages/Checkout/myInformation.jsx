@@ -11,7 +11,6 @@ import {
   Column,
   PhoneInputWrapper,
 } from "./styleMyInformation"
-import { StyledLabel } from "../../Components/Input/style"
 
 export function MyInformation() {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = React.useState(

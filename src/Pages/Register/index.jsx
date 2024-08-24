@@ -86,10 +86,7 @@ export function Register() {
         <TermsLink href="/dsafsa">Terms and conditions.</TermsLink>
       </TermsText>
 
-      <BlackButton
-        buttonName="Become a JacpiStore member"
-        width={{ width: "40%" }}
-      />
+      <BlackButton buttonName="Become a  member" width={{ width: "40%" }} />
     </RegisterContainer>
   )
 }

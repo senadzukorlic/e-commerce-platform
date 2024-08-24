@@ -12,6 +12,7 @@ export const RegisterTitle = styled.h1`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  color: gray;
 `
 
 export const CheckboxContainer = styled.div`

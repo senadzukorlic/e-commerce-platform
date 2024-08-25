@@ -1,7 +1,7 @@
 import React from "react"
 import { useDataContext } from "../../Hooks/useContext"
 import { BlackButton } from "../../Components/BlackButton"
-import { selectSize } from "../../Config/size"
+import { selectSizeFavorite } from "../../Config/size"
 import {
   FavoriteContainer,
   FavoriteTitle,
@@ -64,7 +64,7 @@ export function Favorite() {
             </ItemInfo>
             <ItemActions>
               <SelectInput
-                options={selectSize}
+                options={selectSizeFavorite}
                 value={selectedSizes[items.id] || ""}
                 onChange={(e) => handleSizeChange(items.id, e.target.value)}
               />

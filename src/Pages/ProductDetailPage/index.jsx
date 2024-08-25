@@ -11,6 +11,16 @@ import {
   SizeButtonDiv,
   ArrowButton,
 } from "./style"
+import {
+  selectSizeDetail,
+  selectMenShoes,
+  selectWomenShoes,
+  selectLaptopSize,
+  selectTabletSize,
+  selectWomenWatches,
+  selectMenWatches,
+  someThings,
+} from "../../Config/size"
 import { BlackButton } from "../../Components/BlackButton"
 import { OutlinedButton } from "../../Components/OutlinedButton"
 
@@ -25,7 +35,6 @@ export function ProductDetailPage() {
   } = useDataContext()
 
   const item = productDetail[0]
-  const sizeArray = ["XS", "S", "M", "L", "XL", "XXL"]
 
   const [images, setImages] = useState([])
   const [prevNext, setPrexNext] = useState(0)
@@ -90,6 +99,34 @@ export function ProductDetailPage() {
     }
   }
 
+  // Funkcija za dobijanje opcija za veličinu na osnovu kategorije proizvoda
+  const getSizeOptions = (category) => {
+    if (someThings.includes(category)) return [] // Nema veličina za ove kategorije
+
+    switch (category) {
+      case "mens-shoes":
+        return selectMenShoes
+      case "womens-shoes":
+        return selectWomenShoes
+      case "laptops":
+        return selectLaptopSize
+      case "tablets":
+        return selectTabletSize
+      case "mens-watches":
+        return selectMenWatches
+      case "womens-watches":
+        return selectWomenWatches
+      case "mens-shirts":
+      case "tops":
+      case "womens-dresses":
+        return selectSizeDetail
+      default:
+        return []
+    }
+  }
+
+  const sizeOptions = getSizeOptions(item?.category)
+
   return (
     <ParentDiv>
       {productDetail.length > 0 ? (
@@ -118,30 +155,35 @@ export function ProductDetailPage() {
               >
                 {item.price}€
               </Typography>
-
+              {item.id}
               <Box sx={{ mt: 2 }}>
-                <Typography
-                  style={{ paddingBottom: "20px", fontFamily: "Roboto" }}
-                  variant="h5"
-                >
-                  Select size
-                </Typography>
-                <SizeButtonDiv>
-                  {sizeArray.map((sizeOption) => (
-                    <ButtonSize
-                      key={sizeOption}
-                      variant="outlined"
-                      onClick={() => handleSizeClick(sizeOption)}
-                      style={{
-                        backgroundColor:
-                          size === sizeOption ? "black" : "white",
-                        color: size === sizeOption ? "white" : "black",
-                      }}
+                {sizeOptions.length > 0 && (
+                  <>
+                    <Typography
+                      style={{ paddingBottom: "20px", fontFamily: "Roboto" }}
+                      variant="h5"
                     >
-                      {sizeOption}
-                    </ButtonSize>
-                  ))}
-                </SizeButtonDiv>
+                      Select size
+                    </Typography>
+                    <SizeButtonDiv>
+                      {sizeOptions.map((sizeOption, id) => (
+                        <ButtonSize
+                          key={id}
+                          variant="outlined"
+                          onClick={() => handleSizeClick(sizeOption.value)}
+                          style={{
+                            backgroundColor:
+                              size === sizeOption.value ? "black" : "white",
+                            color:
+                              size === sizeOption.value ? "white" : "black",
+                          }}
+                        >
+                          {sizeOption.label}
+                        </ButtonSize>
+                      ))}
+                    </SizeButtonDiv>
+                  </>
+                )}
                 <BlackButton
                   buttonName="Add to Bag"
                   width={{ width: "100%" }}

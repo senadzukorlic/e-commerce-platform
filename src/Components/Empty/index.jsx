@@ -1,9 +1,11 @@
-import { EmptyItemCard, H1 } from "./style"
+import { EmptyItemCard, H1, ParentDiv } from "./style"
 
 export function EmptyComponent({ text }) {
   return (
-    <EmptyItemCard>
-      <H1>{text}</H1>
-    </EmptyItemCard>
+    <ParentDiv>
+      <EmptyItemCard>
+        <H1>{text}</H1>
+      </EmptyItemCard>
+    </ParentDiv>
   )
 }

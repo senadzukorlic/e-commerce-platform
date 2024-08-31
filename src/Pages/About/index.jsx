@@ -19,7 +19,9 @@ import {
   StyledCardMedia2,
   StyledImageContainer2,
   StyledTypographyDescription2,
+  ParentDiv,
 } from "./style.js"
+import { PageTitle } from "../../Components/PageTitle/index.jsx"
 
 const myInfo = [
   {
@@ -37,45 +39,54 @@ const myInfo = [
 
 export function About() {
   return (
-    <StyledAboutUsContainer>
-      {myInfo.map((info) => (
-        <StyledPersonCard key={info.name}>
-          <StyledImageContainer>
-            <StyledCardMedia component="img" image={myPhoto} />
-          </StyledImageContainer>
-          <StyledCardContent>
-            <StyledTypographyName gutterBottom variant="h1">
-              {info.name}
-            </StyledTypographyName>
-            <StyledTypographyCity gutterBottom variant="h6">
-              {info.city}
-            </StyledTypographyCity>
-            <LineDiv />
-            <StyledTypographyDescription variant="body2" color="text.secondary">
-              {info.description}
-            </StyledTypographyDescription>
-            <StyledSocialLinksContainer>
-              <StyledLink href={info.github} target="_blank">
-                <GitHubIcon />
-              </StyledLink>
-              <StyledLink href={info.linkedIn} target="_blank">
-                <LinkedIn />
-              </StyledLink>
-            </StyledSocialLinksContainer>
-          </StyledCardContent>
-        </StyledPersonCard>
-      ))}
-      {myInfo.map((info) => (
-        <StyledProjectCard key={info.name}>
-          <StyledImageContainer2>
-            <StyledCardMedia2 component="img" image={logo} />
-          </StyledImageContainer2>
+    <ParentDiv>
+      <PageTitle title="About Project" />
+      <StyledAboutUsContainer>
+        {myInfo.map((info) => (
+          <StyledPersonCard key={info.name}>
+            <StyledImageContainer>
+              <StyledCardMedia component="img" image={myPhoto} />
+            </StyledImageContainer>
+            <StyledCardContent>
+              <StyledTypographyName gutterBottom variant="h1">
+                {info.name}
+              </StyledTypographyName>
+              <StyledTypographyCity gutterBottom variant="h6">
+                {info.city}
+              </StyledTypographyCity>
+              <LineDiv />
+              <StyledTypographyDescription
+                variant="body2"
+                color="text.secondary"
+              >
+                {info.description}
+              </StyledTypographyDescription>
+              <StyledSocialLinksContainer>
+                <StyledLink href={info.github} target="_blank">
+                  <GitHubIcon />
+                </StyledLink>
+                <StyledLink href={info.linkedIn} target="_blank">
+                  <LinkedIn />
+                </StyledLink>
+              </StyledSocialLinksContainer>
+            </StyledCardContent>
+          </StyledPersonCard>
+        ))}
+        {myInfo.map((info) => (
+          <StyledProjectCard key={info.name}>
+            <StyledImageContainer2>
+              <StyledCardMedia2 component="img" image={logo} />
+            </StyledImageContainer2>
 
-          <StyledTypographyDescription2 variant="body2" color="text.secondary">
-            {info.aboutProject}
-          </StyledTypographyDescription2>
-        </StyledProjectCard>
-      ))}
-    </StyledAboutUsContainer>
+            <StyledTypographyDescription2
+              variant="body2"
+              color="text.secondary"
+            >
+              {info.aboutProject}
+            </StyledTypographyDescription2>
+          </StyledProjectCard>
+        ))}
+      </StyledAboutUsContainer>
+    </ParentDiv>
   )
 }

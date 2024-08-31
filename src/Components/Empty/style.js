@@ -21,7 +21,5 @@ export const EmptyItemCard = styled.div`
 `
 export const H1 = styled.h1`
   font-family: "Roboto";
-  padding: 70;
-  font-weight: 700;
-  color: black;
+  color: gray;
 `

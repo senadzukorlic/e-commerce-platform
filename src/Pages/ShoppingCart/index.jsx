@@ -11,13 +11,17 @@ import { EmptyComponent } from "../../Components/Empty"
 import { useDataContext } from "../../Hooks/useContext"
 import { ItemCard } from "./itemCard"
 import { CheckoutCard } from "./checkoutCard"
+import { PageTitle } from "../../Components/PageTitle"
 
 export function ShoppingCart() {
   const { cartData } = useDataContext()
   return (
     <>
       {cartData.length === 0 ? (
-        <EmptyComponent text="Your Shopping Bag is empty!" />
+        <>
+          <PageTitle title="Shopping bag" />
+          <EmptyComponent text="Your Shopping Bag is empty!" />
+        </>
       ) : (
         <ParentDiv>
           <TitleParentDiv>

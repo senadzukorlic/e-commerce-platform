@@ -1,6 +1,11 @@
 import { styled } from "@mui/material"
 import { CardMedia, Typography, Link } from "@mui/material"
 
+export const ParentDiv = styled("div")`
+  display: flex;
+  flex-direction: column;
+`
+
 export const StyledAboutUsContainer = styled("div")`
   display: flex;
   flex-direction: row;
@@ -11,7 +16,6 @@ export const StyledAboutUsContainer = styled("div")`
 
 export const StyledPersonCard = styled("div")`
   background-color: whitesmoke;
-  margin-top: 10px;
   width: 350px;
   border-radius: 20px;
   height: 410px;
@@ -99,7 +103,6 @@ export const StyledLink = styled(Link)(({ theme }) => ({
 
 export const StyledProjectCard = styled("div")`
   background-color: whitesmoke;
-  margin-top: 10px;
   width: 750px;
   border-radius: 20px;
   height: 410px;

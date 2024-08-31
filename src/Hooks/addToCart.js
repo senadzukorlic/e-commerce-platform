@@ -1,9 +1,4 @@
-export function addToCart(item) {
-  if (!size) {
-    alert("Please select a size before adding to bag")
-    return
-  }
-
+export function addToCart({ item, setCartCount, setCartData, setTotal, size }) {
   const itemWithSize = { ...item, size }
 
   setCartData((prevCartData) => {

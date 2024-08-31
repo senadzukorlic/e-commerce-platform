@@ -14,6 +14,7 @@ import {
   ItemActions,
 } from "./style"
 import SelectInput from "../../Components/SelectInput"
+import { addToCart } from "../../Hooks/addToCart"
 
 export function Favorite() {
   const { favoriteItems, setCartData, setCartCount, setTotal } =
@@ -25,30 +26,6 @@ export function Favorite() {
       ...prevSizes,
       [id]: value,
     }))
-  }
-
-  const handleAddToCart = (item) => {
-    const selectedSize = selectedSizes[item.id]
-
-    const itemWithSize = { ...item, size: selectedSize }
-
-    setCartData((prevCartData) => {
-      const updatedCartData = [...prevCartData, itemWithSize]
-
-      setCartCount((currentValue) => currentValue + 1)
-
-      const total = updatedCartData.reduce((accumulator, cartItem) => {
-        return accumulator + cartItem.price
-      }, 0)
-
-      setTotal(total)
-
-      return updatedCartData
-    })
-  }
-
-  const addItemToBag = (item) => {
-    handleAddToCart(item)
   }
 
   return (
@@ -70,7 +47,15 @@ export function Favorite() {
               />
               <BlackButton
                 buttonName="Add to bag"
-                onClick={() => addItemToBag(items)}
+                onClick={() =>
+                  addToCart({
+                    item: items,
+                    setCartCount,
+                    setCartData,
+                    setTotal,
+                    size: selectedSizes[items.id] || "",
+                  })
+                }
                 width={{ width: "100%" }}
               />
             </ItemActions>

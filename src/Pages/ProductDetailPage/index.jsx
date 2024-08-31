@@ -23,6 +23,7 @@ import {
 } from "../../Config/size"
 import { BlackButton } from "../../Components/BlackButton"
 import { OutlinedButton } from "../../Components/OutlinedButton"
+import { addToCart } from "../../Hooks/addToCart"
 
 export function ProductDetailPage() {
   const {
@@ -58,28 +59,6 @@ export function ProductDetailPage() {
 
   const handleSizeClick = (size) => {
     setSize(size)
-  }
-
-  const handleAddToCart = (item) => {
-    if (!size) {
-      alert("Please select a size before adding to bag")
-      return
-    }
-
-    const itemWithSize = { ...item, size }
-
-    setCartData((prevCartData) => {
-      const updatedCartData = [...prevCartData, itemWithSize]
-      setCartCount((currentValue) => currentValue + 1)
-
-      const total = updatedCartData.reduce((accumulator, cartItem) => {
-        return accumulator + cartItem.price
-      }, 0)
-
-      setTotal(total)
-
-      return updatedCartData
-    })
   }
 
   const handleAddToFavorite = (item) => {
@@ -187,7 +166,15 @@ export function ProductDetailPage() {
                 <BlackButton
                   buttonName="Add to Bag"
                   width={{ width: "100%" }}
-                  onClick={() => handleAddToCart(item)}
+                  onClick={() =>
+                    addToCart({
+                      item,
+                      setCartCount,
+                      setCartData,
+                      setTotal,
+                      size,
+                    })
+                  }
                 />
                 <br />
                 <br />

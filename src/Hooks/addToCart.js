@@ -1,4 +1,16 @@
-export function addToCart({ item, setCartCount, setCartData, setTotal, size }) {
+export function addToCart({
+  item,
+  setCartCount,
+  setCartData,
+  setTotal,
+  alertMessage,
+  size,
+}) {
+  if (!size) {
+    alert(alertMessage)
+    return
+  }
+
   const itemWithSize = { ...item, size }
 
   setCartData((prevCartData) => {

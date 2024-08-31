@@ -1,0 +1,20 @@
+import { Card } from "@mui/material"
+import styled from "styled-components"
+
+export const EmptyItemCard = styled.div`
+  display: flex;
+  flex-wrap: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: 80%;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  margin: 90px 60px;
+`
+export const H1 = styled.h1`
+  font-family: "Roboto";
+  padding: 70;
+  font-weight: 700;
+  color: black;
+`

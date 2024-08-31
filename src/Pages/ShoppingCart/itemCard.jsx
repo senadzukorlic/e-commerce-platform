@@ -5,9 +5,7 @@ import DeleteIcon from "@mui/icons-material/Delete"
 import FavoriteIcon from "@mui/icons-material/Favorite"
 
 import {
-  EmptyItemCard,
   HeartIcon,
-  H1,
   StyledItemCard,
   CardContentImageStyled,
   Image,
@@ -24,6 +22,7 @@ import {
   Select,
   MenuItemStyled,
 } from "./itemCardStyle"
+import { EmptyComponent } from "../../Components/Empty"
 
 export function ItemCard() {
   const {
@@ -94,9 +93,7 @@ export function ItemCard() {
   return (
     <>
       {cartData.length === 0 ? (
-        <EmptyItemCard>
-          <H1>Your Shopping Bag is empty!</H1>
-        </EmptyItemCard>
+        <EmptyComponent text="Your Shopping Bag is empty!" />
       ) : (
         cartData.map((item) => (
           <StyledItemCard key={item.id} variant="outlined">

@@ -1,7 +1,7 @@
 import React from "react"
 import { CheckoutCard } from "../ShoppingCart/checkoutCard"
 import { MyInformation } from "./myInformation"
-import { CheckoutContainer, Header, ContentRow } from "./style"
+import { CheckoutContainer, Header, ContentRow } from "./style.js"
 
 export function Checkout() {
   return (

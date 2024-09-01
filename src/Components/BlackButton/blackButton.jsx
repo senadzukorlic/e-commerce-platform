@@ -1,4 +1,4 @@
-import { StyleButton } from "./style"
+import { StyleButton } from "./styleBlackButton"
 
 export function BlackButton({ width, buttonName, type, onClick }) {
   return (

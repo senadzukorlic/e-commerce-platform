@@ -1,17 +1,18 @@
 import React, { useState, useContext } from "react"
 import { useDataContext } from "../../Hooks/useContext"
 import { useFilterItems } from "../../Hooks/useFilterItems"
-import { Pagination } from "../../Components/Pagination"
-import { ProductCard } from "../../Components/ProductCard"
-import { sportsCategories } from "../../Config/categories"
-function Sport() {
+import { Pagination } from "../../Components/Pagination/pagination"
+import { ProductCard } from "../../Components/ProductCard/productCard"
+import { womenCategories, womenClothes } from "../../Config/categories"
+
+function Women() {
   const { data } = useDataContext()
-  const [activeCategory, setActiveCategory] = useState(
-    sportsCategories[0].category
-  )
+  const [activeCategory, setActiveCategory] = useState(womenClothes)
+
   const handleTabChange = (event, newValue) => {
     setActiveCategory(newValue)
   }
+
   const filteredItems = useFilterItems(data, activeCategory)
 
   return (
@@ -19,11 +20,13 @@ function Sport() {
       <Pagination
         value={activeCategory}
         onChange={handleTabChange}
-        categories={sportsCategories}
-        categoryName="Sports"
+        categories={womenCategories}
+        categoryName="Women"
       />
+
       <ProductCard filteredItems={filteredItems} />
     </>
   )
 }
-export default Sport
+
+export default Women

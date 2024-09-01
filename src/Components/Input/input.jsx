@@ -1,4 +1,4 @@
-import { StyledLabel, StyledInput } from "./style"
+import { StyledLabel, StyledInput } from "./styleInput"
 
 export function Input({
   value,

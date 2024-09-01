@@ -1,4 +1,4 @@
-import { EmptyItemCard, H1, ParentDiv } from "./style"
+import { EmptyItemCard, H1, ParentDiv } from "./styleEmpty"
 
 export function EmptyComponent({ text }) {
   return (

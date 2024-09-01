@@ -1,20 +1,20 @@
 import { Routes } from "react-router-dom"
 import { Route } from "react-router-dom"
-import NavBar from "./Components/NavBar"
+import NavBar from "./Components/NavBar/navBar" // Dodan camelCase naziv
 
-import Home from "./Pages/Home"
-import Men from "./Pages/Men"
-import Women from "./Pages/Women"
-import Sport from "./Pages/Sport"
-import Electronics from "./Pages/Electronics"
-import ForgotPassword from "./Pages/ForgotPassword"
+import Home from "./Pages/Home/home" // Dodan camelCase naziv
+import Men from "./Pages/Men/men" // Dodan camelCase naziv
+import Women from "./Pages/Women/women" // Dodan camelCase naziv
+import Sport from "./Pages/Sport/sport" // Dodan camelCase naziv
+import Electronics from "./Pages/Electronics/electronics" // Dodan camelCase naziv
+import ForgotPassword from "./Pages/ForgotPassword/forgotPassword" // Dodan camelCase naziv
 
-import { ShoppingCart } from "./Pages/ShoppingCart"
-import { ProductDetailPage } from "./Pages/ProductDetailPage"
-import { Favorite } from "./Pages/Favorite"
-import { About } from "./Pages/About"
-import { Checkout } from "./Pages/Checkout"
-import { Register } from "./Pages/Register"
+import { ShoppingCart } from "./Pages/ShoppingCart/shoppingCart" // Dodan camelCase naziv
+import { ProductDetailPage } from "./Pages/ProductDetailPage/productDetail" // Dodan camelCase naziv
+import { Favorite } from "./Pages/Favorite/favorite" // Dodan camelCase naziv
+import { About } from "./Pages/About/about" // Dodan camelCase naziv
+import { Checkout } from "./Pages/Checkout/checkout" // Dodan camelCase naziv
+import { Register } from "./Pages/Register/register" // Dodan camelCase naziv
 import { createGlobalStyle } from "styled-components"
 
 const GlobalStyles = createGlobalStyle`

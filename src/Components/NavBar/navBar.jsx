@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { LogIn } from "../SignIn"
+import { LogIn } from "../SignIn/signIn"
 import {
   Logo,
   IconDiv,
@@ -13,7 +13,7 @@ import {
   NavBarIconButton,
   NavBarMenuItem,
   AboutLink,
-} from "./style"
+} from "./styleNavBar"
 
 import { StarOutlineRounded, SearchRounded } from "@mui/icons-material"
 import { useDataContext } from "../../Hooks/useContext"

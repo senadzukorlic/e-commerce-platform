@@ -12,12 +12,12 @@ import {
   ForgotPassword,
   ButtonsContainer,
   ForgotLink,
-} from "./style"
+} from "./styleSignIn"
 
-import { PasswordInput } from "../PasswordInput"
-import { Input } from "../Input"
-import { OutlinedButton } from "../OutlinedButton"
-import { BlackButton } from "../BlackButton"
+import { PasswordInput } from "../PasswordInput/passwordInput"
+import { Input } from "../Input/input"
+import { OutlinedButton } from "../OutlinedButton/outlinedButton"
+import { BlackButton } from "../BlackButton/blackButton"
 import { Link } from "react-router-dom"
 
 export function LogIn({ open, handleClose }) {

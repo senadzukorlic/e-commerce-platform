@@ -3,7 +3,7 @@ import {
   PasswordContainer,
   StyledInput,
   PasswordToggle,
-} from "./style"
+} from "./stylePasswordInput"
 
 export function PasswordInput({
   value,

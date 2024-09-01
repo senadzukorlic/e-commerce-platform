@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { Input } from "../../Components/Input"
-import { PasswordInput } from "../../Components/PasswordInput"
-import { BlackButton } from "../../Components/BlackButton"
+import { Input } from "../../Components/Input/input"
+import { PasswordInput } from "../../Components/PasswordInput/passwordInput"
+import { BlackButton } from "../../Components/BlackButton/blackButton"
 import {
   RegisterContainer,
   RegisterTitle,
@@ -10,7 +10,7 @@ import {
   TermsText,
   TermsLink,
   StyledTextField,
-} from "./style"
+} from "./styleRegister"
 
 export function Register() {
   const [password, setPassword] = useState("")

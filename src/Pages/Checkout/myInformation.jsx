@@ -1,7 +1,7 @@
 import React from "react"
-import { Input } from "../../Components/Input/index"
+import { Input } from "../../Components/Input/input"
 import PhoneInput from "./phoneInput"
-import SelectInput from "../../Components/SelectInput"
+import SelectInput from "../../Components/SelectInput/selectInput"
 import { paymentMethods } from "../../Config/paymentMethods"
 import {
   Container,

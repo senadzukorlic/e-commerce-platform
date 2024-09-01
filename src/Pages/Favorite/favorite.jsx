@@ -1,6 +1,6 @@
 import React from "react"
 import { useDataContext } from "../../Hooks/useContext"
-import { BlackButton } from "../../Components/BlackButton"
+import { BlackButton } from "../../Components/BlackButton/blackButton"
 import { selectSizeFavorite } from "../../Config/size"
 import {
   FavoriteContainer,
@@ -12,11 +12,11 @@ import {
   ItemTitle,
   ItemPrice,
   ItemActions,
-} from "./style"
-import SelectInput from "../../Components/SelectInput"
+} from "./styleFavorite"
+import SelectInput from "../../Components/SelectInput/selectInput"
 import { addToCart } from "../../Hooks/addToCart"
-import { EmptyComponent } from "../../Components/Empty"
-import { PageTitle } from "../../Components/PageTitle"
+import { EmptyComponent } from "../../Components/Empty/empty"
+import { PageTitle } from "../../Components/PageTitle/pageTitle"
 
 export function Favorite() {
   const { favoriteItems, setCartData, setCartCount, setTotal } =
@@ -32,7 +32,6 @@ export function Favorite() {
 
   return (
     <>
-      {" "}
       {favoriteItems.length === 0 ? (
         <>
           <PageTitle title="Favorite" />
@@ -40,7 +39,7 @@ export function Favorite() {
         </>
       ) : (
         <FavoriteContainer>
-          <FavoriteTitle>Favorites</FavoriteTitle>
+          <PageTitle title="Favorite" />
           <ItemsContainer>
             {favoriteItems.map((items) => (
               <ItemCard key={items.id}>

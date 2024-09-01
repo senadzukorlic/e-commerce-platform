@@ -5,9 +5,9 @@ import {
   ForgotPasswordParagraph,
   InputContainer,
   SubmitContainer,
-} from "./style"
-import { Input } from "../../Components/Input"
-import { BlackButton } from "../../Components/BlackButton"
+} from "./styleForgotPassword"
+import { Input } from "../../Components/Input/input"
+import { BlackButton } from "../../Components/BlackButton/blackButton"
 
 function ForgotPassword() {
   return (

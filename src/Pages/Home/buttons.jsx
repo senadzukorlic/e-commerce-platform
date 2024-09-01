@@ -1,6 +1,6 @@
 import * as React from "react"
 import Stack from "@mui/material/Stack"
-import { ButtonHome } from "./style"
+import { ButtonHome } from "./styleHome"
 import { Link } from "react-router-dom"
 export default function Buttons() {
   return (

@@ -1,7 +1,13 @@
 import { useDataContext } from "../../Hooks/useContext"
 import { Typography, CardActionArea } from "@mui/material"
 import { Link } from "react-router-dom"
-import { ParentDiv, Imagee, CardText, ImageWrapper, StyledCard } from "./style"
+import {
+  ParentDiv,
+  Imagee,
+  CardText,
+  ImageWrapper,
+  StyledCard,
+} from "./styleProductCard"
 
 export function ProductCard({ filteredItems }) {
   const { data, inputValue, setProductDetail } = useDataContext()

@@ -1,8 +1,8 @@
 import React from "react"
-import { RowDiv } from "../../Components/RowDiv"
-import { ColumnDiv } from "../../Components/ColumnDiv"
-import { StyledLabel, StyledInput } from "../../Components/Input/style"
-import SelectInput from "../../Components/SelectInput"
+import { RowDiv } from "../../Components/RowDiv/rowDiv"
+import { ColumnDiv } from "../../Components/ColumnDiv/columnDiv"
+import { StyledLabel, StyledInput } from "../../Components/Input/styleInput"
+import SelectInput from "../../Components/SelectInput/selectInput"
 import styled from "styled-components"
 import { countries } from "../../Config/countries"
 

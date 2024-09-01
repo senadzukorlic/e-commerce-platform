@@ -20,8 +20,8 @@ import {
   StyledImageContainer2,
   StyledTypographyDescription2,
   ParentDiv,
-} from "./style.js"
-import { PageTitle } from "../../Components/PageTitle/index.jsx"
+} from "./styleAbout.js"
+import { PageTitle } from "../../Components/PageTitle/pageTitle.jsx"
 
 const myInfo = [
   {

@@ -6,12 +6,12 @@ import {
   TitleParentDiv,
   H1,
   P,
-} from "./style"
-import { EmptyComponent } from "../../Components/Empty"
+} from "./styleShoppingCart"
+import { EmptyComponent } from "../../Components/Empty/empty"
 import { useDataContext } from "../../Hooks/useContext"
 import { ItemCard } from "./itemCard"
 import { CheckoutCard } from "./checkoutCard"
-import { PageTitle } from "../../Components/PageTitle"
+import { PageTitle } from "../../Components/PageTitle/pageTitle"
 
 export function ShoppingCart() {
   const { cartData } = useDataContext()

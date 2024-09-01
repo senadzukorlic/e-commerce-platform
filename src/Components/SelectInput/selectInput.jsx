@@ -1,6 +1,10 @@
 import React from "react"
 
-import { StyledLabel, StyledSelect, CustomSelectWrapper } from "./style"
+import {
+  StyledLabel,
+  StyledSelect,
+  CustomSelectWrapper,
+} from "./styleSelectInput"
 
 function SelectInput({
   id,

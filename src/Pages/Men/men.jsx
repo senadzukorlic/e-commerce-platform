@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import { useDataContext } from "../../Hooks/useContext"
 import { useFilterItems } from "../../Hooks/useFilterItems"
-import { Pagination } from "../../Components/Pagination/index"
-import { ProductCard } from "../../Components/ProductCard"
+import { Pagination } from "../../Components/Pagination/pagination"
+import { ProductCard } from "../../Components/ProductCard/productCard"
 import { menCategories, menClothes } from "../../Config/categories"
 
 function Men() {

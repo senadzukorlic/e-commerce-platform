@@ -6,7 +6,7 @@ import {
   HomePDiv,
   HomeTitleDiv,
   HomeParentDiv,
-} from "./style"
+} from "./styleHome"
 import { format, addDays } from "date-fns"
 import Buttons from "./buttons"
 

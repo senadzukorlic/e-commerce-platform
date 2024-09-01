@@ -1,4 +1,4 @@
-import { StyleButton } from "./style"
+import { StyleButton } from "./styleOutlinedButton"
 
 export function OutlinedButton({ width, buttonName, type, onClick }) {
   return (

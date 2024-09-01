@@ -10,11 +10,13 @@ import {
   ButtonSize,
   SizeButtonDiv,
   ArrowButton,
-} from "./style"
+} from "./styleProductDetail"
 import { getSizeOptions } from "../../Hooks/optionsSwitch"
-import { BlackButton } from "../../Components/BlackButton"
-import { OutlinedButton } from "../../Components/OutlinedButton"
+import { BlackButton } from "../../Components/BlackButton/blackButton"
+import { OutlinedButton } from "../../Components/OutlinedButton/outlinedButton"
 import { addToCart } from "../../Hooks/addToCart"
+import { PageTitle } from "../../Components/PageTitle/pageTitle"
+import { EmptyComponent } from "../../Components/Empty/empty"
 
 export function ProductDetailPage() {
   const {
@@ -155,7 +157,9 @@ export function ProductDetailPage() {
           </CardProductDetail>
         </>
       ) : (
-        <h1>Nema nista</h1>
+        <>
+          <EmptyComponent text="Page Not Found" />
+        </>
       )}
     </ParentDiv>
   )

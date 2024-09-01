@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDataContext } from "../../Hooks/useContext"
-import { LogIn } from "../../Components/SignIn"
+import { LogIn } from "../../Components/SignIn/signIn"
 import {
   StyledCheckoutCard,
   LineDiv1,
@@ -11,8 +11,8 @@ import {
   SmallDiv,
   CheckoutLink,
 } from "./checkoutCardStyle"
-import { OutlinedButton } from "../../Components/OutlinedButton"
-import { BlackButton } from "../../Components/BlackButton"
+import { OutlinedButton } from "../../Components/OutlinedButton/outlinedButton"
+import { BlackButton } from "../../Components/BlackButton/blackButton"
 
 export function CheckoutCard() {
   const { total } = useDataContext()

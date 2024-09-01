@@ -1,4 +1,4 @@
-import { BoxTab, CategoryH1, CenteredContainer } from "./Style"
+import { BoxTab, CategoryH1, CenteredContainer } from "./stylePagination"
 import Tabs from "@mui/material/Tabs"
 import Tab from "@mui/material/Tab"
 

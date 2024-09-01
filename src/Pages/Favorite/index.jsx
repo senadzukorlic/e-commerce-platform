@@ -15,6 +15,8 @@ import {
 } from "./style"
 import SelectInput from "../../Components/SelectInput"
 import { addToCart } from "../../Hooks/addToCart"
+import { EmptyComponent } from "../../Components/Empty"
+import { PageTitle } from "../../Components/PageTitle"
 
 export function Favorite() {
   const { favoriteItems, setCartData, setCartCount, setTotal } =
@@ -29,39 +31,49 @@ export function Favorite() {
   }
 
   return (
-    <FavoriteContainer>
-      <FavoriteTitle>Favorites</FavoriteTitle>
-      <ItemsContainer>
-        {favoriteItems.map((items) => (
-          <ItemCard key={items.id}>
-            <ItemImage src={items.images[0]} />
-            <ItemInfo>
-              <ItemTitle>{items.title}</ItemTitle>
-              <ItemPrice>{items.price}</ItemPrice>
-            </ItemInfo>
-            <ItemActions>
-              <SelectInput
-                options={selectSizeFavorite}
-                value={selectedSizes[items.id] || ""}
-                onChange={(e) => handleSizeChange(items.id, e.target.value)}
-              />
-              <BlackButton
-                buttonName="Add to bag"
-                onClick={() =>
-                  addToCart({
-                    item: items,
-                    setCartCount,
-                    setCartData,
-                    setTotal,
-                    size: selectedSizes[items.id] || "",
-                  })
-                }
-                width={{ width: "100%" }}
-              />
-            </ItemActions>
-          </ItemCard>
-        ))}
-      </ItemsContainer>
-    </FavoriteContainer>
+    <>
+      {" "}
+      {favoriteItems.length === 0 ? (
+        <>
+          <PageTitle title="Favorite" />
+          <EmptyComponent text="Favorite page is empty!" />
+        </>
+      ) : (
+        <FavoriteContainer>
+          <FavoriteTitle>Favorites</FavoriteTitle>
+          <ItemsContainer>
+            {favoriteItems.map((items) => (
+              <ItemCard key={items.id}>
+                <ItemImage src={items.images[0]} />
+                <ItemInfo>
+                  <ItemTitle>{items.title}</ItemTitle>
+                  <ItemPrice>{items.price}</ItemPrice>
+                </ItemInfo>
+                <ItemActions>
+                  <SelectInput
+                    options={selectSizeFavorite}
+                    value={selectedSizes[items.id] || ""}
+                    onChange={(e) => handleSizeChange(items.id, e.target.value)}
+                  />
+                  <BlackButton
+                    buttonName="Add to bag"
+                    onClick={() =>
+                      addToCart({
+                        item: items,
+                        setCartCount,
+                        setCartData,
+                        setTotal,
+                        size: selectedSizes[items.id] || "",
+                      })
+                    }
+                    width={{ width: "100%" }}
+                  />
+                </ItemActions>
+              </ItemCard>
+            ))}
+          </ItemsContainer>
+        </FavoriteContainer>
+      )}
+    </>
   )
 }

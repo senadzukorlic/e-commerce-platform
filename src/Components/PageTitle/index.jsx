@@ -7,6 +7,7 @@ const H1Page = styled.h1`
   font-family: "Roboto";
   color: gray;
   margin-top: 20px;
+  margin-bottom: 0;
 `
 
 export function PageTitle({ title }) {

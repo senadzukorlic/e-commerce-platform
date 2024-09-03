@@ -101,7 +101,7 @@ export function ProductDetailPage() {
               >
                 {item.price}€
               </Typography>
-              {item.id}
+
               <Box sx={{ mt: 2 }}>
                 {sizeOptions.length > 0 && (
                   <>

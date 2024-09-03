@@ -18,7 +18,6 @@ export function DataProvider({ children }) {
       const response = await GetData()
 
       setData(response)
-      console.log(response)
     }
     fetchData()
   }, [])

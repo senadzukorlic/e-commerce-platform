@@ -18,10 +18,7 @@ export function ShoppingCart() {
   return (
     <>
       {cartData.length === 0 ? (
-        <>
-          <PageTitle title="Shopping bag" />
-          <EmptyComponent text="Your Shopping Bag is empty!" />
-        </>
+        <EmptyComponent text="Your Shopping Bag is empty!" />
       ) : (
         <ParentDiv>
           <TitleParentDiv>

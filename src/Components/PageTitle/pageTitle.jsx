@@ -6,7 +6,7 @@ const H1Page = styled.h1`
   align-items: center;
   font-family: "Roboto";
   color: gray;
-  margin-top: 20px;
+  margin-top: 30px;
   margin-bottom: 0;
 `
 

@@ -1,77 +1,84 @@
+// import React from "react"
+// import { StyledLabel } from "../../Components/Input/styleInput"
+// import "react-phone-input-2/lib/style.css"
+// import PhoneInput from "react-phone-input-2"
+
+// function PhoneInputComponent() {
+//   const [phoneNumber, setPhoneNumber] = React.useState("")
+
+//   return (
+//     <div
+//       style={{
+//         display: "flex",
+//         flexDirection: "row",
+//         // backgroundColor: "red",
+//         justifyContent: "center",
+//         alignItems: "center",
+//       }}
+//     >
+//       <div
+//         style={{
+//           display: "flex",
+//           flexDirection: "column",
+
+//           width: "92%",
+//         }}
+//       >
+//         <StyledLabel htmlFor="phone-number">Phone Number</StyledLabel>
+
+//         <PhoneInput
+//           value={phoneNumber}
+//           onChange={(value) => setPhoneNumber(value)}
+//           country={"rs"}
+//           inputStyle={{
+//             width: "100%",
+//             height: "40px",
+//             borderRadius: "0px",
+//           }}
+//           containerStyle={{
+//             width: "100%",
+//           }}
+//         />
+//       </div>
+//     </div>
+//   )
+// }
+
+// export default PhoneInputComponent
+
 import React from "react"
-import { RowDiv } from "../../Components/RowDiv/rowDiv"
-import { ColumnDiv } from "../../Components/ColumnDiv/columnDiv"
-import { StyledLabel, StyledInput } from "../../Components/Input/styleInput"
-import SelectInput from "../../Components/SelectInput/selectInput"
-import styled from "styled-components"
-import { countries } from "../../Config/countries"
+import { StyledLabel } from "../../Components/Input/styleInput"
+import "react-phone-input-2/lib/style.css"
+import PhoneInput from "react-phone-input-2"
+import { Wrapper, InnerWrapper, CustomPhoneInput } from "./stylePhoneInput"
 
-const InputWrapper = styled.div`
-  position: relative;
-  width: 100%;
-`
-
-const Prefix = styled.span`
-  position: absolute;
-  font-size: 14px;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: black;
-  pointer-events: none;
-  line-height: 40px;
-`
-
-const InputWithPrefix = styled(StyledInput)`
-  padding-left: 50px;
-  width: 85%;
-  box-sizing: border-box;
-  line-height: 40px;
-`
-
-function PhoneInput() {
-  const [selectedCountry, setSelectedCountry] = React.useState(countries[0])
+function PhoneInputComponent() {
   const [phoneNumber, setPhoneNumber] = React.useState("")
 
-  const handleCountryChange = (event) => {
-    const country = countries.find((c) => c.label === event.target.value)
-    setSelectedCountry(country)
-  }
-
-  const handlePhoneNumberChange = (event) => {
-    setPhoneNumber(event.target.value)
-  }
-
   return (
-    <RowDiv width="100%">
-      <ColumnDiv width="50%">
-        <SelectInput
-          label="Country"
-          id="country-select"
-          width="85%"
-          options={countries.map((country) => ({
-            label: country.label,
-            value: country.label,
-          }))}
-          value={selectedCountry.label}
-          onChange={handleCountryChange}
-        />
-      </ColumnDiv>
-
-      <ColumnDiv width="50%">
+    <Wrapper>
+      <InnerWrapper>
         <StyledLabel htmlFor="phone-number">Phone Number</StyledLabel>
-        <InputWrapper>
-          <Prefix>{selectedCountry.code}</Prefix>
-          <InputWithPrefix
-            id="phone-number"
-            type="text"
+
+        <CustomPhoneInput>
+          <PhoneInput
             value={phoneNumber}
-            onChange={handlePhoneNumberChange}
+            onChange={(value) => setPhoneNumber(value)}
+            country={"rs"}
+            inputStyle={{
+              height: "40px",
+              borderRadius: "0px",
+              // backgroundColor: "white",
+              // border: "1px solid #ccc",
+            }}
+            containerStyle={{
+              width: "100%",
+            }}
           />
-        </InputWrapper>
-      </ColumnDiv>
-    </RowDiv>
+        </CustomPhoneInput>
+      </InnerWrapper>
+    </Wrapper>
   )
 }
 
-export default PhoneInput
+export default PhoneInputComponent

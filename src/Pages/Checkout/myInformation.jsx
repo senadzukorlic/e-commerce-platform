@@ -1,6 +1,5 @@
 import React from "react"
 import { Input } from "../../Components/Input/input"
-import PhoneInput from "./phoneInput"
 import SelectInput from "../../Components/SelectInput/selectInput"
 import { paymentMethods } from "../../Config/paymentMethods"
 import {
@@ -11,6 +10,7 @@ import {
   Column,
   PhoneInputWrapper,
 } from "./styleMyInformation"
+import PhoneInputComponent from "./phoneInput"
 
 export function MyInformation() {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = React.useState(
@@ -78,7 +78,7 @@ export function MyInformation() {
           </Column>
         </Row>
         <PhoneInputWrapper>
-          <PhoneInput />
+          <PhoneInputComponent />
         </PhoneInputWrapper>
       </InnerContainer>
 

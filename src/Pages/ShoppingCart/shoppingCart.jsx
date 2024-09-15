@@ -22,10 +22,7 @@ export function ShoppingCart() {
         <EmptyComponent text="Your Shopping Bag is empty!" />
       ) : (
         <ParentDiv>
-          <TitleParentDiv>
-            <P>Members get free delivery over £30 and free returns.</P>
-            <H1>Shopping bag</H1>
-          </TitleParentDiv>
+          <TitleParentDiv></TitleParentDiv>
 
           <ItemAndCheckoutDiv>
             <StyledItemCardDiv>

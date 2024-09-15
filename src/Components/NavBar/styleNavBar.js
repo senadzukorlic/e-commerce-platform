@@ -48,7 +48,7 @@ export const NavBarButton = styled(Button)(({ theme }) => ({
   fontSize: theme.typography.pxToRem(14),
   padding: theme.spacing(1.5, 3),
   "&:hover": {
-    backgroundColor: "rgba(255, 255, 255, 0.04)", // siva boja sa 70% prozirnosti
+    backgroundColor: "rgba(255, 255, 255, 0.04)",
     color: "white",
   },
 }))
@@ -72,14 +72,15 @@ export const NavBarInput = styled(OutlinedInput)(({ theme }) => ({
     opacity: 1,
     fontSize: "16px",
   },
-
-  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-    borderColor: "inherit",
-  },
 }))
 
 export const NavBarIconButton = styled(IconButton)(({ theme }) => ({
   marginLeft: "10px",
+  color: "white",
+  "&:hover": {
+    backgroundColor: "rgba(255, 255, 255, 0.04)",
+    color: "white",
+  },
 }))
 
 export const NavBarMenuItem = styled(MenuItem)``

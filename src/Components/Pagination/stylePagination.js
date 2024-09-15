@@ -27,3 +27,19 @@ export const CategoryH1 = styled("h1")`
   font-family: "Roboto";
   color: gray;
 `
+import Tab from "@mui/material/Tab"
+
+export const StyledTab = styled(Tab)(({ theme }) => ({
+  "&.Mui-selected": {
+    color: "gray",
+
+    transition: "border-bottom 0.3s ease-in-out",
+  },
+
+  "& .MuiTouchRipple-root": {
+    color: "rgba(128, 128, 128, 0.3)",
+  },
+  "&.Mui-focusVisible": {
+    backgroundColor: "rgba(128, 128, 128, 0.3)",
+  },
+}))

@@ -5,7 +5,7 @@ const H1Page = styled.h1`
   flex-direction: column;
   align-items: center;
   font-family: "Roboto";
-  color: gray;
+  color: black;
   margin-top: 30px;
   margin-bottom: 0;
 `

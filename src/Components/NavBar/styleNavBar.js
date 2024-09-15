@@ -47,6 +47,10 @@ export const NavBarButton = styled(Button)(({ theme }) => ({
   color: "white",
   fontSize: theme.typography.pxToRem(14),
   padding: theme.spacing(1.5, 3),
+  "&:hover": {
+    backgroundColor: "rgba(255, 255, 255, 0.04)", // siva boja sa 70% prozirnosti
+    color: "white",
+  },
 }))
 
 export const NavBarMenu = styled(Menu)(({ theme }) => ({

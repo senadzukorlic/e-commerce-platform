@@ -17,6 +17,7 @@ export function ShoppingCart() {
   const { cartData } = useDataContext()
   return (
     <>
+      <PageTitle title="Shopping Cart" />
       {cartData.length === 0 ? (
         <EmptyComponent text="Your Shopping Bag is empty!" />
       ) : (

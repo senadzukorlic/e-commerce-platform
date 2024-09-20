@@ -35,7 +35,7 @@ export function CheckoutCard() {
       <StyledCheckoutCard>
         <P1>Log in to use your personal offers!</P1>
 
-        <OutlinedButton
+        <BlackButton
           buttonName="Sign in"
           width={{ width: "330px" }}
           onClick={handleOpen}
@@ -64,10 +64,10 @@ export function CheckoutCard() {
         </SmallDiv>
 
         <CheckoutLink to="/checkout">
-          <BlackButton
+          <OutlinedButton
             width={{ width: "330px" }}
             buttonName="Continue to checkout"
-          ></BlackButton>
+          ></OutlinedButton>
         </CheckoutLink>
         <P2>
           Prices and delivery costs are not confirmed until you've reached the

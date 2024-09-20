@@ -47,30 +47,16 @@ export function Register() {
         styleLabel={{ width: "41%", marginBottom: "0" }}
         styleInput={{ width: "40%", marginBottom: "0" }}
       />
-
-      <StyledTextField
-        label="Date of Birth"
-        type="date"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
-        InputLabelProps={{
-          shrink: true,
-        }}
-        sx={{
-          width: "41%",
-          height: "40px",
-          marginTop: "20px",
-          marginBottom: "20px",
-          "& .MuiInputBase-root": {
-            borderRadius: 0,
-          },
-          "& .MuiOutlinedInput-root": {
-            "&.Mui-focused fieldset": {
-              borderColor: "black",
-              borderRadius: "3px",
-            },
-          },
-        }}
+      <PasswordInput
+        type={showPassword ? "text" : "password"}
+        label="Confrim password"
+        value={password}
+        right="400px"
+        onChange={handlePasswordChange}
+        setVisibility={togglePasswordVisibility}
+        booleanVisibility={showPassword ? "Hide" : "Show"}
+        styleLabel={{ width: "41%", marginBottom: "0" }}
+        styleInput={{ width: "40%", marginBottom: "0" }}
       />
 
       <CheckboxContainer>

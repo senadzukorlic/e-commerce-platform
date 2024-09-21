@@ -44,9 +44,18 @@ export function ItemCard() {
   }, [cartData, favoriteItems])
 
   const handleQuantityChange = (itemId) => (event) => {
-    setQuantities({
-      ...quantities,
-      [itemId]: event.target.value,
+    const newQuantity = event.target.value
+    setQuantities((prevQuantities) => {
+      const updatedQuantities = {
+        ...prevQuantities,
+        [itemId]: newQuantity,
+      }
+      const newTotal = cartData.reduce((acc, item) => {
+        return acc + item.price * updatedQuantities[item.id]
+      }, 0)
+      setTotal(newTotal)
+
+      return updatedQuantities
     })
   }
 

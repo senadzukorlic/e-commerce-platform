@@ -22,7 +22,6 @@ import {
   Select,
   MenuItemStyled,
 } from "./itemCardStyle"
-import { EmptyComponent } from "../../Components/Empty/empty"
 
 export function ItemCard() {
   const {

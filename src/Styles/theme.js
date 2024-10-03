@@ -1,17 +1,3 @@
-// // theme.js
-// import { createTheme } from "@mui/material/styles"
-
-// const theme = createTheme({
-//   palette: {
-//     primary: {
-//       main: "#e4bc67", // Žuta boja kao primarna
-//     },
-//   },
-// })
-
-// export default theme
-
-// theme.js
 import { createTheme } from "@mui/material/styles"
 
 const theme = createTheme({

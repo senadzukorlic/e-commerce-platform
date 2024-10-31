@@ -96,7 +96,7 @@ export function LogIn({ open, handleClose }) {
               buttonName="Sign In"
               type="submit"
             />
-            <Link to="/register">
+            <Link to="/signup">
               <OutlinedButton
                 width={{ width: "330px" }}
                 buttonName="Become a member"

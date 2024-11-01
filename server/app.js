@@ -20,6 +20,7 @@ app.use((req, res, next) => {
 })
 
 app.use("/auth", authRoutes)
+
 sequelize
   .sync()
   .then((res) => {

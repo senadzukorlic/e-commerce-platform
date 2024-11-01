@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs")
 exports.signup = (req, res, next) => {
   const email = req.body.email
   const password = req.body.password
+  const confirmPassword = req.body.confirmPassword
 
   User.findOne({ where: { email: email } })
     .then((existingUser) => {
@@ -13,8 +14,10 @@ exports.signup = (req, res, next) => {
         error.statusCode = 422 //oznacava da server razume tip sadrzaja i sintaksu zahteva,ali nije u mogucnosti da obradi zahtev.Upravo iz razloga sto je korisnik vec registrovan
         throw error
       }
-
-      return bcrypt.hash(password, 12)
+      if (password === confirmPassword) {
+        //ovde napraviti error u slucaju da se password i confirmPassword ne poklapaju
+        return bcrypt.hash(password, 12)
+      }
     })
     .then((hasPass) => {
       const user = new User({
@@ -24,6 +27,6 @@ exports.signup = (req, res, next) => {
       return user.save()
     })
     .then((result) => {
-      res.status(201).json({ message: "User created!" })
+      res.status(201).json({ message: "User created!" }) //poruka koja se salje klijentu,u browseru
     })
 }

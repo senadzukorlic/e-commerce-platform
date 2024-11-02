@@ -21,6 +21,7 @@ import HomeIcon from "@mui/icons-material/Home"
 import PersonIcon from "@mui/icons-material/Person"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import Badge from "@mui/material/Badge"
+import { useAuth } from "../../Hooks/useAuth"
 
 import logo from "../../Assets/JacpiStore.png"
 import SideBar from "./sideBar"
@@ -30,6 +31,7 @@ export default function NavBar() {
   const { setInputValue, inputValue, cartCount, favoriteItems } =
     useDataContext()
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const isAuthenticated = useAuth()
 
   const handleClose = () => {
     setAnchorEl(null)
@@ -56,16 +58,18 @@ export default function NavBar() {
           <Logo src={logo} alt="Logo" />
 
           <NavBarStack>
-            <NavBarButton
-              size="large"
-              id="resources-button"
-              onClick={toggleDrawer(true)}
-              aria-controls={open ? "resources-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
-            >
-              Clothes
-            </NavBarButton>
+            {isAuthenticated && (
+              <NavBarButton
+                size="large"
+                id="resources-button"
+                onClick={toggleDrawer(true)}
+                aria-controls={open ? "resources-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? "true" : undefined}
+              >
+                Clothes
+              </NavBarButton>
+            )}
             <NavBarButton size="large">On Sale</NavBarButton>
             <NavBarButton size="large">
               <AboutLink to="about-us">About</AboutLink>{" "}

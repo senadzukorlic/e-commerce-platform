@@ -30,3 +30,28 @@ exports.signup = (req, res, next) => {
       res.status(201).json({ message: "User created!" }) //poruka koja se salje klijentu,u browseru
     })
 }
+
+exports.login = (req, res, next) => {
+  const email = req.body.email
+  const password = req.body.password
+  let loadedUser
+  User.findOne({ where: { email: email } })
+    .then((user) => {
+      loadedUser = user
+      return bcrypt.compare(password, user.password)
+    })
+    .then((result) => {
+      const token = jwt.sign(
+        {
+          email: loadedUser.email,
+          userId: loadedUser.id.toString(),
+        },
+        "somesupersecret",
+        { expiresIn: "1h" }
+      )
+      res.status(200).json({ token: token, userId: loadedUser.id.toString() })
+    })
+    .catch((err) => {
+      console.log("Nema prijave", err)
+    })
+}

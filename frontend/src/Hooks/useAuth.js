@@ -21,5 +21,9 @@ export const useAuth = () => {
     setIsAuthenticated(!!token)
   }, [])
 
-  return isAuthenticated
+  const logout = () => {
+    localStorage.removeItem("token")
+    setIsAuthenticated(false)
+  }
+  return { isAuthenticated, logout }
 }

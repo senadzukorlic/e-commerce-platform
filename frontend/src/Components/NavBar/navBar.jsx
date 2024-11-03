@@ -19,6 +19,7 @@ import { StarOutlineRounded, SearchRounded } from "@mui/icons-material"
 import { useDataContext } from "../../Hooks/useContext"
 import HomeIcon from "@mui/icons-material/Home"
 import PersonIcon from "@mui/icons-material/Person"
+import LogoutIcon from "@mui/icons-material/Logout"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import Badge from "@mui/material/Badge"
 import { useAuth } from "../../Hooks/useAuth"
@@ -31,7 +32,7 @@ export default function NavBar() {
   const { setInputValue, inputValue, cartCount, favoriteItems } =
     useDataContext()
   const [drawerOpen, setDrawerOpen] = useState(false)
-  const isAuthenticated = useAuth()
+  const { isAuthenticated, logout } = useAuth()
 
   const handleClose = () => {
     setAnchorEl(null)
@@ -171,8 +172,28 @@ export default function NavBar() {
                 <ShoppingCartIcon />
               </Badge>
             </NavBarIconButton>
-
-            <NavBarIconButton
+            {isAuthenticated ? (
+              <NavBarIconButton
+                size="large"
+                edge="end"
+                color="inherit"
+                aria-label="logout"
+                onClick={logout}
+              >
+                <LogoutIcon />
+              </NavBarIconButton>
+            ) : (
+              <NavBarIconButton
+                size="large"
+                edge="end"
+                color="inherit"
+                aria-label="language"
+                onClick={handleModalOpen}
+              >
+                <PersonIcon />
+              </NavBarIconButton>
+            )}
+            {/* <NavBarIconButton
               size="large"
               edge="end"
               color="inherit"
@@ -180,7 +201,7 @@ export default function NavBar() {
               onClick={handleModalOpen}
             >
               <PersonIcon />
-            </NavBarIconButton>
+            </NavBarIconButton> */}
           </IconDiv>
         </NavBarToolbar>
       </NavBarAppBar>

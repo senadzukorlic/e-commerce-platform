@@ -32,7 +32,7 @@ export default function NavBar() {
   const { setInputValue, inputValue, cartCount, favoriteItems } =
     useDataContext()
   const [drawerOpen, setDrawerOpen] = useState(false)
-  const { isAuthenticated, logout } = useAuth()
+  const { isAuthenticated, logout } = useAuth() //isAuthenticated predstavlja stanje autentifikacije korisnika, a logout funkciju za odjavu korisnika
 
   const handleClose = () => {
     setAnchorEl(null)
@@ -59,7 +59,7 @@ export default function NavBar() {
           <Logo src={logo} alt="Logo" />
 
           <NavBarStack>
-            {isAuthenticated && (
+            {isAuthenticated && ( //ako je korisnik autentifikovan,prikazi clothes button. Ako nije, ne prikazati,sto mu dodje kao neki vid autorizacije
               <NavBarButton
                 size="large"
                 id="resources-button"
@@ -172,13 +172,13 @@ export default function NavBar() {
                 <ShoppingCartIcon />
               </Badge>
             </NavBarIconButton>
-            {isAuthenticated ? (
+            {isAuthenticated ? ( //ako je korisnik autentifikovan,prikazi logout button. Ako nije, prikazi login button
               <NavBarIconButton
                 size="large"
                 edge="end"
                 color="inherit"
                 aria-label="logout"
-                onClick={logout}
+                onClick={logout} //klikom na logout dugme, korisnik se odjavljuje.tj brise se token iz local storage
               >
                 <LogoutIcon />
               </NavBarIconButton>
@@ -193,15 +193,6 @@ export default function NavBar() {
                 <PersonIcon />
               </NavBarIconButton>
             )}
-            {/* <NavBarIconButton
-              size="large"
-              edge="end"
-              color="inherit"
-              aria-label="language"
-              onClick={handleModalOpen}
-            >
-              <PersonIcon />
-            </NavBarIconButton> */}
           </IconDiv>
         </NavBarToolbar>
       </NavBarAppBar>

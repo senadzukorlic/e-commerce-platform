@@ -1,6 +1,7 @@
 const User = require("../models/user")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
+const { sendTestEmail } = require("../mailer")
 
 exports.signup = (req, res, next) => {
   const email = req.body.email
@@ -28,6 +29,7 @@ exports.signup = (req, res, next) => {
     })
     .then((result) => {
       res.status(201).json({ message: "User created!" }) //poruka koja se salje klijentu,u browseru
+      return sendTestEmail(email) //salje email korisniku koji se registrovao
     })
 }
 

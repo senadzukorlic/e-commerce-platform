@@ -53,13 +53,26 @@ exports.login = (req, res, next) => {
   const email = req.body.email
   const password = req.body.password
   let loadedUser
-  User.findOne({ where: { email: email } })
+  User.findOne({ where: { email: email } }) //trazi korisnika u bazi podataka
     .then((user) => {
+      if (!user) {
+        //provera,u slucaju da korsinik nije pronadjen u bazi,izbacujemo gresku
+        const error = new Error("User with this email could not be found")
+        error.statusCode = 401 //ovaj kod oznacava da je korisnik neautorizovan da pristupi resursu,koristi se kada korisnik nije autentifikovan ili u bilo kojem slucaju kada korisnik nema dozvolu da pristupi resursu
+        throw error
+      }
       loadedUser = user
-      return bcrypt.compare(password, user.password)
+      return bcrypt.compare(password, user.password) //inace ako je email pronadjen,proveravamo da li je lozinka koju je korisnik uneo jednaka lozinki koja je sacuvana u bazi
     })
-    .then((result) => {
+    .then((isEqual) => {
+      if (!isEqual) {
+        //alo ako lozinke nisu jednake,izbacujemo gresku
+        const error = new Error("Wrong password!")
+        error.statusCode = 401
+        throw error
+      }
       const token = jwt.sign(
+        //ako su email i lozinka tacni,generisemo token, dabi se kreirao token,prvo se prosledjuje objekat sa podacima koje zelimo da sacuvamo u token,drugi argument je tajna lozinka koja se koristi za generisanje tokena,trece je objekat sa opcijama,ovde je postavljeno da token istice za 1h
         {
           email: loadedUser.email,
           userId: loadedUser.id.toString(),
@@ -67,9 +80,16 @@ exports.login = (req, res, next) => {
         "somesupersecret",
         { expiresIn: "1h" }
       )
-      res.status(200).json({ token: token, userId: loadedUser.id.toString() })
+      res.status(200).json({
+        message: "You are loged", //poruka koja se salje klijentu,u browseru
+        token: token, //vazno je razumeti kod tokena da ga mi samo kreiramo a da ga ne cuvamo nigde,token cuvaju frontend developeri u localStorage,znaci nase je samo da ga generisemo i posaljemo klijentu
+        userId: loadedUser.id.toString(),
+      })
     })
     .catch((err) => {
-      console.log("Nema prijave", err)
+      if (!err.statusCode) {
+        err.statusCode = 500
+      }
+      next(err)
     })
 }

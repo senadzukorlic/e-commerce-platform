@@ -1,11 +1,7 @@
 const { google } = require("googleapis")
 const nodemailer = require("nodemailer")
 
-/*POPULATE BELOW FIELDS WITH YOUR CREDETIALS*/
-
 require("dotenv").config()
-
-/*POPULATE ABOVE FIELDS WITH YOUR CREDETIALS*/
 
 const oAuth2Client = new google.auth.OAuth2(
   process.env.CLIENT_ID,
@@ -15,7 +11,6 @@ const oAuth2Client = new google.auth.OAuth2(
 
 oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN })
 
-//YOU CAN PASS MORE ARGUMENTS TO THIS FUNCTION LIKE CC, TEMPLATES, ATTACHMENTS ETC. IM JUST KEEPING IT SIMPLE
 const sendTestEmail = async (to) => {
   const ACCESS_TOKEN = await oAuth2Client.getAccessToken()
   const transport = nodemailer.createTransport({
@@ -33,9 +28,8 @@ const sendTestEmail = async (to) => {
     },
   })
 
-  //EMAIL OPTIONS
-  const from = process.env.MY_EMAIL
-  const subject = "🌻 Welcome to the JacpiStore 🌻"
+  const from = "JacpiStore"
+  const subject = " Welcome to the JacpiStore "
   const html = `
     <p>Hey ${to},</p>
     <p>🌻 Your account is successfuly 🌻</p>

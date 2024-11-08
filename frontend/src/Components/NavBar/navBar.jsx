@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { LogIn } from "../SignIn/signIn"
+import { LogOutModal } from "../logOutModal/logOutModal"
 import {
   Logo,
   IconDiv,
@@ -34,6 +35,15 @@ export default function NavBar() {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const { isAuthenticated, logout } = useAuth() //isAuthenticated predstavlja stanje autentifikacije korisnika, a logout funkciju za odjavu korisnika
 
+  const [isLogInModalOpen, setLogInModalOpen] = useState(false)
+  const [isLogOutModalOpen, setLogOutModalOpen] = useState(false)
+
+  const handleLogInModalOpen = () => setLogInModalOpen(true)
+  const handleLogInModalClose = () => setLogInModalOpen(false)
+
+  const handleLogOutModalOpen = () => setLogOutModalOpen(true)
+  const handleLogOutModalClose = () => setLogOutModalOpen(false)
+
   const handleClose = () => {
     setAnchorEl(null)
   }
@@ -46,9 +56,6 @@ export default function NavBar() {
   const toggleDrawer = (open) => () => {
     setDrawerOpen(open)
   }
-  const [isModalOpen, setOpen] = useState(false)
-  const handleModalOpen = () => setOpen(true)
-  const handleModalClose = () => setOpen(false)
 
   const open = Boolean(anchorEl)
 
@@ -178,7 +185,7 @@ export default function NavBar() {
                 edge="end"
                 color="inherit"
                 aria-label="logout"
-                onClick={logout} //klikom na logout dugme, korisnik se odjavljuje.tj brise se token iz local storage
+                onClick={handleLogOutModalOpen} //klikom na logout dugme, korisnik se odjavljuje.tj brise se token iz local storage
               >
                 <LogoutIcon />
               </NavBarIconButton>
@@ -188,7 +195,7 @@ export default function NavBar() {
                 edge="end"
                 color="inherit"
                 aria-label="language"
-                onClick={handleModalOpen}
+                onClick={handleLogInModalOpen}
               >
                 <PersonIcon />
               </NavBarIconButton>
@@ -197,7 +204,11 @@ export default function NavBar() {
         </NavBarToolbar>
       </NavBarAppBar>
       <SideBar open={drawerOpen} onClose={toggleDrawer(false)} />
-      <LogIn open={isModalOpen} handleClose={handleModalClose} />
+      <LogIn open={isLogInModalOpen} handleClose={handleLogInModalClose} />
+      <LogOutModal
+        open={isLogOutModalOpen}
+        handleClose={handleLogOutModalClose}
+      />
     </>
   )
 }

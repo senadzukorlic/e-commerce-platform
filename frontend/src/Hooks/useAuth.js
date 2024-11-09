@@ -21,22 +21,53 @@
 //   return { isAuthenticated, logout }
 // }
 
+// import { useState, useEffect, useCallback } from "react"
+// import { useNavigate } from "react-router-dom"
+
+// export const useAuth = () => {
+//   const [isAuthenticated, setIsAuthenticated] = useState(false)
+//   const navigate = useNavigate()
+
+//   // Izdvajamo logiku provere autentifikacije u zasebnu funkciju
+//   const checkAuth = useCallback(() => {
+//     const token = localStorage.getItem("token")
+//     setIsAuthenticated(!!token)
+//     return !!token
+//   }, [])
+
+//   useEffect(() => {
+//     // Inicijalna provera
+//     const isAuth = checkAuth()
+//     if (!isAuth && window.location.pathname !== "/") {
+//       navigate("/")
+//     }
+//   }, [checkAuth, navigate])
+
+//   const logout = () => {
+//     localStorage.removeItem("token")
+//     setIsAuthenticated(false)
+//     navigate("/") // Dodajemo direktno preusmeravanje nakon odjave
+//   }
+
+//   return { isAuthenticated, logout, checkAuth }
+// }
+
 import { useState, useEffect, useCallback } from "react"
 import { useNavigate } from "react-router-dom"
 
 export const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [loading, setLoading] = useState(true) // Dodajemo stanje za pracenje da li je provera autentifikacije u toku
   const navigate = useNavigate()
 
-  // Izdvajamo logiku provere autentifikacije u zasebnu funkciju
   const checkAuth = useCallback(() => {
     const token = localStorage.getItem("token")
     setIsAuthenticated(!!token)
+    setLoading(false) // Završavamo proveru autentifikacije
     return !!token
   }, [])
 
   useEffect(() => {
-    // Inicijalna provera
     const isAuth = checkAuth()
     if (!isAuth && window.location.pathname !== "/") {
       navigate("/")
@@ -46,8 +77,8 @@ export const useAuth = () => {
   const logout = () => {
     localStorage.removeItem("token")
     setIsAuthenticated(false)
-    navigate("/") // Dodajemo direktno preusmeravanje nakon odjave
+    navigate("/")
   }
 
-  return { isAuthenticated, logout, checkAuth }
+  return { isAuthenticated, loading, logout, checkAuth }
 }

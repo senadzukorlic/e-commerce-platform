@@ -86,6 +86,5 @@ export const NavBarIconButton = styled(IconButton)(({ theme }) => ({
 export const NavBarMenuItem = styled(MenuItem)``
 export const AboutLink = styled(Link)`
   text-decoration: none;
-
   color: white;
 `

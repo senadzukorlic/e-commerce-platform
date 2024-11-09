@@ -80,7 +80,7 @@ export default function NavBar() {
             )}
             <NavBarButton size="large">On Sale</NavBarButton>
             <NavBarButton size="large">
-              <AboutLink to="about-us">About</AboutLink>{" "}
+              <AboutLink to="/about-us">About</AboutLink>{" "}
             </NavBarButton>
           </NavBarStack>
 

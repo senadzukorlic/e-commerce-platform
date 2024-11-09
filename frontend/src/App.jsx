@@ -70,7 +70,6 @@
 
 // export default App
 
-import { Route, Navigate, useNavigate, Routes } from "react-router-dom"
 import NavBar from "./Components/NavBar/navBar"
 import { useEffect } from "react"
 import Home from "./Pages/Home/home"
@@ -87,6 +86,7 @@ import { About } from "./Pages/About/about"
 import { Checkout } from "./Pages/Checkout/checkout"
 import { Register } from "./Pages/Register/register"
 import { createGlobalStyle } from "styled-components"
+import { RoutesComponent } from "./Routes/routes"
 
 // ... ostali importi
 const GlobalStyles = createGlobalStyle`
@@ -99,29 +99,29 @@ const GlobalStyles = createGlobalStyle`
  font-family: "Roboto";
 }`
 function App() {
-  const { isAuthenticated, checkAuth } = useAuth()
-  const navigate = useNavigate()
+  // const { isAuthenticated, checkAuth } = useAuth()
+  // const navigate = useNavigate()
 
-  useEffect(() => {
-    // Proveravamo autentifikaciju pri svakoj promeni rute
-    if (!checkAuth()) {
-      navigate("/")
-    }
-  }, [checkAuth, navigate, window.location.pathname])
+  // useEffect(() => {
+  //   // Proveravamo autentifikaciju pri svakoj promeni rute
+  //   if (!checkAuth()) {
+  //     navigate("/")
+  //   }
+  // }, [checkAuth, navigate, window.location.pathname])
 
-  // Komponenta za zaštićene rute
-  const ProtectedRoute = ({ children }) => {
-    if (!isAuthenticated) {
-      return <Navigate to="/" replace />
-    }
-    return children
-  }
+  // // Komponenta za zaštićene rute
+  // const ProtectedRoute = ({ children }) => {
+  //   if (!isAuthenticated) {
+  //     return <Navigate to="/" replace />
+  //   }
+  //   return children
+  // }
 
   return (
     <>
       <GlobalStyles />
       <NavBar />
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<Home />} />
         <Route
           path="/men"
@@ -212,7 +212,8 @@ function App() {
           }
         />
         <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      </Routes> */}
+      <RoutesComponent />
     </>
   )
 }

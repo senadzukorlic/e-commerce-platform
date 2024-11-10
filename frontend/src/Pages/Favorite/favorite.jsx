@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useDataContext } from "../../Hooks/useContext"
-import { BlackButton } from "../../Components/BlackButton/blackButton"
+import { BlackButton } from "../../Components/blackButton/blackButton"
 import { getSizeOptions } from "../../Hooks/optionsSwitch"
 import {
   FavoriteContainer,
@@ -14,7 +14,7 @@ import {
 } from "./styleFavorite"
 import SelectInput from "../../Components/SelectInput/selectInput"
 import { addToCart } from "../../Hooks/addToCart"
-import { EmptyComponent } from "../../Components/Empty/empty"
+import { EmptyComponent } from "../../Components/empty/empty"
 import { PageTitle } from "../../Components/PageTitle/pageTitle"
 
 export function Favorite() {

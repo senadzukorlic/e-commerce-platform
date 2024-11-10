@@ -7,7 +7,7 @@ import {
   H1,
   P,
 } from "./styleShoppingCart"
-import { EmptyComponent } from "../../Components/Empty/empty"
+import { EmptyComponent } from "../../Components/empty/empty"
 import { useDataContext } from "../../Hooks/useContext"
 import { ItemCard } from "./itemCard"
 import { CheckoutCard } from "./checkoutCard"

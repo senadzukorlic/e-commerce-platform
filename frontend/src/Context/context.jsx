@@ -1,5 +1,5 @@
 import { useEffect, useState, createContext } from "react"
-import { GetData } from "../Api/Requests"
+import { GetData } from "../api/requests"
 
 export const DataContext = createContext()
 

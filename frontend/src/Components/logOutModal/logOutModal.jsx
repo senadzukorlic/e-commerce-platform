@@ -8,7 +8,7 @@ import {
   StyledParagraph,
   ButtonsContainer,
 } from "../SignIn/styleSignIn"
-import { BlackButton } from "../BlackButton/blackButton"
+import { BlackButton } from "../blackButton/blackButton"
 import { OutlinedButton } from "../OutlinedButton/outlinedButton"
 export function LogOutModal({ open, handleClose }) {
   const handleLogOut = () => {

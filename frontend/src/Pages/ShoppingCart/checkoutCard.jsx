@@ -12,7 +12,7 @@ import {
   CheckoutLink,
 } from "./checkoutCardStyle"
 import { OutlinedButton } from "../../Components/OutlinedButton/outlinedButton"
-import { BlackButton } from "../../Components/BlackButton/blackButton"
+import { BlackButton } from "../../Components/blackButton/blackButton"
 
 export function CheckoutCard() {
   const { total } = useDataContext()

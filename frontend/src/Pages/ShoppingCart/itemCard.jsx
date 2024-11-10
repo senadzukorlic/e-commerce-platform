@@ -175,7 +175,7 @@ import Box from "@mui/material/Box"
 import DeleteIcon from "@mui/icons-material/Delete"
 import FilledHeartIcon from "../../Styles/filledHeartIcon"
 import OutlinedHeartIcon from "../../Styles/outlinedHeartIcon"
-import FavoriteButton from "../../Components/FavoriteButton/FavoriteButton"
+import FavoriteButton from "../../Components/favoriteButton/favoriteButton"
 
 import {
   StyledItemCard,

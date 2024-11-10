@@ -12,11 +12,11 @@ import {
   ArrowButton,
 } from "./styleProductDetail"
 import { getSizeOptions } from "../../Hooks/optionsSwitch"
-import { BlackButton } from "../../Components/BlackButton/blackButton"
+import { BlackButton } from "../../Components/blackButton/blackButton"
 import { OutlinedButton } from "../../Components/OutlinedButton/outlinedButton"
 import { addToCart } from "../../Hooks/addToCart"
 import { PageTitle } from "../../Components/PageTitle/pageTitle"
-import { EmptyComponent } from "../../Components/Empty/empty"
+import { EmptyComponent } from "../../Components/empty/empty"
 
 export function ProductDetailPage() {
   const {

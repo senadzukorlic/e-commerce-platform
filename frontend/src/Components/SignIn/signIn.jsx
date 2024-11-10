@@ -18,7 +18,7 @@ import {
 import { PasswordInput } from "../PasswordInput/passwordInput"
 import { Input } from "../Input/input"
 import { OutlinedButton } from "../OutlinedButton/outlinedButton"
-import { BlackButton } from "../BlackButton/blackButton"
+import { BlackButton } from "../blackButton/blackButton"
 import { Link } from "react-router-dom"
 
 export function LogIn({ open, handleClose }) {

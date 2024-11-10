@@ -1,7 +1,7 @@
 import GitHubIcon from "@mui/icons-material/GitHub"
 import { LinkedIn } from "@mui/icons-material"
-import myPhoto from "../../Assets/IMG_6688.jpg"
-import logo from "../../Assets/JacpiStore.png"
+import myPhoto from "../../assets/iMG_6688.jpg"
+import logo from "../../assets/jacpiStore.png"
 
 import {
   StyledCardMedia,

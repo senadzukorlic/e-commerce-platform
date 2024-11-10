@@ -25,7 +25,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import Badge from "@mui/material/Badge"
 import { useAuth } from "../../Hooks/useAuth"
 
-import logo from "../../Assets/JacpiStore.png"
+import logo from "../../assets/jacpiStore.png"
 import SideBar from "./sideBar"
 
 export default function NavBar() {
@@ -66,21 +66,26 @@ export default function NavBar() {
           <Logo src={logo} alt="Logo" />
 
           <NavBarStack>
-            {isAuthenticated && ( //ako je korisnik autentifikovan,prikazi clothes button. Ako nije, ne prikazati,sto mu dodje kao neki vid autorizacije
-              <NavBarButton
-                size="large"
-                id="resources-button"
-                onClick={toggleDrawer(true)}
-                aria-controls={open ? "resources-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
-              >
-                Clothes
-              </NavBarButton>
+            <NavBarButton
+              size="large"
+              id="resources-button"
+              onClick={toggleDrawer(true)}
+              aria-controls={open ? "resources-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+            >
+              Clothes
+            </NavBarButton>
+
+            {isAuthenticated && ( //ako je korisnik autentifikovan,prikazi My Products i Create own product button. Ako nije, ne prikazati,sto mu dodje kao neki vid autorizacije
+              <>
+                <NavBarButton size="large">My Products</NavBarButton>
+                <NavBarButton size="large">Create own product </NavBarButton>
+              </>
             )}
-            <NavBarButton size="large">On Sale</NavBarButton>
-            <NavBarButton size="large">
-              <AboutLink to="/about-us">About</AboutLink>{" "}
+
+            <NavBarButton size="large" component={Link} to="/about-us">
+              About
             </NavBarButton>
           </NavBarStack>
 

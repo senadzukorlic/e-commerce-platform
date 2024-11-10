@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Input } from "../../Components/Input/input"
 import { PasswordInput } from "../../Components/PasswordInput/passwordInput"
-import { BlackButton } from "../../Components/BlackButton/blackButton"
+import { BlackButton } from "../../Components/blackButton/blackButton"
 import axios from "axios"
 import {
   RegisterContainer,

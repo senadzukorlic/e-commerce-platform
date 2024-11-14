@@ -3,6 +3,7 @@ const sequelize = require("./util/database")
 const cors = require("cors") //omogucava serveru da komunicira sa drugim htttp
 //serverima i da prima zahteve sa drugih domena
 const authRoutes = require("./routes/auth")
+const path = require("path")
 const app = express()
 
 app.use(express.json())
@@ -20,7 +21,12 @@ app.use((req, res, next) => {
 })
 
 app.use("/auth", authRoutes)
+app.use(express.static(path.join(__dirname, "../dist")))
 
+// Handle React routing
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../dist", "index.html"))
+})
 app.use((error, req, res, next) => {
   console.log(error)
   const status = error.statusCode

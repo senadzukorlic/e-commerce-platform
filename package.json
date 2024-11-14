@@ -2,10 +2,14 @@
   "name": "jacpistore",
   "version": "1.0.0",
   "scripts": {
-    "install-frontend": "cd frontend && npm run dev",
+    "install-frontend": "cd frontend && npm install",
     "install-server": "cd server && npm install",
-    "install": "npm run install-client && npm run install-server",
-    "build": "cd client && npm run build",
-    "start": "cd server && npm start"
+    "install": "npm run install-frontend && npm run install-server",
+    "build": "cd frontend && npm run build",
+    "start": "cd server && npm start",
+    "dev": "concurrently \"cd frontend && npm run dev\" \"cd server && npm run dev\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.1"
   }
 }

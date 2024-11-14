@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize")
 const sequelize = require("../util/database")
+const Product = require("./product")
 
 const User = sequelize.define("user", {
   id: {
@@ -13,4 +14,6 @@ const User = sequelize.define("user", {
   password: { type: Sequelize.STRING, allowNull: false },
 })
 
+User.hasMany(Product)
+Product.belongsTo(User)
 module.exports = User

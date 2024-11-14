@@ -1,0 +1,11 @@
+{
+  "name": "jacpistore",
+  "version": "1.0.0",
+  "scripts": {
+    "install-frontend": "cd frontend && npm run dev",
+    "install-server": "cd server && npm install",
+    "install": "npm run install-client && npm run install-server",
+    "build": "cd client && npm run build",
+    "start": "cd server && npm start"
+  }
+}

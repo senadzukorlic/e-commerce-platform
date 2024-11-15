@@ -39,7 +39,7 @@ export function LogIn({ open, handleClose }) {
   }
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault() //sprecava osvezavanje stranice prilikom submita
     try {
       const response = await axios.post("http://localhost:8080/auth/login", {
         //Saojemo zahtev bekendu za prijavu korisnika sa emailom i lozinkom,server ce proveriti da li korisnik sa tim podacima postoji u bazi podataka,ako postoji,server ce generisati token i poslati ga korisniku
@@ -49,6 +49,8 @@ export function LogIn({ open, handleClose }) {
       localStorage.setItem("token", response.data.token) //Kada dobijemo token od servera,smestamo ga u localStorage,a vrednost tokena se nalazi u response.data.token
       handleClose() //Funckija koja se koristi da se modal zatvori nakon uspesne prijave
       window.location.reload() // Osvježite stranicu kako bi se NavBar ponovno renderirao,te se prikazale privilige koje korisnik ima nakon prijave
+      console.log(response.data.token)
+      // if(response.data.token)
     } catch (err) {
       console.log("ERROR", err)
     }

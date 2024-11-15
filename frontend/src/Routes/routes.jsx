@@ -1,6 +1,7 @@
 import React from "react"
 import { Route, Routes, Navigate } from "react-router-dom"
 import { ProtectedRoute } from "./protectedRoute"
+import Home from "../Pages/Home/home"
 import Men from "../Pages/Men/men"
 import Women from "../Pages/Women/women"
 import Sport from "../Pages/Sport/sport"
@@ -12,7 +13,6 @@ import { Favorite } from "../Pages/Favorite/favorite"
 import { About } from "../Pages/About/about"
 import { Checkout } from "../Pages/Checkout/checkout"
 import { Register } from "../Pages/Register/register"
-import Home from "../Pages/Home/home"
 
 export function RoutesComponent() {
   return (

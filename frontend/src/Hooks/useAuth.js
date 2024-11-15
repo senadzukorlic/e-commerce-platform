@@ -69,9 +69,9 @@ export const useAuth = () => {
 
   useEffect(() => {
     const isAuth = checkAuth()
-    if (!isAuth && window.location.pathname !== "/") {
-      navigate("/")
-    }
+    // if (!isAuth && window.location.pathname !== "/") {
+    //   navigate("/")
+    // }
   }, [checkAuth, navigate])
 
   const logout = () => {

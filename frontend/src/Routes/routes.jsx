@@ -1,7 +1,6 @@
 import React from "react"
 import { Route, Routes, Navigate } from "react-router-dom"
 import { ProtectedRoute } from "./protectedRoute"
-import Home from "../Pages/Home/home"
 import Men from "../Pages/Men/men"
 import Women from "../Pages/Women/women"
 import Sport from "../Pages/Sport/sport"
@@ -13,93 +12,24 @@ import { Favorite } from "../Pages/Favorite/favorite"
 import { About } from "../Pages/About/about"
 import { Checkout } from "../Pages/Checkout/checkout"
 import { Register } from "../Pages/Register/register"
+import Home from "../Pages/Home/home"
 
 export function RoutesComponent() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/about-us" element={<About />} />
-      <Route
-        path="/men"
-        element={
-          <ProtectedRoute>
-            <Men />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/women"
-        element={
-          <ProtectedRoute>
-            <Women />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/electronics"
-        element={
-          <ProtectedRoute>
-            <Electronics />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/sport"
-        element={
-          <ProtectedRoute>
-            <Sport />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/shopping-cart"
-        element={
-          <ProtectedRoute>
-            <ShoppingCart />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/product-detail-page"
-        element={
-          <ProtectedRoute>
-            <ProductDetailPage />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/favorite"
-        element={
-          <ProtectedRoute>
-            <Favorite />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/forgot-password"
-        element={
-          <ProtectedRoute>
-            <ForgotPassword />
-          </ProtectedRoute>
-        }
-      />
+      <Route path="/men" element={<Men />} />
+      <Route path="/women" element={<Women />} />
+      <Route path="/electronics" element={<Electronics />} />
+      <Route path="/sport" element={<Sport />} />
+      <Route path="/shopping-cart" element={<ShoppingCart />} />
+      <Route path="/product-detail-page" element={<ProductDetailPage />} />
+      <Route path="/favorite" element={<Favorite />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
 
-      <Route
-        path="/checkout"
-        element={
-          <ProtectedRoute>
-            <Checkout />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/signup"
-        element={
-          <ProtectedRoute>
-            <Register />
-          </ProtectedRoute>
-        }
-      />
+      <Route path="/checkout" element={<Checkout />} />
+      <Route path="/signup" element={<Register />} />
 
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

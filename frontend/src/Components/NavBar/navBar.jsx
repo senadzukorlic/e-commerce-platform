@@ -80,7 +80,13 @@ export default function NavBar() {
             {isAuthenticated && ( //ako je korisnik autentifikovan,prikazi My Products i Create own product button. Ako nije, ne prikazati,sto mu dodje kao neki vid autorizacije
               <>
                 <NavBarButton size="large">My Products</NavBarButton>
-                <NavBarButton size="large">Create own product </NavBarButton>
+                <NavBarButton
+                  size="large"
+                  component={Link}
+                  to="/create-your-own-product"
+                >
+                  Create own product{" "}
+                </NavBarButton>
               </>
             )}
 

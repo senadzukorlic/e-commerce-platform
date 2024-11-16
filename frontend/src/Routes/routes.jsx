@@ -13,6 +13,7 @@ import { Favorite } from "../Pages/Favorite/favorite"
 import { About } from "../Pages/About/about"
 import { Checkout } from "../Pages/Checkout/checkout"
 import { Register } from "../Pages/Register/register"
+import { CreateProduct } from "../Pages/createProduct/createProduct"
 
 export function RoutesComponent() {
   return (
@@ -27,7 +28,14 @@ export function RoutesComponent() {
       <Route path="/product-detail-page" element={<ProductDetailPage />} />
       <Route path="/favorite" element={<Favorite />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
-
+      <Route
+        path="/create-your-own-product"
+        element={
+          <ProtectedRoute>
+            <CreateProduct />
+          </ProtectedRoute>
+        }
+      />
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/signup" element={<Register />} />
 

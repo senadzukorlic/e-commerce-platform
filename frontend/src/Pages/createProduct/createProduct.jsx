@@ -1,4 +1,4 @@
-export function createProduct() {
+export function CreateProduct() {
   return (
     <div>
       <h1>Create Product</h1>

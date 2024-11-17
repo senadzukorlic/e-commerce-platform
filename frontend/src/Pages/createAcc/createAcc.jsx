@@ -10,9 +10,9 @@ import {
   Checkbox,
   TermsText,
   TermsLink,
-} from "./styleRegister"
+} from "./createAccStyle"
 
-export function Register() {
+export function CreateAcc() {
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
   const [email, setEmail] = useState("")

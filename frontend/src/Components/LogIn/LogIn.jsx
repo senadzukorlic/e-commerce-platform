@@ -13,7 +13,7 @@ import {
   ForgotPassword,
   ButtonsContainer,
   ForgotLink,
-} from "./styleSignIn"
+} from "./LogInStyle"
 
 import { PasswordInput } from "../PasswordInput/passwordInput"
 import { Input } from "../Input/input"
@@ -70,11 +70,7 @@ export function LogIn({ open, handleClose }) {
       <StyledBox>
         <StyledForm onSubmit={handleSubmit}>
           <HeaderContainer>
-            <StyledHeader>Sign In</StyledHeader>
-            <StyledParagraph>
-              Become a Member — you'll enjoy exclusive deals, offers, invites
-              and rewards.
-            </StyledParagraph>
+            <StyledHeader>Log In</StyledHeader>
           </HeaderContainer>
           <InputContainer>
             <Input
@@ -111,14 +107,14 @@ export function LogIn({ open, handleClose }) {
           <ButtonsContainer>
             <BlackButton
               width={{ width: "330px" }}
-              buttonName="Sign In"
+              buttonName="Log In"
               type="submit"
               onClick={handleSubmit}
             />
-            <Link to="/signup">
+            <Link to="/create-account">
               <OutlinedButton
                 width={{ width: "330px" }}
-                buttonName="Become a member"
+                buttonName="Create account"
                 onClick={handleForgotPasswordClick}
               />
             </Link>

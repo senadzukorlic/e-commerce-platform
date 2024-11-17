@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDataContext } from "../../Hooks/useContext"
-import { LogIn } from "../../Components/SignIn/signIn"
+import { LogIn } from "../../Components/LogIn/LogIn"
 import {
   StyledCheckoutCard,
   LineDiv1,

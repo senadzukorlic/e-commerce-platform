@@ -1,7 +1,9 @@
+import { PageTitle } from "../../Components/PageTitle/pageTitle"
+
 export function CreateProduct() {
   return (
     <div>
-      <h1>Create Product</h1>
+      <PageTitle title="Create your own product" />
     </div>
   )
 }

@@ -12,7 +12,7 @@ import { ProductDetailPage } from "../Pages/ProductDetailPage/productDetail"
 import { Favorite } from "../Pages/Favorite/favorite"
 import { About } from "../Pages/About/about"
 import { Checkout } from "../Pages/Checkout/checkout"
-import { Register } from "../Pages/Register/register"
+import { CreateAcc } from "../Pages/createAcc/createAcc"
 import { CreateProduct } from "../Pages/createProduct/createProduct"
 
 export function RoutesComponent() {
@@ -37,7 +37,7 @@ export function RoutesComponent() {
         }
       />
       <Route path="/checkout" element={<Checkout />} />
-      <Route path="/signup" element={<Register />} />
+      <Route path="/create-account" element={<CreateAcc />} />
 
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

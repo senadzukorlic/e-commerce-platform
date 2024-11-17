@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { LogIn } from "../SignIn/signIn"
+import { LogIn } from "../LogIn/LogIn"
 import { LogOutModal } from "../logOutModal/logOutModal"
 import {
   Logo,

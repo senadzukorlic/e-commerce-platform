@@ -2,54 +2,44 @@ import { PageTitle } from "../../Components/PageTitle/pageTitle"
 import { useState } from "react"
 import { Input } from "../../Components/Input/input"
 import { BlackButton } from "../../Components/blackButton/blackButton"
+import { ParentDiv, InputDiv } from "./createProductStyle"
 
 export function CreateProduct() {
   const [title, setTitle] = useState("")
   const [price, setPrice] = useState("")
   const [imageUrl, setImageUrl] = useState("")
-  const [size, setSize] = useState("")
+
+  const onChangeValue = (setter) => (e) => {
+    setter(e.target.value)
+  }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        // backgroundColor: "red",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        // height: "100%",
-        // width: "100%",
-      }}
-    >
+    <ParentDiv>
       <PageTitle title="Create your own product" />
-      <div
-        style={{
-          display: "flex",
-          // backgroundColor: "red",
-          flexDirection: "column",
-          justifyContent: "center",
-          width: "100%",
-          alignItems: "center",
-          paddingTop: "20px",
-        }}
-      >
+      <InputDiv>
         <Input
           type="text"
           labelName="Title"
           styleInput={{ width: "20%" }}
           styleLabel={{ width: "21%" }}
+          value={title}
+          onChange={onChangeValue(setTitle)}
         />
         <Input
           type="text"
           labelName="Price"
           styleInput={{ width: "20%" }}
           styleLabel={{ width: "21%" }}
+          value={price}
+          onChange={onChangeValue(setPrice)}
         />
         <Input
           type="text"
           labelName="Image"
           styleInput={{ width: "20%" }}
           styleLabel={{ width: "21%" }}
+          value={imageUrl}
+          onChange={onChangeValue(setImageUrl)}
         />
         <Input
           type="text"
@@ -62,7 +52,7 @@ export function CreateProduct() {
           type="submit"
           width={{ width: "21%", marginTop: "30px" }}
         />
-      </div>
-    </div>
+      </InputDiv>
+    </ParentDiv>
   )
 }

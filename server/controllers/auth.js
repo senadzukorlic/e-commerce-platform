@@ -35,7 +35,7 @@ exports.signup = (req, res, next) => {
         email: email,
         password: hasPass,
       })
-      return user.save()
+      return user.save() //funckija kojom cuvamo kreiranog korisnika u bazi
     })
     .then((result) => {
       res.status(201).json({ message: "User created!" }) //poruka koja se salje klijentu,u browseru

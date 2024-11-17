@@ -4,12 +4,13 @@ import Button from "@mui/material/Button"
 
 export const StyleButton = styled(Button)`
   height: 50px;
-  border: 2px solid black;
+  border: 3px solid black;
   background-color: #e4bc67;
   color: black;
   border-radius: 0px;
   font-weight: 700;
   &:hover {
+    background-color: white;
     color: black;
   }
 `

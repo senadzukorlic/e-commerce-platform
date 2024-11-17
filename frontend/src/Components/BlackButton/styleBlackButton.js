@@ -11,5 +11,7 @@ export const StyleButton = styled(Button)`
   font-weight: 700;
   &:hover {
     color: black;
+    background-color: white;
+    border: 3px solid black;
   }
 `

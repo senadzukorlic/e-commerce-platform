@@ -102,7 +102,7 @@ export function CreateAcc() {
       </TermsText>
 
       <BlackButton
-        type={"submit"}
+        type="submit"
         onClick={handleSubmit}
         buttonName="Become a  member"
         width={{ width: "40%" }}

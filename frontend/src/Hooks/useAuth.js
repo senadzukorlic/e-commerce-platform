@@ -67,12 +67,7 @@ export const useAuth = () => {
     return !!token
   }, [])
 
-  useEffect(() => {
-    const isAuth = checkAuth()
-    // if (!isAuth && window.location.pathname !== "/") {
-    //   navigate("/")
-    // }
-  }, [checkAuth, navigate])
+  useEffect(() => {}, [checkAuth])
 
   const logout = () => {
     localStorage.removeItem("token")

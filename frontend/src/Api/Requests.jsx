@@ -21,38 +21,3 @@ const newProducts = [
   { id: 88, salePrice: 119.99 },
   { id: 101, salePrice: 449.99 },
 ]
-
-export async function ProductsOnSale() {
-  try {
-    const result = []
-    for (const newProduct of newProducts) {
-      const response = await axios.put(
-        `https://dummyjson.com/newProducts/${newProduct.id}`,
-        {
-          price: newProduct.salePrice,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      result.push(response.data)
-    }
-    return result
-  } catch (error) {
-    console.log(`Trouble`, error)
-  }
-}
-
-export async function DisplayUpdatedProducts() {
-  try {
-    const updatedProducts = await ProductsOnSale()
-
-    console.log("Updated Products:", updatedProducts)
-
-    return updatedProducts
-  } catch (error) {
-    console.error("Error fetching updated products:", error)
-  }
-}

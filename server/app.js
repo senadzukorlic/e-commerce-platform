@@ -2,7 +2,9 @@ const express = require("express")
 const sequelize = require("./util/database")
 const cors = require("cors") //omogucava serveru da komunicira sa drugim htttp
 //serverima i da prima zahteve sa drugih domena
+
 const authRoutes = require("./routes/auth")
+const adminRoutes = require("./routes/admin")
 
 const app = express()
 
@@ -21,6 +23,7 @@ app.use((req, res, next) => {
 })
 
 app.use("/auth", authRoutes)
+app.use("/admin", adminRoutes)
 
 app.use((error, req, res, next) => {
   console.log(error)

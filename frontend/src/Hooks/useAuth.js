@@ -67,7 +67,9 @@ export const useAuth = () => {
     return !!token
   }, [])
 
-  useEffect(() => {}, [checkAuth])
+  useEffect(() => {
+    checkAuth()
+  }, [checkAuth])
 
   const logout = () => {
     localStorage.removeItem("token")

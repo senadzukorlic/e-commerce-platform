@@ -3,11 +3,36 @@ import { useState } from "react"
 import { Input } from "../../Components/Input/input"
 import { BlackButton } from "../../Components/blackButton/blackButton"
 import { ParentDiv, InputDiv } from "./createProductStyle"
+import axios from "axios"
 
 export function CreateProduct() {
   const [title, setTitle] = useState("")
   const [price, setPrice] = useState("")
   const [imageUrl, setImageUrl] = useState("")
+  const [size, setSize] = useState("")
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const token = localStorage.getItem("token")
+      console.log("Token:", token)
+      const response = await axios.post(
+        "http://localhost:8080/admin/create-your-own-product",
+        {
+          title: title,
+          price: price,
+          imageUrl: imageUrl,
+          size: size,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      console.log("Product is created!")
+    } catch (e) {
+      console.log(`product nije creiran`, e)
+    }
+  }
 
   const onChangeValue = (setter) => (e) => {
     setter(e.target.value)
@@ -16,7 +41,7 @@ export function CreateProduct() {
   return (
     <ParentDiv>
       <PageTitle title="Create your own product" />
-      <InputDiv>
+      <InputDiv onSubmit={handleSubmit}>
         <Input
           type="text"
           labelName="Title"
@@ -46,6 +71,8 @@ export function CreateProduct() {
           labelName="Size"
           styleInput={{ width: "20%" }}
           styleLabel={{ width: "21%" }}
+          value={size}
+          onChange={onChangeValue(setSize)}
         />
         <BlackButton
           buttonName="create product"

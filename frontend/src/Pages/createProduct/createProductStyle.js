@@ -7,7 +7,7 @@ export const ParentDiv = styled.div`
   align-items: center;
 `
 
-export const InputDiv = styled.div`
+export const InputDiv = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;

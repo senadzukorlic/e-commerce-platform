@@ -4,6 +4,7 @@ const route = express.Router()
 const adminRoutes = require("../controllers/admin")
 const isAuth = require("../middleware/isAuth")
 
-route.post("/create-your-own-product", isAuth, adminRoutes.createProduct)
+route.get("/my-products", isAuth, adminRoutes.getProducts)
+route.post("/my-products", isAuth, adminRoutes.createProduct)
 
 module.exports = route

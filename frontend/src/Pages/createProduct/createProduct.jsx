@@ -17,7 +17,7 @@ export function CreateProduct() {
       const token = localStorage.getItem("token")
       console.log("Token:", token)
       const response = await axios.post(
-        "http://localhost:8080/admin/create-your-own-product",
+        "http://localhost:8080/admin/my-products",
         {
           title: title,
           price: price,

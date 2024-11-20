@@ -13,7 +13,6 @@ import {
   NavBarInput,
   NavBarIconButton,
   NavBarMenuItem,
-  AboutLink,
 } from "./styleNavBar"
 
 import { StarOutlineRounded, SearchRounded } from "@mui/icons-material"
@@ -79,13 +78,15 @@ export default function NavBar() {
 
             {isAuthenticated && ( //ako je korisnik autentifikovan,prikazi My Products i Create own product button. Ako nije, ne prikazati,sto mu dodje kao neki vid autorizacije
               <>
-                <NavBarButton size="large">My Products</NavBarButton>
+                <NavBarButton size="large" component={Link} to="/my-products">
+                  My Products
+                </NavBarButton>
                 <NavBarButton
                   size="large"
                   component={Link}
                   to="/create-your-own-product"
                 >
-                  Create own product{" "}
+                  Create own product
                 </NavBarButton>
               </>
             )}

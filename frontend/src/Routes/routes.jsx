@@ -14,6 +14,7 @@ import { About } from "../Pages/About/about"
 import { Checkout } from "../Pages/Checkout/checkout"
 import { CreateAcc } from "../Pages/createAcc/createAcc"
 import { CreateProduct } from "../Pages/createProduct/createProduct"
+import { MyProducts } from "../Pages/myProducts/myProducts"
 
 export function RoutesComponent() {
   return (
@@ -33,6 +34,14 @@ export function RoutesComponent() {
         element={
           <ProtectedRoute>
             <CreateProduct />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/my-products"
+        element={
+          <ProtectedRoute>
+            <MyProducts />
           </ProtectedRoute>
         }
       />

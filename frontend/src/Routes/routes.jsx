@@ -15,6 +15,7 @@ import { Checkout } from "../Pages/Checkout/checkout"
 import { CreateAcc } from "../Pages/createAcc/createAcc"
 import { CreateProduct } from "../Pages/createProduct/createProduct"
 import { MyProducts } from "../Pages/myProducts/myProducts"
+import { UploadFile } from "../Components/uploadFile/uploadFile"
 
 export function RoutesComponent() {
   return (
@@ -47,7 +48,7 @@ export function RoutesComponent() {
       />
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/create-account" element={<CreateAcc />} />
-
+      <Route path="/upload-file" element={<UploadFile />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )

@@ -2,6 +2,7 @@ const express = require("express")
 const sequelize = require("./util/database")
 const cors = require("cors") //omogucava serveru da komunicira sa drugim htttp
 //serverima i da prima zahteve sa drugih domena
+const path = require("path")
 
 const authRoutes = require("./routes/auth")
 const adminRoutes = require("./routes/admin")

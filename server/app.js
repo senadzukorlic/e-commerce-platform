@@ -6,10 +6,36 @@ const cors = require("cors") //omogucava serveru da komunicira sa drugim htttp
 const authRoutes = require("./routes/auth")
 const adminRoutes = require("./routes/admin")
 
+const multer = require("multer")
+const { v4: uuidv4 } = require("uuid")
+
 const app = express()
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "images")
+  },
+  filename: function (req, file, cb) {
+    cb(null, uuidv4() + path.extname(file.originalname))
+  },
+})
+
+const fileFilter = (req, file, cb) => {
+  if (
+    file.mimetype === "image/png" ||
+    file.mimetype === "image/jpg" ||
+    file.mimetype === "image/jpeg"
+  ) {
+    cb(null, true)
+  } else {
+    cb(null, false)
+  }
+}
+
+app.use(multer({ storage: storage, fileFilter: fileFilter }).single("image"))
 app.use(express.json())
 app.use(cors())
+app.use("/images", express.static(path.join(__dirname, "images")))
 
 app.use((req, res, next) => {
   //postavljanje dozvola o ukidanju cors-8,dozvola klijentu da da postavlja kontent type i autorizaciju i da salje metode (post,put,patch i delete)

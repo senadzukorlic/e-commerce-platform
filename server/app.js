@@ -5,6 +5,7 @@ const cors = require("cors") //omogucava serveru da komunicira sa drugim htttp
 
 const authRoutes = require("./routes/auth")
 const adminRoutes = require("./routes/admin")
+const uploadRoutes = require("./routes/upload")
 
 const multer = require("multer")
 const { v4: uuidv4 } = require("uuid")
@@ -50,6 +51,7 @@ app.use((req, res, next) => {
 
 app.use("/auth", authRoutes)
 app.use("/admin", adminRoutes)
+app.use(uploadRoutes)
 
 app.use((error, req, res, next) => {
   console.log(error)

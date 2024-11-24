@@ -1,3 +1,4 @@
+const { where } = require("sequelize")
 const Products = require("../models/products")
 const User = require("../models/user")
 
@@ -47,6 +48,26 @@ exports.createProduct = (req, res, next) => {
     })
     .then((result) => {
       res.status(201).json({ message: "Product created", product: result })
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500
+      }
+      next(err)
+    })
+}
+
+exports.deleteProduct = (req, res, next) => {
+  const productId = req.params.productId
+
+  Products.findByPk(req.userId)
+    .then((post) => {
+      if (!post) {
+        const error = new Error("Could not find post.")
+        error.statusCode = 404 //404 (Not Found) koristi se da označi da server nije mogao da pronađe resurs koji je klijent tražio
+        throw error
+      }
+      return Products.destroy({ where: { id: productId } })
     })
     .catch((err) => {
       if (!err.statusCode) {

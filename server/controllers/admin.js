@@ -59,8 +59,9 @@ exports.createProduct = (req, res, next) => {
 
 exports.deleteProduct = (req, res, next) => {
   const productId = req.params.productId
-
-  Products.findByPk(req.userId)
+  console.log("Attempting to delete product:", productId) // Dodato za debug
+  console.log("User ID:", req.userId) // Dodato za debug
+  Products.findByPk(productId)
     .then((post) => {
       if (!post) {
         const error = new Error("Could not find post.")
@@ -69,7 +70,12 @@ exports.deleteProduct = (req, res, next) => {
       }
       return Products.destroy({ where: { id: productId } })
     })
+    .then((result) => {
+      console.log("Delete result:", result) // Dodato za debug
+      res.status(200).josn({ message: "Product deleted sucessfully" })
+    })
     .catch((err) => {
+      console.error("Delete error:", err) // Dodato za debug
       if (!err.statusCode) {
         err.statusCode = 500
       }

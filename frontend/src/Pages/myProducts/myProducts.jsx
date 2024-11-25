@@ -164,7 +164,6 @@ export function MyProducts() {
       // Nakon uspešnog brisanja, osvežavamo listu proizvoda
       await fetchProducts()
     } catch (error) {
-      console.error("Delete error:", error)
       setError(error.response?.data?.message || "Failed to delete product.")
     } finally {
       setLoading(false)
@@ -173,10 +172,6 @@ export function MyProducts() {
 
   if (loading) {
     return <div>Loading...</div>
-  }
-
-  if (error) {
-    // Prikazujemo error ali nastavljamo prikazivati proizvode ako ih ima
   }
 
   return (
@@ -204,14 +199,14 @@ export function MyProducts() {
                   buttonName="Delete"
                   width={{ width: "80px" }}
                   onClick={() => {
-                    // // Dodajemo confirm dijalog
-                    // if (
-                    //   window.confirm(
-                    //     "Are you sure you want to delete this product?"
-                    //   )
-                    // ) {
-                    handleDelete(item.id)
-                    // }
+                    // Dodajemo confirm dijalog
+                    if (
+                      window.confirm(
+                        "Are you sure you want to delete this product?"
+                      )
+                    ) {
+                      handleDelete(item.id)
+                    }
                   }}
                 />
               </ButtonDiv>

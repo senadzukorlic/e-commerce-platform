@@ -4,6 +4,8 @@ import { Input } from "../../Components/Input/input"
 import { BlackButton } from "../../Components/blackButton/blackButton"
 import { ParentDiv, InputDiv } from "./createProductStyle"
 import axios from "axios"
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 export function CreateProduct() {
   const [title, setTitle] = useState("")
@@ -28,6 +30,12 @@ export function CreateProduct() {
           headers: { Authorization: `Bearer ${token}` },
         }
       )
+      setImageUrl("")
+      setPrice("")
+      setSize("")
+      setTitle("")
+
+      toast.success("You have successfully created the product!")
       console.log("Product is created!")
     } catch (e) {
       console.log(`product nije creiran`, e)

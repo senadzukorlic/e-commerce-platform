@@ -67,10 +67,42 @@ exports.deleteProduct = (req, res, next) => {
         error.statusCode = 404 //404 (Not Found) koristi se da označi da server nije mogao da pronađe resurs koji je klijent tražio
         throw error
       }
-      return Products.destroy({ where: { id: productId } })
+      return post.destroy()
     })
     .then((result) => {
       res.status(200).json({ message: "Product deleted sucessfully" })
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500
+      }
+      next(err)
+    })
+}
+
+exports.editProduct = (req, res, next) => {
+  const productId = req.params.productId
+
+  const price = req.body.price
+  const title = req.body.title
+  const imageUrl = req.body.imageUrl
+  const size = req.body.size
+
+  Products.findByPk(productId)
+    .then((product) => {
+      if (!product) {
+        const error = new Error("Product not found")
+        error.statusCode = 404
+        throw error
+      }
+      ;(product.price = price),
+        (product.title = title),
+        (product.size = size),
+        (product.imageUrl = imageUrl)
+      return product.save()
+    })
+    .then((result) => {
+      res.status(200).json({ message: "Post updated", post: result })
     })
     .catch((err) => {
       if (!err.statusCode) {

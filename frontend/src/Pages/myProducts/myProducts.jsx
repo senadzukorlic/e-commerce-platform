@@ -104,6 +104,7 @@
 
 import React, { useState, useEffect } from "react"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 import { PageTitle } from "../../Components/PageTitle/pageTitle"
 import { Typography, CardActionArea } from "@mui/material"
 import {
@@ -116,6 +117,7 @@ import {
 } from "./myProductsStyle"
 import { BlackButton } from "../../Components/blackButton/blackButton"
 import { OutlinedButton } from "../../Components/OutlinedButton/outlinedButton"
+import { Link } from "react-router-dom"
 
 export function MyProducts() {
   const [products, setProducts] = useState([])
@@ -170,6 +172,13 @@ export function MyProducts() {
     }
   }
 
+  const navigate = useNavigate()
+  const handleEdit = (product) => {
+    navigate("/update-your-own-product", {
+      state: { product }, // Prosleđivanje podataka o proizvodu
+    })
+  }
+
   if (loading) {
     return <div>Loading...</div>
   }
@@ -194,12 +203,16 @@ export function MyProducts() {
                 </Typography>
               </CardText>
               <ButtonDiv>
-                <BlackButton buttonName="Edit" width={{ width: "80px" }} />
+                <BlackButton
+                  to="/update-your-own-product"
+                  buttonName="Edit"
+                  onClick={() => handleEdit(item)}
+                  width={{ width: "80px" }}
+                />
                 <OutlinedButton
                   buttonName="Delete"
                   width={{ width: "80px" }}
                   onClick={() => {
-                    // Dodajemo confirm dijalog
                     if (
                       window.confirm(
                         "Are you sure you want to delete this product?"

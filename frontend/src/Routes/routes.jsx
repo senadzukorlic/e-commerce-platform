@@ -14,6 +14,7 @@ import { About } from "../Pages/About/about"
 import { Checkout } from "../Pages/Checkout/checkout"
 import { CreateAcc } from "../Pages/createAcc/createAcc"
 import { CreateProduct } from "../Pages/createProduct/createProduct"
+import { UpdateMyProduct } from "../Pages/updateMyProduct/updateMyProduct"
 import { MyProducts } from "../Pages/myProducts/myProducts"
 
 export function RoutesComponent() {
@@ -34,6 +35,14 @@ export function RoutesComponent() {
         element={
           <ProtectedRoute>
             <CreateProduct />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/update-your-own-product"
+        element={
+          <ProtectedRoute>
+            <UpdateMyProduct />
           </ProtectedRoute>
         }
       />

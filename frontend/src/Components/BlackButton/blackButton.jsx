@@ -1,23 +1,61 @@
+// import { StyleButton } from "./styleBlackButton"
+
+// export function BlackButton({
+//   width,
+//   buttonName,
+//   type,
+//   onClick,
+
+//   onSubmit,
+// }) {
+//   return (
+//     <>
+//       <StyleButton
+//         style={width}
+//         type={type}
+//         onClick={onClick}
+//         onSubmit={onSubmit}
+//       >
+//         {buttonName}
+//       </StyleButton>
+//     </>
+//   )
+// }
+
 import { StyleButton } from "./styleBlackButton"
+import { Link } from "react-router-dom"
 
 export function BlackButton({
   width,
   buttonName,
   type,
   onClick,
-
   onSubmit,
+  to,
 }) {
   return (
     <>
-      <StyleButton
-        style={width}
-        type={type}
-        onClick={onClick}
-        onSubmit={onSubmit}
-      >
-        {buttonName}
-      </StyleButton>
+      {to ? (
+        <Link to={to} style={{ textDecoration: "none" }}>
+          <StyleButton
+            style={width}
+            type={type}
+            onClick={onClick}
+            onSubmit={onSubmit}
+          >
+            {buttonName}
+          </StyleButton>
+        </Link>
+      ) : (
+        <StyleButton
+          style={width}
+          type={type}
+          onClick={onClick}
+          onSubmit={onSubmit}
+        >
+          {buttonName}
+        </StyleButton>
+      )}
     </>
   )
 }

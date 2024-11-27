@@ -4,50 +4,42 @@ import { Input } from "../../Components/Input/input"
 import { BlackButton } from "../../Components/blackButton/blackButton"
 import { ParentDiv, InputDiv } from "./updateMyProductStyle"
 import axios from "axios"
-import { toast } from "react-toastify"
 import { useLocation } from "react-router-dom"
-import "react-toastify/dist/ReactToastify.css"
 
 export function UpdateMyProduct() {
+  const location = useLocation()
   const [title, setTitle] = useState("")
   const [price, setPrice] = useState("")
   const [imageUrl, setImageUrl] = useState("")
   const [size, setSize] = useState("")
-
-  const location = useLocation()
-  const { product } = location.state || {}
-  //   const fetchProduct = async (e) => {
-  //     try {
-  //       const token = localStorage.getItem("token")
-  //       const response = await axios.get(
-  //         "http://localhost:8080/my-products/:productId",
-  //         {
-  //           headers: { Authorization: `Bearer ${token}` },
-  //         }
-  //       )
-  //     } catch (e) {
-  //       console.log(`product nije creiran`, e)
-  //     }
-  //   }
+  const [productId, setProductId] = useState(null)
 
   useEffect(() => {
-    fetchProduct()
-  }, [])
+    // Check if product is passed in location state
+    if (location.state && location.state.product) {
+      const { product } = location.state
+      setTitle(product.title)
+      setPrice(product.price)
+      setImageUrl(product.imageUrl)
+      setSize(product.size)
+      setProductId(product.id)
+    }
+  }, [location.state])
 
-  const handleUpdate = async (productId) => {
+  const handleUpdate = async (e) => {
+    e.preventDefault()
     const token = localStorage.getItem("token")
     try {
       const response = await axios.patch(
-        "http://localhost:8080/my-products/:productId",
+        `http://localhost:8080/my-products/${productId}`,
         { Authorization: `Bearers ${token}` },
         {
-          imageUrl: imageUrl,
-          size: size,
-          title: title,
-          price: price,
+          imageUrl,
+          size,
+          title,
+          price,
         }
       )
-      await fetchProduct()
     } catch (error) {
       console.log(`Product is not updated`)
     }
@@ -66,32 +58,32 @@ export function UpdateMyProduct() {
           labelName="Title"
           styleInput={{ width: "20%" }}
           styleLabel={{ width: "21%" }}
-          value={product.title}
-          //   onChange={onChangeValue(setTitle)}
+          value={title}
+          onChange={onChangeValue(setTitle)}
         />
         <Input
           type="text"
           labelName="Price"
           styleInput={{ width: "20%" }}
           styleLabel={{ width: "21%" }}
-          value={product.price}
-          //   onChange={onChangeValue(setPrice)}
+          value={price}
+          onChange={onChangeValue(setPrice)}
         />
         <Input
           type="text"
           labelName="Image"
           styleInput={{ width: "20%" }}
           styleLabel={{ width: "21%" }}
-          value={product.imageUrl}
-          //   onChange={onChangeValue(setImageUrl)}
+          value={imageUrl}
+          onChange={onChangeValue(setImageUrl)}
         />
         <Input
           type="text"
           labelName="Size"
           styleInput={{ width: "20%" }}
           styleLabel={{ width: "21%" }}
-          value={product.size}
-          //   onChange={onChangeValue(setSize)}
+          value={size}
+          onChange={onChangeValue(setSize)}
         />
         <BlackButton
           buttonName="update product"

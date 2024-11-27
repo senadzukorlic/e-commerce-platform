@@ -173,6 +173,7 @@ export function MyProducts() {
   }
 
   const navigate = useNavigate()
+
   const handleEdit = (product) => {
     navigate("/update-your-own-product", {
       state: { product }, // Prosleđivanje podataka o proizvodu
@@ -204,10 +205,10 @@ export function MyProducts() {
               </CardText>
               <ButtonDiv>
                 <BlackButton
-                  to="/update-your-own-product"
+                  // to="/update-your-own-product"
                   buttonName="Edit"
-                  onClick={() => handleEdit(item)}
                   width={{ width: "80px" }}
+                  onClick={() => handleEdit(item)}
                 />
                 <OutlinedButton
                   buttonName="Delete"

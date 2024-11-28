@@ -31,17 +31,26 @@ export function UpdateMyProduct() {
     const token = localStorage.getItem("token")
     try {
       const response = await axios.patch(
-        `http://localhost:8080/my-products/${productId}`,
-        { Authorization: `Bearers ${token}` },
+        `http://localhost:8080/admin/my-products/${productId}`,
+
         {
           imageUrl,
           size,
           title,
           price,
+        },
+        {
+          headers: {
+            Authorization: `Bearers ${token}`,
+          },
         }
       )
+      console.log("Product successfully updated", response.data)
     } catch (error) {
-      console.log(`Product is not updated`)
+      console.error(
+        "Error updating product:",
+        error.response?.data || error.message
+      )
     }
   }
 

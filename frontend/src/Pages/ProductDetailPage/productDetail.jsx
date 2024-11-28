@@ -15,8 +15,8 @@ import { getSizeOptions } from "../../Hooks/optionsSwitch"
 import { BlackButton } from "../../Components/blackButton/blackButton"
 import { OutlinedButton } from "../../Components/OutlinedButton/outlinedButton"
 import { addToCart } from "../../Hooks/addToCart"
-import { PageTitle } from "../../Components/PageTitle/pageTitle"
 import { EmptyComponent } from "../../Components/empty/empty"
+import Loader from "../../Styles/loader"
 
 export function ProductDetailPage() {
   const {
@@ -25,7 +25,6 @@ export function ProductDetailPage() {
     setCartCount,
     setTotal,
     setFavoriteItems,
-    favoriteItems,
   } = useDataContext()
 
   const item = productDetail[0]
@@ -34,6 +33,7 @@ export function ProductDetailPage() {
   const [prevNext, setPrexNext] = useState(0)
   const [imgNum, setImgNum] = useState(0)
   const [size, setSize] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     if (productDetail.length > 0) {
@@ -42,12 +42,32 @@ export function ProductDetailPage() {
     }
   }, [productDetail])
 
+  // const plus = () => {
+  //   setPrexNext((current) => (current < imgNum - 1 ? current + 1 : current))
+  // }
+
+  // const minus = () => {
+  //   setPrexNext((current) => (current > 0 ? current - 1 : current))
+  // }
+
   const plus = () => {
-    setPrexNext((current) => (current < imgNum - 1 ? current + 1 : current))
+    if (prevNext < imgNum - 1) {
+      setIsLoading(true) // Uključuje loader
+      setTimeout(() => {
+        setPrexNext((current) => current + 1) // Ažurira sliku
+        setIsLoading(false) // Isključuje loader
+      }, 1000) // Simulacija vremena učitavanja
+    }
   }
 
   const minus = () => {
-    setPrexNext((current) => (current > 0 ? current - 1 : current))
+    if (prevNext > 0) {
+      setIsLoading(true) // Uključuje loader
+      setTimeout(() => {
+        setPrexNext((current) => current - 1) // Ažurira sliku
+        setIsLoading(false) // Isključuje loader
+      }, 1000) // Simulacija vremena učitavanja
+    }
   }
 
   const handleSizeClick = (size) => {
@@ -91,13 +111,21 @@ export function ProductDetailPage() {
       {productDetail.length > 0 ? (
         <>
           <CardContentImageStyled>
-            <Image component="img" image={images[prevNext]} />
-            <ArrowButton onClick={minus} style={{ right: "75px" }}>
-              <ArrowBackIos style={{ fontSize: "20px" }} />
-            </ArrowButton>
-            <ArrowButton onClick={plus} style={{ right: "40px" }}>
-              <ArrowForwardIos style={{ fontSize: "20px" }} />
-            </ArrowButton>
+            {isLoading ? (
+              <Loader size={50} /> // Prikazuje loader dok se slika učitava
+            ) : (
+              <>
+                <Image component="img" image={images[prevNext]} />
+
+                {/* <Image component="img" image={images[prevNext]} /> */}
+                <ArrowButton onClick={minus} style={{ right: "75px" }}>
+                  <ArrowBackIos style={{ fontSize: "20px" }} />
+                </ArrowButton>
+                <ArrowButton onClick={plus} style={{ right: "40px" }}>
+                  <ArrowForwardIos style={{ fontSize: "20px" }} />
+                </ArrowButton>
+              </>
+            )}
           </CardContentImageStyled>
 
           <CardProductDetail>

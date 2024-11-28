@@ -4,7 +4,7 @@ import { Input } from "../../Components/Input/input"
 import { BlackButton } from "../../Components/blackButton/blackButton"
 import { ParentDiv, InputDiv } from "./updateMyProductStyle"
 import axios from "axios"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 export function UpdateMyProduct() {
   const location = useLocation()
@@ -14,6 +14,7 @@ export function UpdateMyProduct() {
   const [size, setSize] = useState("")
   const [productId, setProductId] = useState(null)
 
+  const navigate = useNavigate()
   useEffect(() => {
     // Check if product is passed in location state
     if (location.state && location.state.product) {
@@ -46,6 +47,7 @@ export function UpdateMyProduct() {
         }
       )
       console.log("Product successfully updated", response.data)
+      navigate("/my-products")
     } catch (error) {
       console.error(
         "Error updating product:",

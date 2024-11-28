@@ -99,26 +99,40 @@ export function MyProducts() {
                   {item.price}€
                 </Typography>
               </CardText>
-              <ButtonDiv>
-                <BlackButton
-                  buttonName="Edit"
-                  width={{ width: "80px" }}
-                  onClick={() => handleEdit(item)}
-                />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "15px",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <ButtonDiv>
+                  <BlackButton
+                    buttonName="Edit"
+                    width={{ width: "80px" }}
+                    onClick={() => handleEdit(item)}
+                  />
+                  <BlackButton
+                    buttonName="Delete"
+                    width={{ width: "80px" }}
+                    onClick={() => {
+                      if (
+                        window.confirm(
+                          "Are you sure you want to delete this product?"
+                        )
+                      ) {
+                        handleDelete(item.id)
+                      }
+                    }}
+                  />
+                </ButtonDiv>
                 <OutlinedButton
-                  buttonName="Delete"
-                  width={{ width: "80px" }}
-                  onClick={() => {
-                    if (
-                      window.confirm(
-                        "Are you sure you want to delete this product?"
-                      )
-                    ) {
-                      handleDelete(item.id)
-                    }
-                  }}
+                  buttonName="Add to bag"
+                  width={{ width: "190px" }}
                 />
-              </ButtonDiv>
+              </div>
             </CardActionArea>
           </StyledCard>
         ))}

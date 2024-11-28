@@ -112,7 +112,7 @@ export function ProductDetailPage() {
         <>
           <CardContentImageStyled>
             {isLoading ? (
-              <Loader size={50} /> // Prikazuje loader dok se slika učitava
+              <Loader size={70} /> // Prikazuje loader dok se slika učitava
             ) : (
               <>
                 <Image component="img" image={images[prevNext]} />

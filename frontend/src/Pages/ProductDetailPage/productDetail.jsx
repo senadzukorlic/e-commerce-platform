@@ -42,21 +42,13 @@ export function ProductDetailPage() {
     }
   }, [productDetail])
 
-  // const plus = () => {
-  //   setPrexNext((current) => (current < imgNum - 1 ? current + 1 : current))
-  // }
-
-  // const minus = () => {
-  //   setPrexNext((current) => (current > 0 ? current - 1 : current))
-  // }
-
   const plus = () => {
     if (prevNext < imgNum - 1) {
       setIsLoading(true) // Uključuje loader
       setTimeout(() => {
         setPrexNext((current) => current + 1) // Ažurira sliku
         setIsLoading(false) // Isključuje loader
-      }, 1000) // Simulacija vremena učitavanja
+      }, 900) // Simulacija vremena učitavanja
     }
   }
 
@@ -66,7 +58,7 @@ export function ProductDetailPage() {
       setTimeout(() => {
         setPrexNext((current) => current - 1) // Ažurira sliku
         setIsLoading(false) // Isključuje loader
-      }, 1000) // Simulacija vremena učitavanja
+      }, 900) // Simulacija vremena učitavanja
     }
   }
 
@@ -112,12 +104,11 @@ export function ProductDetailPage() {
         <>
           <CardContentImageStyled>
             {isLoading ? (
-              <Loader size={70} /> // Prikazuje loader dok se slika učitava
+              <Loader size={70} />
             ) : (
               <>
                 <Image component="img" image={images[prevNext]} />
 
-                {/* <Image component="img" image={images[prevNext]} /> */}
                 <ArrowButton onClick={minus} style={{ right: "75px" }}>
                   <ArrowBackIos style={{ fontSize: "20px" }} />
                 </ArrowButton>

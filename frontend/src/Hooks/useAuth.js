@@ -1,81 +1,14 @@
-// import { useState, useEffect } from "react"
-
-// export const useAuth = () => {
-//   //funckija koja se koristi za autentifikaciju korisnika
-//   const [isAuthenticated, setIsAuthenticated] = useState(false)
-
-//   useEffect(() => {
-//     //useEffect hook koji se koristi za proveru da li je korisnik autentifikovan samo prilikom prvog ucitavanja stranice
-//     const token = localStorage.getItem("token")
-//     setIsAuthenticated(!!token) //koristimo izraz "!!token" kojim cemo vrednost tokena pretvoriti u boolean vrednost,pa ako token postoji,onda je varijabla isAuthenticated true,kojom kasnije vrsimo autorizaciju korisnika.
-//     if (!token && window.location.pathname !== "/") {
-//       window.location.pathname = "/"
-//     } //logika za preusmeravanje ako korisnik nije autentifikovan
-//   }, [])
-
-//   const logout = () => {
-//     //funkcija koja se koristi za odjavu korisnika,zapravno njome brisemo token iz localStorage i postavljamo isAuthenticated na false
-//     localStorage.removeItem("token")
-//     setIsAuthenticated(false)
-//   }
-//   return { isAuthenticated, logout }
-// }
-
-// import { useState, useEffect, useCallback } from "react"
-// import { useNavigate } from "react-router-dom"
-
-// export const useAuth = () => {
-//   const [isAuthenticated, setIsAuthenticated] = useState(false)
-//   const navigate = useNavigate()
-
-//   // Izdvajamo logiku provere autentifikacije u zasebnu funkciju
-//   const checkAuth = useCallback(() => {
-//     const token = localStorage.getItem("token")
-//     setIsAuthenticated(!!token)
-//     return !!token
-//   }, [])
-
-//   useEffect(() => {
-//     // Inicijalna provera
-//     const isAuth = checkAuth()
-//     if (!isAuth && window.location.pathname !== "/") {
-//       navigate("/")
-//     }
-//   }, [checkAuth, navigate])
-
-//   const logout = () => {
-//     localStorage.removeItem("token")
-//     setIsAuthenticated(false)
-//     navigate("/") // Dodajemo direktno preusmeravanje nakon odjave
-//   }
-
-//   return { isAuthenticated, logout, checkAuth }
-// }
-
-import { useState, useEffect, useCallback } from "react"
-import { useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react"
 
 export const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [loading, setLoading] = useState(true) // Dodajemo stanje za pracenje da li je provera autentifikacije u toku
-  const navigate = useNavigate()
-
-  const checkAuth = useCallback(() => {
-    const token = localStorage.getItem("token")
-    setIsAuthenticated(!!token)
-    setLoading(false) // Završavamo proveru autentifikacije
-    return !!token
-  }, [])
+  const [loading, setLoading] = useState(true) // Dodajemo stanje koje sluzi za kao loader,tj koristicemo loading state dok browser ne proveri u local storage da li ima valjanog tokena.Dok browser vrsi proveru,loading ce biti true(na osnvou toga cemo pirkazati Loading tekst ili loader cycle).Ako ne bismo to uradili desila bi se situacija da prilikom ucitavanja komponente browser automatski proveti da li je state isauthetnticated true(inace varijabla koja vraca boolean na osnovu tokena),a posto je isAuthenticated po defaultu false,ne bi smo dobili render tih stranica.ZBog toga loading state ima jako vaznu ulogu.
 
   useEffect(() => {
-    checkAuth()
-  }, [checkAuth])
+    const token = localStorage.getItem("token")
+    setIsAuthenticated(!!token) //!! vraca bolean,sto znaci ako je token prisutan bice true
+    setLoading(false) // Završavamo proveru autentifikacije
+  }, [])
 
-  const logout = () => {
-    localStorage.removeItem("token")
-    setIsAuthenticated(false)
-    navigate("/")
-  }
-
-  return { isAuthenticated, loading, logout, checkAuth }
+  return { isAuthenticated, loading }
 }

@@ -13,8 +13,8 @@ export function UpdateMyProduct() {
   const [imageUrl, setImageUrl] = useState("")
   const [size, setSize] = useState("")
   const [productId, setProductId] = useState(null)
-
   const navigate = useNavigate()
+
   useEffect(() => {
     // Check if product is passed in location state
     if (location.state && location.state.product) {

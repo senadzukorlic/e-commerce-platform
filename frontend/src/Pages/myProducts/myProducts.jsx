@@ -13,11 +13,9 @@ import {
 } from "./myProductsStyle"
 import { BlackButton } from "../../Components/blackButton/blackButton"
 import { OutlinedButton } from "../../Components/OutlinedButton/outlinedButton"
-import { Link } from "react-router-dom"
 
 export function MyProducts() {
   const [products, setProducts] = useState([])
-  const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
   const fetchProducts = async () => {
@@ -32,12 +30,10 @@ export function MyProducts() {
         }
       )
       setProducts(response.data.products)
-      setError(null) // Resetujemo error ako je postojao
+      setError(null)
     } catch (error) {
       setError("Failed to fetch products.")
       console.error("Fetch error:", error)
-    } finally {
-      setLoading(false)
     }
   }
 
@@ -47,7 +43,6 @@ export function MyProducts() {
 
   const handleDelete = async (productId) => {
     try {
-      setLoading(true) // Pokazujemo loading state dok se briše
       const token = localStorage.getItem("token")
 
       await axios.delete(
@@ -59,12 +54,9 @@ export function MyProducts() {
         }
       )
 
-      // Nakon uspešnog brisanja, osvežavamo listu proizvoda
       await fetchProducts()
     } catch (error) {
       setError(error.response?.data?.message || "Failed to delete product.")
-    } finally {
-      setLoading(false)
     }
   }
 
@@ -72,12 +64,8 @@ export function MyProducts() {
 
   const handleEdit = (product) => {
     navigate("/update-your-own-product", {
-      state: { product }, // Prosleđivanje podataka o proizvodu
+      state: { product },
     })
-  }
-
-  if (loading) {
-    return <div>Loading...</div>
   }
 
   return (

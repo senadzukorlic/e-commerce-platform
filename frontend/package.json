@@ -20,6 +20,7 @@
     "axios": "^1.7.7",
     "date-fns": "^3.6.0",
     "image-minimizer-webpack-plugin": "^4.1.0",
+    "jwt-decode": "^4.0.0",
     "minimist": "^1.2.7",
     "mkdirp": "^3.0.1",
     "phin": "^3.7.1",

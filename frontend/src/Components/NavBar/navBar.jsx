@@ -32,7 +32,7 @@ export default function NavBar() {
   const { setInputValue, inputValue, cartCount, favoriteItems } =
     useDataContext()
   const [drawerOpen, setDrawerOpen] = useState(false)
-  const { isAuthenticated, logout } = useAuth() //isAuthenticated predstavlja stanje autentifikacije korisnika, a logout funkciju za odjavu korisnika
+  const { isAuthenticated } = useAuth() //isAuthenticated predstavlja stanje autentifikacije korisnika
 
   const [isLogInModalOpen, setLogInModalOpen] = useState(false)
   const [isLogOutModalOpen, setLogOutModalOpen] = useState(false)

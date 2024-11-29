@@ -1,20 +1,20 @@
 import { useEffect } from "react"
 import { Navigate, useNavigate } from "react-router-dom"
 import { useAuth } from "../Hooks/useAuth"
+import Loader from "../Styles/loader"
 
 export function ProtectedRoute({ children }) {
-  const { isAuthenticated, checkAuth, loading } = useAuth()
+  const { isAuthenticated, loading } = useAuth()
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!checkAuth()) {
+    if (!loading && !isAuthenticated) {
       navigate("/")
     }
-  }, [checkAuth, navigate, window.location.pathname])
+  }, [isAuthenticated, navigate, loading])
 
-  // Ako je provera u toku, ne renderujemo ništa
   if (loading) {
-    return <div>Loading...</div> // Možete dodati i spinner za bolji UI/UX
+    return <Loader size={70} />
   }
 
   if (!isAuthenticated) {

@@ -10,7 +10,7 @@ export const StyledCard = styled(Card)`
   flex-direction: column;
   text-align: center;
   align-items: center;
-  height: 630px;
+  height: 610px;
   width: 350px;
   background-color: whitesmoke;
   border-radius: 15px;

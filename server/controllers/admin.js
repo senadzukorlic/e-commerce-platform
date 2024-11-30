@@ -1,4 +1,5 @@
-const { where } = require("sequelize")
+const Cart = require("../models/cart")
+const CartProducts = require("../models/cart-products")
 const Products = require("../models/products")
 const User = require("../models/user")
 
@@ -102,7 +103,52 @@ exports.editProduct = (req, res, next) => {
       return product.save()
     })
     .then((result) => {
-      res.status(200).json({ message: "Post updated", post: result })
+      res.status(200).json({ message: "Post updated", product: result })
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500
+      }
+      next(err)
+    })
+}
+
+exports.addToCart = (req, res, next) => {
+  const productId = req.params.productId
+
+  let userId
+
+  User.findByPk(req.userId)
+    .then((user) => {
+      userId = user.id
+      return Cart.findOne({ where: { userId: userId } })
+    })
+    .then((cart) => {
+      if (!cart) {
+        return Cart.create({ userId: userId })
+      }
+
+      return cart
+    })
+    .then((cart) => {
+      fetchedCart = cart
+      return CartProducts.findOne({ productId: productId, cartId: cart.id })
+    })
+    .then((exhistingOne) => {
+      if (exhistingOne) {
+        return exhistingOne.update({ quantity: exhistingOne.quantity + 1 })
+      } else {
+        return CartProducts.create({
+          productId: productId,
+          cartId: fetchedCart.id,
+          quantity: 1,
+        })
+      }
+    })
+    .then((result) => {
+      res
+        .status(200)
+        .json({ message: "Product added to cart", product: result })
     })
     .catch((err) => {
       if (!err.statusCode) {

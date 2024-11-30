@@ -60,6 +60,26 @@ app.use((error, req, res, next) => {
   res.status(status).json({ message: message, data: data })
 })
 
+const User = require("./models/user")
+const Cart = require("./models/cart")
+const CartProducts = require("./models/cart-products")
+const Product = require("./models/products")
+
+User.hasMany(Product)
+Product.belongsTo(User)
+
+// Korisnik i Korpa
+User.hasOne(Cart) // Jedan korisnik ima jednu korpu
+Cart.belongsTo(User) // Korpa pripada jednom korisniku
+
+// Korpa i Posrednički model (CartProducts)
+Cart.hasMany(CartProducts) // Korpa ima više zapisa u posredničkom modelu
+CartProducts.belongsTo(Cart) // Posrednički zapis pripada jednoj korpi
+
+// Proizvod i Posrednički model (CartProducts)
+Product.hasMany(CartProducts) // Proizvod može biti u više posredničkih zapisa
+CartProducts.belongsTo(Product) // Posrednički zapis pripada jednom proizvodu
+
 sequelize
   .sync()
   .then((res) => {

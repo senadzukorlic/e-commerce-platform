@@ -68,6 +68,21 @@ export function MyProducts() {
     })
   }
 
+  const handleAddToCart = async (productId) => {
+    try {
+      const token = localStorage.getItem("token")
+      const response = await axios.post(
+        `http://localhost:8080/admin/my-products/${productId}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+    } catch (error) {
+      console.log(`Nije dobro nesto`, error)
+    }
+  }
+
   return (
     <div>
       <PageTitle title="My products" />
@@ -117,8 +132,9 @@ export function MyProducts() {
                   />
                 </ButtonDiv>
                 <OutlinedButton
-                  buttonName="Add to bag"
+                  buttonName="Add to cart"
                   width={{ width: "190px" }}
+                  onClick={() => handleAddToCart(item.id)}
                 />
               </div>
             </CardActionArea>

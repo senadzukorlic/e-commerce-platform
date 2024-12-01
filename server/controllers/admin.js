@@ -162,3 +162,27 @@ exports.addToCart = (req, res, next) => {
       next(err)
     })
 }
+
+exports.getCart = (req, res, next) => {
+  User.findByPk(req.userId)
+    .then((user) => {
+      return Cart.findOne({ where: { userId: user.id } })
+    })
+    .then((cart) => {
+      if (!cart) {
+        const error = new Error("User doesn't have cart")
+        error.statusCode = 404
+        throw new error()
+      }
+      return Cart.getCartProducts()
+    })
+    .then((result) => {
+      res.status(200).json({ message: "Cart fetched", cart: result })
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500
+      }
+      next(err)
+    })
+}

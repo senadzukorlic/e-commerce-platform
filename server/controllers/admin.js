@@ -115,9 +115,8 @@ exports.editProduct = (req, res, next) => {
 
 exports.addToCart = (req, res, next) => {
   const productId = req.params.productId
-
   let userId
-
+  let fetchedCart
   User.findByPk(req.userId)
     .then((user) => {
       userId = user.id
@@ -132,11 +131,17 @@ exports.addToCart = (req, res, next) => {
     })
     .then((cart) => {
       fetchedCart = cart
-      return CartProducts.findOne({ productId: productId, cartId: cart.id })
+      return CartProducts.findOne({
+        where: { productId: productId, cartId: cart.id },
+      })
     })
     .then((exhistingOne) => {
       if (exhistingOne) {
-        return exhistingOne.update({ quantity: exhistingOne.quantity + 1 })
+        return exhistingOne.update({
+          quantity: exhistingOne.quantity + 1,
+          productId: productId,
+          cartId: fetchedCart.id,
+        })
       } else {
         return CartProducts.create({
           productId: productId,

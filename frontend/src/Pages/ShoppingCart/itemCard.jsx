@@ -5,7 +5,6 @@ import DeleteIcon from "@mui/icons-material/Delete"
 import FilledHeartIcon from "../../Styles/filledHeartIcon"
 import OutlinedHeartIcon from "../../Styles/outlinedHeartIcon"
 import FavoriteButton from "../../Components/favoriteButton/favoriteButton"
-import axios from "axios"
 
 import {
   StyledItemCard,
@@ -81,32 +80,6 @@ export function ItemCard({ ownProducts }) {
       setTotal(total)
       setCartCount((currentValue) => currentValue - 1)
       return updatedItems
-    })
-  }
-
-  const setFavorite = (item) => {
-    setFavoriteButton((oldItems) => {
-      const uniqueId = `${item.id}-${item.size}`
-      if (oldItems.includes(uniqueId)) {
-        setFavoriteItems((currentItems) =>
-          currentItems.filter(
-            (favItem) => !(favItem.id === item.id && favItem.size === item.size)
-          )
-        )
-        return oldItems.filter((id) => id !== uniqueId)
-      } else {
-        setFavoriteItems((currentItems) => {
-          if (
-            !currentItems.some(
-              (favItem) => favItem.id === item.id && favItem.size === item.size
-            )
-          ) {
-            return [...currentItems, item]
-          }
-          return currentItems
-        })
-        return [...oldItems, uniqueId]
-      }
     })
   }
 
@@ -225,21 +198,21 @@ export function ItemCard({ ownProducts }) {
                   FilledIcon={FilledHeartIcon}
                   OutlinedIcon={OutlinedHeartIcon}
                 />
-                {/* <QuantityDiv>
-                <Select
-                  value={quantities[`${item.id}-${item.size}`]}
-                  onChange={handleQuantityChange(item.id, item.size)}
-                >
-                  {[...Array(10).keys()].map((number) => (
-                    <MenuItemStyled
-                      key={`quantity-${number + 1}`}
-                      value={number + 1}
-                    >
-                      {number + 1}
-                    </MenuItemStyled>
-                  ))}
-                </Select>
-              </QuantityDiv> */}
+                <QuantityDiv>
+                  <Select
+                    value={item.quantity}
+                    onChange={handleQuantityChange(item.id, item.size)}
+                  >
+                    {[...Array(10).keys()].map((number) => (
+                      <MenuItemStyled
+                        key={`quantity-${number + 1}`}
+                        value={number + 1}
+                      >
+                        {number + 1}
+                      </MenuItemStyled>
+                    ))}
+                  </Select>
+                </QuantityDiv>
               </IconDiv>
             </CardContentTitleStyled>
           </StyledItemCard>

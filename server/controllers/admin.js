@@ -1,3 +1,4 @@
+const { where } = require("sequelize")
 const Cart = require("../models/cart")
 const CartProducts = require("../models/cart-products")
 const Products = require("../models/products")
@@ -184,5 +185,41 @@ exports.getCart = (req, res, next) => {
         err.statusCode = 500
       }
       next(err)
+    })
+}
+
+exports.deleteProductFromCart = (req, res, next) => {
+  const productId = req.params.productId
+
+  User.findByPk(req.userId)
+    .then((user) => {
+      return Cart.findOne({ where: { userId: user.id } })
+    })
+    .then((cart) => {
+      if (!cart) {
+        const error = new Error("Carts does not exist")
+        error.statusCode = 404
+        throw error
+      }
+      return CartProducts.findOne({
+        where: { cartId: cart.id, productId: productId },
+      })
+    })
+    .then((product) => {
+      if (!product) {
+        const error = new Error("Product not found in cart")
+        error.statusCode = 404
+        throw error
+      }
+      return product.destroy()
+    })
+    .then((result) => {
+      res.status(200).json({ message: "Product successfuly deleted from cart" })
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500
+      }
+      next()
     })
 }

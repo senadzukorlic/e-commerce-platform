@@ -24,7 +24,7 @@ import {
   MenuItemStyled,
 } from "./itemCardStyle"
 
-export function ItemCard() {
+export function ItemCard({ ownProducts }) {
   const {
     cartData,
     setCartData,
@@ -34,7 +34,6 @@ export function ItemCard() {
     setFavoriteItems,
   } = useDataContext()
   const [favoriteButton, setFavoriteButton] = useState([])
-  const [ownProducts, setOwnProducts] = useState([])
 
   useEffect(() => {
     const initialFavoriteButtons = cartData
@@ -111,24 +110,6 @@ export function ItemCard() {
     })
   }
 
-  const handleFetchOwnProducts = async () => {
-    try {
-      const token = localStorage.getItem("token")
-      const resposne = await axios.get(
-        "http://localhost:8080/admin/my-products",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      )
-      setOwnProducts(resposne.data.products)
-    } catch (error) {
-      console.log("Nesto nije dobro", error)
-    }
-  }
-
-  useEffect(() => {
-    handleFetchOwnProducts()
-  }, [])
   return (
     <>
       {cartData.map((item) => (
@@ -197,53 +178,54 @@ export function ItemCard() {
         </StyledItemCard>
       ))}
 
-      {ownProducts.map((item) => (
-        <StyledItemCard key={item.id} variant="outlined">
-          <CardContentImageStyled>
-            <Box>
-              <Image component="img" image={item.imageUrl} />
-            </Box>
-          </CardContentImageStyled>
-          <CardContentTitleStyled>
-            <TitleAndIconDiv>
-              <TitleDiv gutterBottom variant="p">
-                {item.title}
-                <br />
-                {item.price}€
-              </TitleDiv>
-              <IconDiv1>
-                <DeleteButton onClick={() => deleteItem(item)}>
-                  <DeleteIcon />
-                </DeleteButton>
-              </IconDiv1>
-            </TitleAndIconDiv>
-            <ItemInfoDiv>
-              <PDiv>
-                <p>Art.No.</p>
-                <p>Colour:</p>
-              </PDiv>
-              <PDiv>
-                <p style={{ fontWeight: "bolder" }}>6RJDTVCU</p>
-                <p style={{ fontWeight: "bolder" }}>White</p>
-              </PDiv>
-              <PDiv>
-                <p>Size:</p>
-                <p>Total:</p>
-              </PDiv>
-              <PDiv>
-                <p style={{ fontWeight: "bolder" }}>{item.size}</p>
-                <p style={{ fontWeight: "bolder" }}>{item.price}</p>
-              </PDiv>
-            </ItemInfoDiv>
-            <IconDiv>
-              <FavoriteButton
-                item={item}
-                favoriteItems={favoriteItems}
-                setFavoriteItems={setFavoriteItems}
-                FilledIcon={FilledHeartIcon}
-                OutlinedIcon={OutlinedHeartIcon}
-              />
-              {/* <QuantityDiv>
+      {ownProducts.length > 0 &&
+        ownProducts.map((item) => (
+          <StyledItemCard key={item.id} variant="outlined">
+            <CardContentImageStyled>
+              <Box>
+                <Image component="img" image={item.imageUrl} />
+              </Box>
+            </CardContentImageStyled>
+            <CardContentTitleStyled>
+              <TitleAndIconDiv>
+                <TitleDiv gutterBottom variant="p">
+                  {item.title}
+                  <br />
+                  {item.price}€
+                </TitleDiv>
+                <IconDiv1>
+                  <DeleteButton onClick={() => deleteItem(item)}>
+                    <DeleteIcon />
+                  </DeleteButton>
+                </IconDiv1>
+              </TitleAndIconDiv>
+              <ItemInfoDiv>
+                <PDiv>
+                  <p>Art.No.</p>
+                  <p>Colour:</p>
+                </PDiv>
+                <PDiv>
+                  <p style={{ fontWeight: "bolder" }}>6RJDTVCU</p>
+                  <p style={{ fontWeight: "bolder" }}>White</p>
+                </PDiv>
+                <PDiv>
+                  <p>Size:</p>
+                  <p>Total:</p>
+                </PDiv>
+                <PDiv>
+                  <p style={{ fontWeight: "bolder" }}>{item.size}</p>
+                  <p style={{ fontWeight: "bolder" }}>{item.price}</p>
+                </PDiv>
+              </ItemInfoDiv>
+              <IconDiv>
+                <FavoriteButton
+                  item={item}
+                  favoriteItems={favoriteItems}
+                  setFavoriteItems={setFavoriteItems}
+                  FilledIcon={FilledHeartIcon}
+                  OutlinedIcon={OutlinedHeartIcon}
+                />
+                {/* <QuantityDiv>
                 <Select
                   value={quantities[`${item.id}-${item.size}`]}
                   onChange={handleQuantityChange(item.id, item.size)}
@@ -258,10 +240,10 @@ export function ItemCard() {
                   ))}
                 </Select>
               </QuantityDiv> */}
-            </IconDiv>
-          </CardContentTitleStyled>
-        </StyledItemCard>
-      ))}
+              </IconDiv>
+            </CardContentTitleStyled>
+          </StyledItemCard>
+        ))}
     </>
   )
 }

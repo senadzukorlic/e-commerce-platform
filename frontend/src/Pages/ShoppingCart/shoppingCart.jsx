@@ -19,24 +19,41 @@ export function ShoppingCart() {
   const [ownProducts, setOwnProducts] = useState([])
 
   // Dodajte useEffect za fetch
-  useEffect(() => {
-    const handleFetchOwnProducts = async () => {
-      try {
-        const token = localStorage.getItem("token")
-        const response = await axios.get(
-          "http://localhost:8080/admin/my-products",
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        )
-        setOwnProducts(response.data.products)
-      } catch (error) {
-        console.log("Nesto nije dobro", error)
-      }
-    }
 
+  const handleFetchOwnProducts = async () => {
+    try {
+      const token = localStorage.getItem("token")
+      const response = await axios.get(
+        "http://localhost:8080/admin/my-products",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      setOwnProducts(response.data.products)
+    } catch (error) {
+      console.log("Nesto nije dobro", error)
+    }
+  }
+  useEffect(() => {
     handleFetchOwnProducts()
   }, [])
+
+  const handleDeleteOwnProduct = async (productid) => {
+    const token = localStorage.getItem("token")
+    try {
+      const response = await axios.delete(
+        `http://localhost:8080/admin/my-products/${productid}`,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      )
+    } catch (error) {
+      console.log("Nije obrisan produkt iz korpe", error)
+    }
+    await handleFetchOwnProducts()
+  }
   return (
     <>
       <PageTitle title="Shopping Cart" />
@@ -48,7 +65,10 @@ export function ShoppingCart() {
 
           <ItemAndCheckoutDiv>
             <StyledItemCardDiv>
-              <ItemCard ownProducts={ownProducts} />
+              <ItemCard
+                ownProducts={ownProducts}
+                handleDeleteOwnProduct={handleDeleteOwnProduct}
+              />
             </StyledItemCardDiv>
             <CheckoutCard />
           </ItemAndCheckoutDiv>

@@ -24,7 +24,7 @@ import {
 } from "./itemCardStyle"
 import axios from "axios"
 
-export function ItemCard({ ownProducts }) {
+export function ItemCard({ ownProducts, handleDeleteOwnProduct }) {
   const {
     cartData,
     setCartData,
@@ -82,22 +82,6 @@ export function ItemCard({ ownProducts }) {
       setCartCount((currentValue) => currentValue - 1)
       return updatedItems
     })
-  }
-
-  const handleDeleteOwnProduct = async (productid) => {
-    const token = localStorage.getItem("token")
-    try {
-      const response = await axios.delete(
-        `http://localhost:8080/admin/my-products/${productid}`,
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-      )
-    } catch (error) {
-      console.log("Nije obrisan produkt iz korpe", error)
-    }
   }
 
   return (

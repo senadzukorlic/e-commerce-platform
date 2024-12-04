@@ -167,18 +167,28 @@ exports.addToCart = (req, res, next) => {
 exports.getCart = (req, res, next) => {
   User.findByPk(req.userId)
     .then((user) => {
-      return Cart.findOne({ where: { userId: user.id } })
+      if (!user) {
+        const error = new Error("User not found")
+        error.statusCode = 404
+        throw error
+      }
+      return Cart.findOne({
+        where: { userId: user.id },
+        include: [
+          {
+            model: CartProducts,
+            include: [Products],
+          },
+        ],
+      })
     })
     .then((cart) => {
       if (!cart) {
         const error = new Error("User doesn't have cart")
         error.statusCode = 404
-        throw new error()
+        throw error
       }
-      return Cart.getCartProducts()
-    })
-    .then((result) => {
-      res.status(200).json({ message: "Cart fetched", cart: result })
+      res.status(200).json({ message: "Cart fetched", cart: cart })
     })
     .catch((err) => {
       if (!err.statusCode) {
@@ -211,9 +221,7 @@ exports.deleteProductFromCart = (req, res, next) => {
         error.statusCode = 404
         throw error
       }
-      if (product instanceof CartProducts) {
-        return product.destroy()
-      }
+      return product.destroy()
     })
     .then((result) => {
       res.status(200).json({ message: "Product successfuly deleted from cart" })

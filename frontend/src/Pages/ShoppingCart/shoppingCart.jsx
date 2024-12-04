@@ -18,18 +18,19 @@ export function ShoppingCart() {
 
   const [ownProducts, setOwnProducts] = useState([])
 
-  // Dodajte useEffect za fetch
-
   const handleFetchOwnProducts = async () => {
     try {
       const token = localStorage.getItem("token")
       const response = await axios.get(
-        "http://localhost:8080/admin/my-products",
+        "http://localhost:8080/admin/my-products/get-cart",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       )
-      setOwnProducts(response.data.products)
+      const extractProd = response.data.cart.CartProducts.map(
+        (cp) => cp.product
+      )
+      setOwnProducts(extractProd)
     } catch (error) {
       console.log("Nesto nije dobro", error)
     }

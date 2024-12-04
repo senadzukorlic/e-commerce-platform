@@ -211,7 +211,9 @@ exports.deleteProductFromCart = (req, res, next) => {
         error.statusCode = 404
         throw error
       }
-      return product.destroy()
+      if (product instanceof CartProducts) {
+        return product.destroy()
+      }
     })
     .then((result) => {
       res.status(200).json({ message: "Product successfuly deleted from cart" })
@@ -220,6 +222,6 @@ exports.deleteProductFromCart = (req, res, next) => {
       if (!err.statusCode) {
         err.statusCode = 500
       }
-      next()
+      next(err)
     })
 }

@@ -42,10 +42,10 @@ export function ShoppingCart() {
     const token = localStorage.getItem("token")
     try {
       const response = await axios.delete(
-        `http://localhost:8080/admin/my-products/${productid}`,
+        `http://localhost:8080/admin/my-products/delete-product-from-cart/${productid}`,
         {
           headers: {
-            authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       )

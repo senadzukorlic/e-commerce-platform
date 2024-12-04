@@ -13,10 +13,12 @@ import {
 } from "./myProductsStyle"
 import { BlackButton } from "../../Components/blackButton/blackButton"
 import { OutlinedButton } from "../../Components/OutlinedButton/outlinedButton"
+import { useDataContext } from "../../Hooks/useContext"
 
 export function MyProducts() {
   const [products, setProducts] = useState([])
   const [error, setError] = useState(null)
+  const { setCartCount } = useDataContext()
 
   const fetchProducts = async () => {
     try {
@@ -78,6 +80,9 @@ export function MyProducts() {
           headers: { Authorization: `Bearer ${token}` },
         }
       )
+      setCartCount((count) => {
+        return count + 1
+      })
     } catch (error) {
       console.log(`Nije dobro nesto`, error)
     }

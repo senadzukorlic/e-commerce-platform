@@ -11,6 +11,10 @@ export function DataProvider({ children }) {
   const [favoriteItems, setFavoriteItems] = useState([])
   const [productDetail, setProductDetail] = useState([])
 
+  const [ownCartProducts, setOwnCartProducts] = useState([])
+  const [ownProducts, setOwnProducts] = useState([])
+  const [ownProductsPrice, setOwnProductsPrice] = useState([])
+
   const [total, setTotal] = useState(0)
 
   useEffect(() => {
@@ -25,6 +29,10 @@ export function DataProvider({ children }) {
   return (
     <DataContext.Provider
       value={{
+        ownCartProducts,
+        setOwnCartProducts,
+        ownProductsPrice,
+        setOwnProductsPrice,
         data,
         inputValue,
         setInputValue,
@@ -38,6 +46,8 @@ export function DataProvider({ children }) {
         setProductDetail,
         favoriteItems,
         setFavoriteItems,
+        setOwnProducts,
+        ownProducts,
       }}
     >
       {children}

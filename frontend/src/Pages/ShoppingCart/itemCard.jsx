@@ -24,7 +24,7 @@ import {
 } from "./itemCardStyle"
 import axios from "axios"
 
-export function ItemCard({ ownProducts, handleDeleteOwnProduct }) {
+export function ItemCard({ ownCartProducts, handleDeleteOwnProduct }) {
   const {
     cartData,
     setCartData,
@@ -152,8 +152,8 @@ export function ItemCard({ ownProducts, handleDeleteOwnProduct }) {
         </StyledItemCard>
       ))}
 
-      {ownProducts.length > 0 &&
-        ownProducts.map((item) => (
+      {ownCartProducts.length > 0 &&
+        ownCartProducts.map((item) => (
           <StyledItemCard key={item.id} variant="outlined">
             <CardContentImageStyled>
               <Box>

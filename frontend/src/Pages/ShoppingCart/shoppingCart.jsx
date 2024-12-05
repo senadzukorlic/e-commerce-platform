@@ -14,9 +14,8 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 
 export function ShoppingCart() {
-  const { cartData, setCartCount } = useDataContext()
-
-  const [ownProducts, setOwnProducts] = useState([])
+  const { cartData, setCartCount, ownCartProducts, setOwnCartProducts } =
+    useDataContext()
 
   const handleFetchOwnProducts = async () => {
     try {
@@ -30,7 +29,7 @@ export function ShoppingCart() {
       const extractProd = response.data.cart.CartProducts.map(
         (cp) => cp.product
       )
-      setOwnProducts(extractProd)
+      setOwnCartProducts(extractProd)
     } catch (error) {
       console.log("Nesto nije dobro", error)
     }
@@ -61,7 +60,7 @@ export function ShoppingCart() {
   return (
     <>
       <PageTitle title="Shopping Cart" />
-      {cartData.length === 0 && ownProducts.length === 0 ? (
+      {cartData.length === 0 && ownCartProducts.length === 0 ? (
         <EmptyComponent text="Your Shopping Cart is empty!" />
       ) : (
         <ParentDiv>
@@ -70,7 +69,7 @@ export function ShoppingCart() {
           <ItemAndCheckoutDiv>
             <StyledItemCardDiv>
               <ItemCard
-                ownProducts={ownProducts}
+                ownCartProducts={ownCartProducts}
                 handleDeleteOwnProduct={handleDeleteOwnProduct}
               />
             </StyledItemCardDiv>

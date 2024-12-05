@@ -16,9 +16,9 @@ import { OutlinedButton } from "../../Components/OutlinedButton/outlinedButton"
 import { useDataContext } from "../../Hooks/useContext"
 
 export function MyProducts() {
-  const [products, setProducts] = useState([])
   const [error, setError] = useState(null)
-  const { setCartCount } = useDataContext()
+  const { setCartCount, setOwnProductsTotal, setOwnProducts, ownProducts } =
+    useDataContext()
 
   const fetchProducts = async () => {
     try {
@@ -31,7 +31,7 @@ export function MyProducts() {
           },
         }
       )
-      setProducts(response.data.products)
+      setOwnProducts(response.data.products)
       setError(null)
     } catch (error) {
       setError("Failed to fetch products.")
@@ -80,6 +80,17 @@ export function MyProducts() {
           headers: { Authorization: `Bearer ${token}` },
         }
       )
+      const addedProduct = ownProducts.find(
+        (product) => product.id === productId
+      )
+
+      // Update total price by adding the current product's price
+      setOwnProductsTotal((currentTotal) => {
+        // If currentTotal is undefined or NaN, start from 0
+        const parsedCurrentTotal = currentTotal || 0
+        const productPrice = parseFloat(addedProduct.price)
+        return parsedCurrentTotal + productPrice
+      })
       setCartCount((count) => {
         return count + 1
       })
@@ -92,7 +103,7 @@ export function MyProducts() {
     <div>
       <PageTitle title="My products" />
       <ParentDiv>
-        {products.map((item) => (
+        {ownProducts.map((item) => (
           <StyledCard key={item.id}>
             <CardActionArea style={{ height: "700px" }}>
               <ImageWrapper>

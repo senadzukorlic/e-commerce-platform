@@ -13,7 +13,7 @@ export function DataProvider({ children }) {
 
   const [ownCartProducts, setOwnCartProducts] = useState([])
   const [ownProducts, setOwnProducts] = useState([])
-  const [ownProductsPrice, setOwnProductsPrice] = useState([])
+  const [ownProductsTotal, setOwnProductsTotal] = useState(0)
 
   const [total, setTotal] = useState(0)
 
@@ -31,8 +31,8 @@ export function DataProvider({ children }) {
       value={{
         ownCartProducts,
         setOwnCartProducts,
-        ownProductsPrice,
-        setOwnProductsPrice,
+        ownProductsTotal,
+        setOwnProductsTotal,
         data,
         inputValue,
         setInputValue,

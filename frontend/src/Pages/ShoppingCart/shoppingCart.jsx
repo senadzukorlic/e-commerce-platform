@@ -14,7 +14,7 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 
 export function ShoppingCart() {
-  const { cartData } = useDataContext()
+  const { cartData, setCartCount } = useDataContext()
 
   const [ownProducts, setOwnProducts] = useState([])
 
@@ -50,6 +50,9 @@ export function ShoppingCart() {
           },
         }
       )
+      setCartCount((count) => {
+        return count - 1
+      })
     } catch (error) {
       console.log("Nije obrisan produkt iz korpe", error)
     }

@@ -3,6 +3,8 @@ const Cart = require("../models/cart")
 const CartProducts = require("../models/cart-products")
 const Products = require("../models/products")
 const User = require("../models/user")
+const Order = require("../models/order")
+const OrderProducts = require("../models/order-products")
 
 //ODRADITI DODATNE PROVERE DA LI JE KORISNIK ADMIN,DA LI SU SVE VREDNOSTI UNESENE I DA LI SU ISPRAVNE..
 
@@ -233,3 +235,212 @@ exports.deleteProductFromCart = (req, res, next) => {
       next(err)
     })
 }
+
+// exports.createOrder = (req, res, next) => {
+//   let USER
+//   let CART
+//   const paymentMethod = req.body.paymentMethod
+//   const deliveryInfo = req.body.deliveryInfo
+//   User.findByPk(req.userId)
+//     .then((user) => {
+//       if (!user) {
+//         const error = new Error("User  not found")
+//         error.statusCode = 404
+//         throw error
+//       }
+//       USER = user
+//       return Cart.findOne({ where: { userId: user.id } })
+//     })
+//     .then((cart) => {
+//       if (!cart) {
+//         const error = new Error("Cart not found")
+//         error.statusCode = 404
+//         throw error
+//       }
+//       CART = cart
+
+//       return Order.findOne({ where: { cartId: cart.id, userId: USER.id } })
+//     })
+//     .then((existingOrder) => {
+//       if (existingOrder) {
+//         const error = new Error("Order already exist")
+//         error.statusCode = 404
+//         throw error
+//       }
+//       return Order.create({
+//         userId: USER.id,
+//         cartId: CART.id,
+//         paymmentMethod: paymentMethod,
+//         deliveryInfo: deliveryInfo,
+//         totalPrice: 0,
+//       })
+//     })
+//     .then((newOrder) => {
+//       // Pronađi sve proizvode iz korpe
+//       return CartProducts.findAll({ where: { cartId: CART.id } })
+//         .then((cartProducts) => {
+//           // Kreiraj unose u `OrderProducts`
+//           const orderProductsPromises = cartProducts.map((cartProduct) => {
+//             return OrderProducts.create({
+//               orderId: newOrder.id,
+//               productId: cartProduct.productId,
+//             })
+//           })
+//           // Sačekaj da se svi proizvodi dodaju u `OrderProducts`
+//           return Promise.all(orderProductsPromises).then(() => newOrder)
+//         })
+//         .then((newOrder) => {
+//           // Izračunaj ukupnu cenu narudžbine
+//           return CartProducts.findAll({ where: { cartId: CART.id } })
+//             .then((cartProducts) => {
+//               const totalPrice = cartProducts.reduce((acc, cartProduct) => {
+//                 return acc + cartProduct.quantity * cartProduct.product.price
+//               }, 0)
+//               newOrder.totalPrice = totalPrice
+//               return newOrder.save()
+//             })
+//             .then((order) => {
+//               // Obriši korpu
+//               return CART.destroy().then(() => order)
+//             })
+//         })
+//     })
+//     .then((finalOrder) => {
+//       res
+//         .status(201)
+//         .json({ message: "Order created successfully", order: finalOrder })
+//     })
+//     .catch((err) => {
+//       if (!err.statusCode) {
+//         err.statusCode = 500
+//       }
+//       next(err)
+//     })
+// }
+
+exports.createOrder = (req, res, next) => {
+  let USER
+  let CART
+  const paymentMethod = req.body.paymentMethod
+  const deliveryInfo = req.body.deliveryInfo
+
+  User.findByPk(req.userId)
+    .then((user) => {
+      if (!user) {
+        const error = new Error("User not found")
+        error.statusCode = 404
+        throw error
+      }
+      USER = user
+      return Cart.findOne({ where: { userId: user.id } })
+    })
+    .then((cart) => {
+      if (!cart) {
+        const error = new Error("Cart not found")
+        error.statusCode = 404
+        throw error
+      }
+      CART = cart
+
+      return Order.findOne({ where: { cartId: cart.id, userId: USER.id } })
+    })
+    .then((existingOrder) => {
+      if (existingOrder) {
+        const error = new Error("Order already exists")
+        error.statusCode = 400
+        throw error
+      }
+      return Order.create({
+        userId: USER.id,
+        cartId: CART.id,
+        paymentMethod: paymentMethod,
+        deliveryInfo: deliveryInfo,
+        totalPrice: 0,
+      })
+    })
+    .then((newOrder) => {
+      // Pronađi sve proizvode u korpi zajedno sa podacima o proizvodima
+      return CartProducts.findAll({
+        where: { cartId: CART.id },
+        include: [{ model: Product, attributes: ["price"] }], // Povezivanje sa modelom Product
+      }).then((cartProducts) => {
+        // Kreiraj unose u `OrderProducts`
+        const orderProductsPromises = cartProducts.map((cartProduct) => {
+          return OrderProducts.create({
+            orderId: newOrder.id,
+            productId: cartProduct.productId,
+            quantity: cartProduct.quantity, // Ako je potrebna količina
+          })
+        })
+
+        // Izračunaj ukupnu cenu narudžbine
+        const totalPrice = cartProducts.reduce((acc, cartProduct) => {
+          return acc + cartProduct.quantity * cartProduct.Product.price // Koristi povezane podatke o ceni
+        }, 0)
+
+        return Promise.all(orderProductsPromises).then(() => {
+          newOrder.totalPrice = totalPrice
+          return newOrder.save()
+        })
+      })
+    })
+    .then((finalOrder) => {
+      // Obriši korpu
+      return CART.destroy().then(() => {
+        res.status(201).json({
+          message: "Order created successfully",
+          order: finalOrder,
+        })
+      })
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500
+      }
+      next(err)
+    })
+}
+
+// exports.createOrder = (req, res, next) => {
+//   let fetchedCart
+//   let userId
+//   User.findByPk(req.userId)
+//     .then((user) => {
+//       userId = user.id
+//       return Cart.findOne({ where: { userId: userId } })
+//     })
+//     .then((cart) => {
+//       fetchedCart = cart
+//       return CartProducts.findAll({ where: { cartId: cart.id } })
+//     })
+//     .then((cartProducts) => {
+//       if (!cartProducts) {
+//         const error = new Error("Cart is empty")
+//         error.statusCode = 404
+//         throw error
+//       }
+//       return Order.create({
+//         userId: userId,
+//         cartId: fetchedCart.id,
+//         paymentMethod: req.body.paymentMethod,
+//         deliveryInfo: req.body.deliveryInfo,
+//         totalPrice: req.body.totalPrice,
+//       })
+//     })
+//     .then((order) => {
+//       fetchedCart.destroy()
+//       return order
+//     })
+//     .then((order) => {
+//       return Cart.create({ userId: userId })
+//     })
+//     .then((cart) => {
+//       res.status(201).json({ message: "Order created", order: cart })
+//     })
+//     .catch((err) => {
+//       if (!err.statusCode) {
+//         err.statusCode = 500
+//       }
+//       next(err)
+//     })
+// }

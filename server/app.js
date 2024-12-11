@@ -64,6 +64,8 @@ const User = require("./models/user")
 const Cart = require("./models/cart")
 const CartProducts = require("./models/cart-products")
 const Product = require("./models/products")
+const Order = require("./models/order")
+const OrderProducts = require("./models/order-products")
 
 User.hasMany(Product)
 Product.belongsTo(User)
@@ -79,6 +81,22 @@ CartProducts.belongsTo(Cart) // Posrednički zapis pripada jednoj korpi
 // Proizvod i Posrednički model (CartProducts)
 Product.hasMany(CartProducts) // Proizvod može biti u više posredničkih zapisa
 CartProducts.belongsTo(Product) // Posrednički zapis pripada jednom proizvodu
+////////////////////////////////////////////////////////////////////////////////////////
+// User i Order
+User.hasMany(Order) // Jedan korisnik može imati više narudžbina
+Order.belongsTo(User) // Narudžbina pripada jednom korisniku
+
+// Cart i Order
+Cart.hasOne(Order) // Jedna korpa može biti povezana sa jednom narudžbinom
+Order.belongsTo(Cart) // Narudžbina je kreirana iz jedne korpe
+
+// Order i OrderProducts
+Order.hasMany(OrderProducts) // Jedna narudžbina može sadržavati više proizvoda
+OrderProducts.belongsTo(Order) // Posrednički zapis pripada jednoj narudžbini
+
+// Product i OrderProducts
+Product.hasMany(OrderProducts) // Jedan proizvod može biti u više narudžbina
+OrderProducts.belongsTo(Product) // Posrednički zapis pripada jednom proizvodu
 
 sequelize
   .sync()

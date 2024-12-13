@@ -36,7 +36,7 @@ export function CheckoutCard() {
         <P1>Log in to use your personal offers!</P1>
 
         <BlackButton
-          buttonName="Sign in"
+          buttonName="Log in"
           width={{ width: "330px" }}
           onClick={handleOpen}
         />

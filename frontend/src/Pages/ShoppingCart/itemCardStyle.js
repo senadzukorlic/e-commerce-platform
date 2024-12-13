@@ -17,6 +17,7 @@ export const EmptyItemCard = styled(Card)`
   width: 650px;
   background-color: whitesmoke;
   margin: 90px 60px;
+  border: 1px solid lightgray;
 `
 
 export const H1 = styled("h1")`

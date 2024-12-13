@@ -11,6 +11,8 @@ export const StyledCheckoutCard = styled(Card)`
   width: 330px;
   background-color: whitesmoke;
   padding: 30px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
 `
 
 export const LineDiv1 = styled("div")`

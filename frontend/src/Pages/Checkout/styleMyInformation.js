@@ -7,6 +7,10 @@ export const Container = styled.div`
   width: 40%;
   justify-content: start;
   align-items: center;
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+  border-radius: 5px;
+  border: 1px solid lightgray;
 `
 
 export const InnerContainer = styled.div`

@@ -11,6 +11,7 @@ import {
   PhoneInputWrapper,
 } from "./styleMyInformation"
 import PhoneInputComponent from "./phoneInput"
+import { BlackButton } from "../../Components/blackButton/blackButton"
 
 export function MyInformation() {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = React.useState(
@@ -95,6 +96,9 @@ export function MyInformation() {
           value={selectedPaymentMethod}
           onChange={handlePaymentMethodChange}
         />
+      </InnerContainer>
+      <InnerContainer>
+        <BlackButton buttonName="Confirm Order" width={{ width: "90%" }} />
       </InnerContainer>
     </Container>
   )

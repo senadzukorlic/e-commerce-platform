@@ -17,6 +17,8 @@ export function CreateAcc() {
   const [showPassword, setShowPassword] = useState(false)
   const [email, setEmail] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+
   const [error, setError] = useState(null)
 
   const handleEmailChange = (event) => {
@@ -46,7 +48,6 @@ export function CreateAcc() {
         confirmPassword,
       })
       console.log(response.data)
-      // Handle successful registration (e.g., redirect to login page)
     } catch (err) {
       console.log("Ne radi", err)
     }
@@ -69,7 +70,7 @@ export function CreateAcc() {
         type={showPassword ? "text" : "password"}
         label="Create a password"
         value={password}
-        right="400px"
+        right="513px"
         onChange={handlePasswordChange}
         setVisibility={togglePasswordVisibility}
         booleanVisibility={showPassword ? "Hide" : "Show"}
@@ -77,13 +78,13 @@ export function CreateAcc() {
         styleInput={{ width: "40%", marginBottom: "0" }}
       />
       <PasswordInput
-        type={showPassword ? "text" : "password"}
+        type={showConfirmPassword ? "text" : "password"}
         label="Confrim password"
         value={confirmPassword}
-        right="400px"
+        right="513px"
         onChange={handleConfirmPasswordChange}
-        setVisibility={togglePasswordVisibility}
-        booleanVisibility={showPassword ? "Hide" : "Show"}
+        setVisibility={() => setShowConfirmPassword(!showConfirmPassword)}
+        booleanVisibility={showConfirmPassword ? "Hide" : "Show"}
         styleLabel={{ width: "41%", marginBottom: "0" }}
         styleInput={{ width: "40%", marginBottom: "0" }}
       />

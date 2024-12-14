@@ -10,6 +10,7 @@
     "dev": "concurrently \"cd frontend && npm run dev\" \"cd server && npm run dev\""
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "sequelize-cli": "^6.6.2"
   }
 }

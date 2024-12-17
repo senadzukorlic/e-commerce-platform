@@ -15,6 +15,11 @@ const CartProducts = sequelize.define("CartProducts", {
     allowNull: false,
     defaultValue: 1, // Podrazumevano 1 proizvod
   },
+  totalPrice: {
+    type: Sequelize.DOUBLE,
+    allowNull: false,
+    defaultValue: 0, // Podrazumevana vrednost}
+  },
 })
 
 module.exports = CartProducts

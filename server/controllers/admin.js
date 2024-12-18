@@ -200,6 +200,35 @@ exports.getCart = (req, res, next) => {
     })
 }
 
+exports.updateProductInCart = (req, res, next) => {
+  const productId = req.params.productId
+  const quantity = req.body.quantity
+
+  User.findByPkk(req.userId)
+    .then((user) => {
+      return Cart.findOne({ where: { userId: user.id } })
+    })
+    .then((cart) => {
+      return CartProducts.findOne({
+        where: { cartId: cart.id, productId: productId },
+      })
+    })
+    .then((product) => {
+      product.quantity = quantity
+      return product.save()
+    })
+    .then((result) => {
+      res
+        .status(200)
+        .json({ message: "Product updated in cart", product: result })
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500
+      }
+      next(err)
+    })
+}
 exports.deleteProductFromCart = (req, res, next) => {
   const productId = req.params.productId
 

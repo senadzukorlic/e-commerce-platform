@@ -24,7 +24,11 @@ import {
 } from "./itemCardStyle"
 import axios from "axios"
 
-export function ItemCard({ ownCartProducts, handleDeleteOwnProduct }) {
+export function ItemCard({
+  ownCartProducts,
+  handleDeleteOwnProduct,
+  productQuantity,
+}) {
   const {
     cartData,
     setCartData,

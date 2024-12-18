@@ -200,7 +200,7 @@ exports.getCart = (req, res, next) => {
     })
 }
 
-exports.updateProductInCart = (req, res, next) => {
+exports.updateProductQuanityInCart = (req, res, next) => {
   const productId = req.params.productId
   const quantity = req.body.quantity
 
@@ -221,6 +221,29 @@ exports.updateProductInCart = (req, res, next) => {
       res
         .status(200)
         .json({ message: "Product updated in cart", product: result })
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500
+      }
+      next(err)
+    })
+}
+
+exports.getQuantityOfProductInCart = (req, res, next) => {
+  const productId = req.params.productId
+
+  User.findByPk(req.userId)
+    .then((user) => {
+      return Cart.finOnde({ where: { userId: user.id } })
+    })
+    .tehn((cart) => {
+      return CartProducts.findOne({
+        where: { cartId: cart.id, productId: productId },
+      })
+    })
+    .then((product) => {
+      res.status(200).json({ quantity: product.quantity })
     })
     .catch((err) => {
       if (!err.statusCode) {

@@ -15,5 +15,10 @@ route.delete(
   isAuth,
   adminRoutes.deleteProductFromCart
 )
-
+route.patch(
+  "/my-products/update-product-quantity/:productId",
+  isAuth,
+  adminRoutes.updateProductQuanityInCart
+)
+route.get("/my-products/get-quanity", isAuth, adminRoutes.getCartQuantity)
 module.exports = route

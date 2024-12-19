@@ -22,12 +22,11 @@ import {
   Select,
   MenuItemStyled,
 } from "./itemCardStyle"
-import axios from "axios"
 
 export function ItemCard({
   ownCartProducts,
   handleDeleteOwnProduct,
-  productQuantity,
+  productQuantityAndTotalPrice,
 }) {
   const {
     cartData,
@@ -157,71 +156,81 @@ export function ItemCard({
       ))}
 
       {ownCartProducts.length > 0 &&
-        ownCartProducts.map((item) => (
-          <StyledItemCard key={item.id} variant="outlined">
-            <CardContentImageStyled>
-              <Box>
-                <Image component="img" image={item.imageUrl} />
-              </Box>
-            </CardContentImageStyled>
-            <CardContentTitleStyled>
-              <TitleAndIconDiv>
-                <TitleDiv gutterBottom variant="p">
-                  {item.title}
-                  <br />
-                  {item.price}€
-                </TitleDiv>
-                <IconDiv1>
-                  <DeleteButton onClick={() => handleDeleteOwnProduct(item.id)}>
-                    <DeleteIcon />
-                  </DeleteButton>
-                </IconDiv1>
-              </TitleAndIconDiv>
-              <ItemInfoDiv>
-                <PDiv>
-                  <p>Art.No.</p>
-                  <p>Colour:</p>
-                </PDiv>
-                <PDiv>
-                  <p style={{ fontWeight: "bolder" }}>6RJDTVCU</p>
-                  <p style={{ fontWeight: "bolder" }}>White</p>
-                </PDiv>
-                <PDiv>
-                  <p>Size:</p>
-                  <p>Total:</p>
-                </PDiv>
-                <PDiv>
-                  <p style={{ fontWeight: "bolder" }}>{item.size}</p>
-                  <p style={{ fontWeight: "bolder" }}>{item.price}</p>
-                </PDiv>
-              </ItemInfoDiv>
-              <IconDiv>
-                <FavoriteButton
-                  item={item}
-                  favoriteItems={favoriteItems}
-                  setFavoriteItems={setFavoriteItems}
-                  FilledIcon={FilledHeartIcon}
-                  OutlinedIcon={OutlinedHeartIcon}
-                />
-                <QuantityDiv>
-                  <Select
-                    value={item.quantity}
-                    onChange={handleQuantityChange(item.id, item.size)}
-                  >
-                    {[...Array(10).keys()].map((number) => (
-                      <MenuItemStyled
-                        key={`quantity-${number + 1}`}
-                        value={number + 1}
-                      >
-                        {number + 1}
-                      </MenuItemStyled>
-                    ))}
-                  </Select>
-                </QuantityDiv>
-              </IconDiv>
-            </CardContentTitleStyled>
-          </StyledItemCard>
-        ))}
+        ownCartProducts.map((item) => {
+          const productData = productQuantityAndTotalPrice.find(
+            (p) => p.productId === item.id
+          )
+          const quantity = productData ? productData.quantity : 1
+          const totalPrice = productData ? productData.totalPrice : item.price
+
+          return (
+            <StyledItemCard key={item.id} variant="outlined">
+              <CardContentImageStyled>
+                <Box>
+                  <Image component="img" image={item.imageUrl} />
+                </Box>
+              </CardContentImageStyled>
+              <CardContentTitleStyled>
+                <TitleAndIconDiv>
+                  <TitleDiv gutterBottom variant="p">
+                    {item.title}
+                    <br />
+                    {item.price}€
+                  </TitleDiv>
+                  <IconDiv1>
+                    <DeleteButton
+                      onClick={() => handleDeleteOwnProduct(item.id)}
+                    >
+                      <DeleteIcon />
+                    </DeleteButton>
+                  </IconDiv1>
+                </TitleAndIconDiv>
+                <ItemInfoDiv>
+                  <PDiv>
+                    <p>Art.No.</p>
+                    <p>Colour:</p>
+                  </PDiv>
+                  <PDiv>
+                    <p style={{ fontWeight: "bolder" }}>6RJDTVCU</p>
+                    <p style={{ fontWeight: "bolder" }}>White</p>
+                  </PDiv>
+                  <PDiv>
+                    <p>Size:</p>
+                    <p>Total:</p>
+                  </PDiv>
+                  <PDiv>
+                    <p style={{ fontWeight: "bolder" }}>{item.size}</p>
+                    <p style={{ fontWeight: "bolder" }}>{totalPrice}</p>
+                  </PDiv>
+                </ItemInfoDiv>
+                <IconDiv>
+                  <FavoriteButton
+                    item={item}
+                    favoriteItems={favoriteItems}
+                    setFavoriteItems={setFavoriteItems}
+                    FilledIcon={FilledHeartIcon}
+                    OutlinedIcon={OutlinedHeartIcon}
+                  />
+                  <QuantityDiv>
+                    <Select
+                      value={quantity}
+                      onChange={handleQuantityChange(item.id, item.size)}
+                    >
+                      {[...Array(10).keys()].map((number) => (
+                        <MenuItemStyled
+                          key={`quantity-${number + 1}`}
+                          value={number + 1}
+                        >
+                          {number + 1}
+                        </MenuItemStyled>
+                      ))}
+                    </Select>
+                  </QuantityDiv>
+                </IconDiv>
+              </CardContentTitleStyled>
+            </StyledItemCard>
+          )
+        })}
     </>
   )
 }

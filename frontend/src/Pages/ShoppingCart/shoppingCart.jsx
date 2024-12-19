@@ -17,7 +17,8 @@ export function ShoppingCart() {
   const { cartData, setCartCount, ownCartProducts, setOwnCartProducts } =
     useDataContext()
 
-  // const [productQuantity, setProductQuantity] = useState(0)
+  const [productQuantityAndTotalPrice, setProductQuantityAndTotalPrice] =
+    useState([])
 
   const handleFetchOwnProducts = async () => {
     try {
@@ -31,10 +32,8 @@ export function ShoppingCart() {
       const extractProd = response.data.cart.CartProducts.map(
         (cp) => cp.product
       )
-      // const prodQuantity = response.data.cart.CartProducts.map(
-      //   (cp) => cp.quantity
-      // )
-      // setProductQuantity(prodQuantity)
+      const prodQuantityAndPrice = response.data.cart.CartProducts
+      setProductQuantityAndTotalPrice(prodQuantityAndPrice)
       setOwnCartProducts(extractProd)
     } catch (error) {
       console.log("Nesto nije dobro", error)
@@ -75,7 +74,7 @@ export function ShoppingCart() {
           <ItemAndCheckoutDiv>
             <StyledItemCardDiv>
               <ItemCard
-                // productQuantity={productQuantity}
+                productQuantityAndTotalPrice={productQuantityAndTotalPrice}
                 ownCartProducts={ownCartProducts}
                 handleDeleteOwnProduct={handleDeleteOwnProduct}
               />

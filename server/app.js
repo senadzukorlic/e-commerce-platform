@@ -80,7 +80,7 @@ CartProducts.belongsTo(Cart) // Posrednički zapis pripada jednoj korpi
 
 // Proizvod i Posrednički model (CartProducts)
 Product.hasMany(CartProducts) // Proizvod može biti u više posredničkih zapisa
-CartProducts.belongsTo(Product) // Posrednički zapis pripada jednom proizvodu
+CartProducts.belongsTo(Product, { foreignKey: "productId" }) // Posrednički zapis pripada jednom proizvodu
 ////////////////////////////////////////////////////////////////////////////////////////
 // User i Order
 User.hasMany(Order) // Jedan korisnik može imati više narudžbina

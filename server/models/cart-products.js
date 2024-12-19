@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize")
 const sequelize = require("../util/database")
+const Product = require("../models/products")
 
 const CartProducts = sequelize.define("CartProducts", {
   id: {
@@ -22,4 +23,12 @@ const CartProducts = sequelize.define("CartProducts", {
   },
 })
 
+CartProducts.addHook("beforeSave", async (cartProduct) => {
+  const product = await Product.findByPk(cartProduct.productId)
+
+  if (product) {
+    // Postavi totalPrice na osnovu quantity * price
+    cartProduct.totalPrice = cartProduct.quantity * product.price
+  }
+})
 module.exports = CartProducts

@@ -215,6 +215,7 @@ exports.updateProductQuanityInCart = (req, res, next) => {
     })
     .then((product) => {
       product.quantity = quantity
+      product.totalPrice = product.quantity * product.price
       return product.save()
     })
     .then((result) => {
@@ -252,6 +253,7 @@ exports.getQuantityOfProductInCart = (req, res, next) => {
       next(err)
     })
 }
+
 exports.deleteProductFromCart = (req, res, next) => {
   const productId = req.params.productId
 

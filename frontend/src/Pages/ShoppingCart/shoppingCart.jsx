@@ -62,6 +62,24 @@ export function ShoppingCart() {
     }
     await handleFetchOwnProducts()
   }
+
+  const updateQuantity = async (productid, quantity) => {
+    const token = localStorage.getItem("token")
+    try {
+      const response = await axios.patch(
+        `http://localhost:8080/admin/my-products/update-product-quantity/${productid}`,
+        { quantity },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+    } catch (error) {
+      console.log("Nije promenjena kolicina", error)
+    }
+    await handleFetchOwnProducts()
+  }
   return (
     <>
       <PageTitle title="Shopping Cart" />
@@ -77,6 +95,7 @@ export function ShoppingCart() {
                 productQuantityAndTotalPrice={productQuantityAndTotalPrice}
                 ownCartProducts={ownCartProducts}
                 handleDeleteOwnProduct={handleDeleteOwnProduct}
+                updateQuantity={updateQuantity}
               />
             </StyledItemCardDiv>
             <CheckoutCard />

@@ -27,6 +27,7 @@ export function ItemCard({
   ownCartProducts,
   handleDeleteOwnProduct,
   productQuantityAndTotalPrice,
+  updateQuantity,
 }) {
   const {
     cartData,
@@ -214,7 +215,10 @@ export function ItemCard({
                   <QuantityDiv>
                     <Select
                       value={quantity}
-                      onChange={handleQuantityChange(item.id, item.size)}
+                      onChange={(event) => {
+                        const newQuantity = event.target.value
+                        updateQuantity(item.id, newQuantity) // Prosleđivanje nove vrednosti
+                      }}
                     >
                       {[...Array(10).keys()].map((number) => (
                         <MenuItemStyled

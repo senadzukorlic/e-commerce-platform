@@ -20,9 +20,5 @@ route.patch(
   isAuth,
   adminRoutes.updateProductQuanityInCart
 )
-route.get(
-  "/my-products/get-quanity/:productId",
-  isAuth,
-  adminRoutes.getQuantityOfProductInCart
-)
+
 module.exports = route

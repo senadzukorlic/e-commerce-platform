@@ -1,4 +1,3 @@
-const { where } = require("sequelize")
 const Cart = require("../models/cart")
 const CartProducts = require("../models/cart-products")
 const Products = require("../models/products")
@@ -290,30 +289,100 @@ exports.getCart = (req, res, next) => {
     })
 }
 
+// exports.updateProductQuanityInCart = (req, res, next) => {
+//   const productId = req.params.productId
+//   const quantity = req.body.quantity
+//   let fetchedCart
+
+//   User.findByPk(req.userId)
+//     .then((user) => {
+//       return Cart.findOne({ where: { userId: user.id } })
+//     })
+//     .then((cart) => {
+//       fetchedCart = cart
+//       return CartProducts.findOne({
+//         where: { cartId: cart.id, productId: productId },
+//       })
+//     })
+//     .then((product) => {
+//       product.quantity = quantity
+//       product.totalPrice = product.quantity * product.price
+//       fetchedCart.totalPrice =  product.totalPrice - product.totalPrice
+//       return product.save()
+//     })
+//     .then((result) => {
+//       res
+//         .status(200)
+//         .json({ message: "Product updated in cart", product: result })
+//     })
+//     .catch((err) => {
+//       if (!err.statusCode) {
+//         err.statusCode = 500
+//       }
+//       next(err)
+//     })
+// }
+
 exports.updateProductQuanityInCart = (req, res, next) => {
   const productId = req.params.productId
-  const quantity = req.body.quantity
+  const newQuantity = req.body.quantity
+  let fetchedCart
+  let fetchedProduct
 
   User.findByPk(req.userId)
     .then((user) => {
       return Cart.findOne({ where: { userId: user.id } })
     })
     .then((cart) => {
+      fetchedCart = cart
+      if (!cart) {
+        const error = new Error("Cart does not exist")
+        error.statusCode = 404
+        throw error
+      }
       return CartProducts.findOne({
         where: { cartId: cart.id, productId: productId },
+        include: [{ model: Products }], // Products umesto Product
       })
     })
-    .then((product) => {
-      product.quantity = quantity
-      product.totalPrice = product.quantity * product.price
-      return product.save()
+    .then((cartProduct) => {
+      if (!cartProduct) {
+        const error = new Error("Product not found in cart")
+        error.statusCode = 404
+        throw error
+      }
+
+      fetchedProduct = cartProduct
+      const oldTotalPrice = cartProduct.totalPrice
+      console.log("Old total price:", oldTotalPrice)
+
+      // Promenjeno Product u product
+      const newTotalPrice = newQuantity * cartProduct.product.price
+      console.log("New total price:", newTotalPrice)
+
+      // Ažuriraj totalPrice u Cart modelu
+      fetchedCart.totalPrice =
+        fetchedCart.totalPrice - oldTotalPrice + newTotalPrice
+      console.log("New cart total:", fetchedCart.totalPrice)
+
+      // Ažuriraj CartProducts
+      cartProduct.quantity = newQuantity
+      cartProduct.totalPrice = newTotalPrice
+
+      return fetchedCart.save()
     })
-    .then((result) => {
-      res
-        .status(200)
-        .json({ message: "Product updated in cart", product: result })
+    .then(() => {
+      return fetchedProduct.save()
+    })
+    .then(() => {
+      res.status(200).json({
+        message: "Product quantity updated",
+        cartTotal: fetchedCart.totalPrice,
+        productTotal: fetchedProduct.totalPrice,
+      })
     })
     .catch((err) => {
+      console.error("Error occurred:", err)
       if (!err.statusCode) {
         err.statusCode = 500
       }

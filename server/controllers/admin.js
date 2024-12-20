@@ -116,10 +116,78 @@ exports.editProduct = (req, res, next) => {
     })
 }
 
+// exports.addToCart = (req, res, next) => {
+//   const productId = req.params.productId
+//   let userId
+//   let fetchedCart
+//   User.findByPk(req.userId)
+//     .then((user) => {
+//       userId = user.id
+//       return Cart.findOne({ where: { userId: userId } })
+//     })
+//     .then((cart) => {
+//       if (!cart) {
+//         return Cart.create({ userId: userId })
+//       }
+//       return cart
+//     })
+//     .then((cart) => {
+//       fetchedCart = cart
+//       return CartProducts.findOne({
+//         where: { productId: productId, cartId: cart.id },
+//         include: [{ model: Products }],
+//       })
+//     })
+//     .then((exhistingOne) => {
+//       let productPrice
+//       if (exhistingOne) {
+//         const newQuantity = exhistingOne.quantity + 1
+//         const newTotalPrice = newQuantity * exhistingOne.Product.price
+//         productPrice = exhistingOne.Product.price
+//         return exhistingOne
+//           .update({
+//             quantity: newQuantity,
+//             productId: productId,
+//             cartId: fetchedCart.id,
+//             totalPrice: newTotalPrice,
+//           })
+//           .then(() => {
+//             // Ažuriraj ukupnu cenu korpe
+//             fetchedCart.totalPrice += exhistingOne.Product.price
+//             return fetchedCart.save()
+//           })
+//       } else {
+//         return CartProducts.create({
+//           productId: productId,
+//           cartId: fetchedCart.id,
+//           quantity: 1,
+//           totalPrice: productPrice,
+//         }).then(() => {
+//           // Ažuriraj ukupnu cenu korpe
+//           fetchedCart.totalPrice += productPrice
+//           return fetchedCart.save()
+//         })
+//       }
+//     })
+//     .then((result) => {
+//       res
+//         .status(200)
+//         .json({ message: "Product added to cart", product: result })
+//     })
+//     .catch((err) => {
+//       if (!err.statusCode) {
+//         err.statusCode = 500
+//       }
+//       next(err)
+//     })
+// }
+
 exports.addToCart = (req, res, next) => {
   const productId = req.params.productId
   let userId
   let fetchedCart
+  let productPrice // Premesti van `then` blokova za globalni pristup
+
   User.findByPk(req.userId)
     .then((user) => {
       userId = user.id
@@ -129,34 +197,56 @@ exports.addToCart = (req, res, next) => {
       if (!cart) {
         return Cart.create({ userId: userId })
       }
-
       return cart
     })
     .then((cart) => {
       fetchedCart = cart
+
+      // Pronađi proizvod i cenu
+      return Products.findByPk(productId)
+    })
+    .then((product) => {
+      if (!product) {
+        const error = new Error("Product not found")
+        error.statusCode = 404
+        throw error
+      }
+      productPrice = product.price // Postavi cenu proizvoda
+
+      // Proveri da li proizvod već postoji u korpi
       return CartProducts.findOne({
-        where: { productId: productId, cartId: cart.id },
+        where: { productId: productId, cartId: fetchedCart.id },
       })
     })
-    .then((exhistingOne) => {
-      if (exhistingOne) {
-        return exhistingOne.update({
-          quantity: exhistingOne.quantity + 1,
-          productId: productId,
-          cartId: fetchedCart.id,
+    .then((existingProduct) => {
+      if (existingProduct) {
+        // Ako postoji, ažuriraj količinu i ukupnu cenu
+        const newQuantity = existingProduct.quantity + 1
+        const newTotalPrice = newQuantity * productPrice
+
+        return existingProduct.update({
+          quantity: newQuantity,
+          totalPrice: newTotalPrice,
         })
       } else {
+        // Ako ne postoji, kreiraj novi zapis
         return CartProducts.create({
           productId: productId,
           cartId: fetchedCart.id,
           quantity: 1,
+          totalPrice: productPrice,
         })
       }
     })
-    .then((result) => {
+    .then(() => {
+      // Ažuriraj totalPrice korpe
+      fetchedCart.totalPrice += productPrice
+      return fetchedCart.save()
+    })
+    .then((updatedCart) => {
       res
         .status(200)
-        .json({ message: "Product added to cart", product: result })
+        .json({ message: "Product added to cart", cart: updatedCart })
     })
     .catch((err) => {
       if (!err.statusCode) {

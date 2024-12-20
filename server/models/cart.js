@@ -9,6 +9,11 @@ const Cart = sequelize.define("cart", {
     primaryKey: true,
   },
   userId: { type: Sequelize.INTEGER, allowNull: false },
+  totalPrice: {
+    type: Sequelize.DOUBLE,
+    allowNull: false,
+    defaultValue: 0,
+  },
 })
 
 module.exports = Cart

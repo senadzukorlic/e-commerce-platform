@@ -323,12 +323,14 @@ exports.updateProductQuanityInCart = (req, res, next) => {
 
 exports.deleteProductFromCart = (req, res, next) => {
   const productId = req.params.productId
-
+  let fetchedCart
+  let productToDelete
   User.findByPk(req.userId)
     .then((user) => {
       return Cart.findOne({ where: { userId: user.id } })
     })
     .then((cart) => {
+      fetchedCart = cart
       if (!cart) {
         const error = new Error("Carts does not exist")
         error.statusCode = 404
@@ -336,6 +338,7 @@ exports.deleteProductFromCart = (req, res, next) => {
       }
       return CartProducts.findOne({
         where: { cartId: cart.id, productId: productId },
+        include: [{ model: Products }], // Povezivanje sa modelom Product
       })
     })
     .then((product) => {
@@ -344,7 +347,16 @@ exports.deleteProductFromCart = (req, res, next) => {
         error.statusCode = 404
         throw error
       }
-      return product.destroy()
+      productToDelete = product
+
+      // Ažuriraj totalPrice u Cart modelu pre brisanja proizvoda
+      fetchedCart.totalPrice -= productToDelete.totalPrice
+
+      return fetchedCart.save()
+    })
+    .then(() => {
+      // Zatim obriši proizvod iz CartProducts
+      return productToDelete.destroy()
     })
     .then((result) => {
       res.status(200).json({ message: "Product successfuly deleted from cart" })

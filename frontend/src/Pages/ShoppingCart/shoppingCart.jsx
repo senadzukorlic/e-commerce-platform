@@ -19,6 +19,7 @@ export function ShoppingCart() {
 
   const [productQuantityAndTotalPrice, setProductQuantityAndTotalPrice] =
     useState([])
+  const [totalPrice, setTotalPrice] = useState([])
 
   const handleFetchOwnProducts = async () => {
     try {
@@ -33,6 +34,8 @@ export function ShoppingCart() {
         (cp) => cp.product
       )
       const prodQuantityAndPrice = response.data.cart.CartProducts
+      const totalPriceOfAllProducts = response.data.cart.totalPrice
+      setTotalPrice(totalPriceOfAllProducts)
       setProductQuantityAndTotalPrice(prodQuantityAndPrice)
       setOwnCartProducts(extractProd)
     } catch (error) {
@@ -98,7 +101,7 @@ export function ShoppingCart() {
                 updateQuantity={updateQuantity}
               />
             </StyledItemCardDiv>
-            <CheckoutCard />
+            <CheckoutCard totalPrice={totalPrice} />
           </ItemAndCheckoutDiv>
         </ParentDiv>
       )}

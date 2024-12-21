@@ -80,17 +80,6 @@ export function MyProducts() {
           headers: { Authorization: `Bearer ${token}` },
         }
       )
-      const addedProduct = ownProducts.find(
-        (product) => product.id === productId
-      )
-
-      // Update total price by adding the current product's price
-      setOwnProductsTotal((currentTotal) => {
-        // If currentTotal is undefined or NaN, start from 0
-        const parsedCurrentTotal = currentTotal || 0
-        const productPrice = parseFloat(addedProduct.price)
-        return parsedCurrentTotal + productPrice
-      })
       setCartCount((count) => {
         return count + 1
       })

@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { useDataContext } from "../../Hooks/useContext"
 import { LogIn } from "../../Components/LogIn/LogIn"
 import {
   StyledCheckoutCard,
@@ -14,18 +13,16 @@ import {
 import { OutlinedButton } from "../../Components/OutlinedButton/outlinedButton"
 import { BlackButton } from "../../Components/blackButton/blackButton"
 
-export function CheckoutCard() {
-  const { total, ownProductsTotal } = useDataContext()
-
+export function CheckoutCard({ totalPrice }) {
   const [isModalOpen, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
 
   const toalAndDiscout = () => {
-    if (ownProductsTotal <= 30) {
-      return ownProductsTotal + delivery
+    if (totalPrice <= 30) {
+      return totalPrice + delivery
     }
-    return ownProductsTotal
+    return totalPrice
   }
   const delivery = 3.99
   const totalWithDiscount = toalAndDiscout()
@@ -47,25 +44,17 @@ export function CheckoutCard() {
 
         <SmallDiv>
           <P2>Order value</P2>
-          <P2>
-            {ownProductsTotal > 0 ? `${ownProductsTotal.toFixed(2)}€` : `0€`}
-          </P2>
+          <P2>{totalPrice > 0 ? `${totalPrice.toFixed(2)}€` : `0€`}</P2>
         </SmallDiv>
         <SmallDiv>
           <P2>Delivery</P2>
-          <P2>
-            {ownProductsTotal > 0 && ownProductsTotal < 30
-              ? `${delivery}€`
-              : `0€`}
-          </P2>
+          <P2>{totalPrice > 0 && totalPrice < 30 ? `${delivery}€` : `0€`}</P2>
         </SmallDiv>
 
         <LineDiv2></LineDiv2>
         <SmallDiv>
           <H3>Total: </H3>
-          <H3>
-            {ownProductsTotal > 0 ? `${totalWithDiscount.toFixed(2)}€` : `0€`}
-          </H3>
+          <H3>{totalPrice > 0 ? `${totalWithDiscount.toFixed(2)}€` : `0€`}</H3>
         </SmallDiv>
 
         <CheckoutLink to="/checkout">

@@ -20,12 +20,34 @@ const Order = sequelize.define("order", {
     type: Sequelize.STRING, // Npr. "Credit Card", "PayPal"
     allowNull: false,
   },
-  deliveryInfo: {
-    type: Sequelize.TEXT, // Adresa dostave ili dodatni detalji
-    allowNull: true,
-  },
   totalPrice: {
     type: Sequelize.FLOAT, // Ukupna cena narudžbine
+    allowNull: false,
+  },
+  email: { type: Sequelize.STRING, allowNull: false },
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  firstName: { type: Sequelize.STRING, allowNull: false },
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  address: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  city: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  postalCode: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  phoneNumber: {
+    type: Sequelize.STRING,
     allowNull: false,
   },
 })

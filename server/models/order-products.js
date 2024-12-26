@@ -16,6 +16,11 @@ const OrderProducts = sequelize.define("orderProducts", {
     type: Sequelize.INTEGER, // Veza sa `Product`
     allowNull: false,
   },
+  quantity: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 1,
+  },
 })
 
 module.exports = OrderProducts

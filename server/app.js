@@ -7,6 +7,7 @@ const path = require("path")
 const authRoutes = require("./routes/auth")
 const adminRoutes = require("./routes/admin")
 const cartRoutes = require("./routes/cart")
+const orderRoutes = require("./routes/order")
 
 const multer = require("multer")
 const { v4: uuidv4 } = require("uuid")
@@ -53,6 +54,7 @@ app.use((req, res, next) => {
 app.use("/auth", authRoutes)
 app.use("/admin", adminRoutes)
 app.use("/admin", cartRoutes)
+app.use(orderRoutes)
 
 app.use((error, req, res, next) => {
   console.log(error)

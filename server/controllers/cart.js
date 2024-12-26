@@ -73,7 +73,7 @@ exports.addToCart = (req, res, next) => {
   const productId = req.params.productId
   let userId
   let fetchedCart
-  let productPrice // Premesti van `then` blokova za globalni pristup
+  let productPrice
 
   User.findByPk(req.userId)
     .then((user) => {

@@ -13,15 +13,15 @@ const Order = sequelize.define("order", {
     allowNull: false,
   },
   cartId: {
-    type: Sequelize.INTEGER, // Veza sa postojećom korpom
+    type: Sequelize.INTEGER,
     allowNull: false,
   },
   paymentMethod: {
-    type: Sequelize.STRING, // Npr. "Credit Card", "PayPal"
+    type: Sequelize.STRING,
     allowNull: false,
   },
   totalPrice: {
-    type: Sequelize.FLOAT, // Ukupna cena narudžbine
+    type: Sequelize.FLOAT,
     allowNull: false,
   },
   email: { type: Sequelize.STRING, allowNull: false },
@@ -29,7 +29,6 @@ const Order = sequelize.define("order", {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  firstName: { type: Sequelize.STRING, allowNull: false },
   lastName: {
     type: Sequelize.STRING,
     allowNull: false,

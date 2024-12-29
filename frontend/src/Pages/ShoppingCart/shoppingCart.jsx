@@ -12,6 +12,7 @@ import { CheckoutCard } from "./checkoutCard"
 import { PageTitle } from "../../Components/PageTitle/pageTitle"
 import axios from "axios"
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 export function ShoppingCart() {
   const { cartData, setCartCount, ownCartProducts, setOwnCartProducts } =
@@ -20,6 +21,7 @@ export function ShoppingCart() {
   const [productQuantityAndTotalPrice, setProductQuantityAndTotalPrice] =
     useState([])
   const [totalPrice, setTotalPrice] = useState([])
+  const [cartId, setCartId] = useState([])
 
   const handleFetchOwnProducts = async () => {
     try {
@@ -35,6 +37,7 @@ export function ShoppingCart() {
       )
       const prodQuantityAndPrice = response.data.cart.CartProducts
       const totalPriceOfAllProducts = response.data.cart.totalPrice
+      setCartId(response.data.cart.id)
       setTotalPrice(totalPriceOfAllProducts)
       setProductQuantityAndTotalPrice(prodQuantityAndPrice)
       setOwnCartProducts(extractProd)
@@ -83,6 +86,14 @@ export function ShoppingCart() {
     }
     await handleFetchOwnProducts()
   }
+
+  const navigate = useNavigate()
+
+  const handleContinueToCheckout = (cartId) => {
+    navigate("/checkout", {
+      state: { cartId },
+    })
+  }
   return (
     <>
       <PageTitle title="Shopping Cart" />
@@ -101,7 +112,11 @@ export function ShoppingCart() {
                 updateQuantity={updateQuantity}
               />
             </StyledItemCardDiv>
-            <CheckoutCard totalPrice={totalPrice} />
+            <CheckoutCard
+              totalPrice={totalPrice}
+              handleContinueToCheckout={handleContinueToCheckout}
+              cartId={cartId}
+            />
           </ItemAndCheckoutDiv>
         </ParentDiv>
       )}

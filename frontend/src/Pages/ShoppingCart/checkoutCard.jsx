@@ -13,7 +13,7 @@ import {
 import { OutlinedButton } from "../../Components/OutlinedButton/outlinedButton"
 import { BlackButton } from "../../Components/blackButton/blackButton"
 
-export function CheckoutCard({ totalPrice }) {
+export function CheckoutCard({ totalPrice, handleContinueToCheckout, cartId }) {
   const [isModalOpen, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
@@ -61,6 +61,7 @@ export function CheckoutCard({ totalPrice }) {
           <OutlinedButton
             width={{ width: "330px" }}
             buttonName="Continue to checkout"
+            onClick={() => handleContinueToCheckout(cartId)}
           ></OutlinedButton>
         </CheckoutLink>
         <P2>

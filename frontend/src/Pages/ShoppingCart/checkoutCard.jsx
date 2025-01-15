@@ -12,7 +12,7 @@ import {
 } from "./checkoutCardStyle"
 import { OutlinedButton } from "../../Components/OutlinedButton/outlinedButton"
 import { BlackButton } from "../../Components/blackButton/blackButton"
-
+import { useNavigate } from "react-router-dom"
 export function CheckoutCard({ totalPrice, handleContinueToCheckout, cartId }) {
   const [isModalOpen, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
@@ -27,6 +27,18 @@ export function CheckoutCard({ totalPrice, handleContinueToCheckout, cartId }) {
   const delivery = 3.99
   const totalWithDiscount = toalAndDiscout()
 
+  const navigate = useNavigate()
+  const handleCheckout = () => {
+    if (cartId) {
+      // Direktna navigacija sa state-om
+      navigate(`/checkout/${cartId}`, {
+        state: { cartId: cartId }, // Eksplicitno proslijeđujemo cartId
+      })
+    } else {
+      console.log("Nema dostupnog cartId-a")
+    }
+  }
+  console.log("CheckoutCard cartId:", cartId)
   return (
     <>
       <StyledCheckoutCard>
@@ -57,13 +69,13 @@ export function CheckoutCard({ totalPrice, handleContinueToCheckout, cartId }) {
           <H3>{totalPrice > 0 ? `${totalWithDiscount.toFixed(2)}€` : `0€`}</H3>
         </SmallDiv>
 
-        <CheckoutLink to="/checkout">
-          <OutlinedButton
-            width={{ width: "330px" }}
-            buttonName="Continue to checkout"
-            onClick={() => handleContinueToCheckout(cartId)}
-          ></OutlinedButton>
-        </CheckoutLink>
+        {/* <CheckoutLink to={{ pathname: "/checkout", state: { cartId } }}> */}
+        <OutlinedButton
+          width={{ width: "330px" }}
+          buttonName="Continue to checkout"
+          onClick={handleCheckout}
+        ></OutlinedButton>
+        {/* </CheckoutLink> */}
         <P2>
           Prices and delivery costs are not confirmed until you've reached the
           checkout.

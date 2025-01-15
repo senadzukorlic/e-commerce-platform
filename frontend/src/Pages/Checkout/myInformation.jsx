@@ -1,7 +1,9 @@
 import React from "react"
+import { useState, useEffect } from "react"
 import { Input } from "../../Components/Input/input"
 import SelectInput from "../../Components/SelectInput/selectInput"
 import { paymentMethods } from "../../Config/paymentMethods"
+import { useParams } from "react-router-dom"
 import {
   Container,
   InnerContainer,
@@ -10,6 +12,7 @@ import {
   Column,
   PhoneInputWrapper,
 } from "./styleMyInformation"
+import axios from "axios"
 import PhoneInputComponent from "./phoneInput"
 import { BlackButton } from "../../Components/blackButton/blackButton"
 
@@ -22,6 +25,69 @@ export function MyInformation() {
     setSelectedPaymentMethod(event.target.value)
   }
 
+  const [email, setEmail] = useState("")
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [city, setCity] = useState("")
+  const [postalCode, setPostalCode] = useState("")
+  const [address, setAddress] = useState("")
+  const [phoneNumber, setPhoneNumber] = useState("")
+
+  const { cartId } = useParams()
+  console.log("MyInformation cartId from params:", cartId)
+  useEffect(() => {
+    if (!cartId) {
+      console.log("Nema cartId-a!")
+      // Možda redirect na cart stranu
+    }
+  }, [cartId])
+
+  const handleCreateOrder = async () => {
+    try {
+      if (
+        !cartId ||
+        !email ||
+        !firstName ||
+        !lastName ||
+        !address ||
+        !city ||
+        !postalCode ||
+        !phoneNumber
+      ) {
+        console.error("Missing required fields")
+        // Show error to user
+        return
+      }
+      const token = localStorage.getItem("token")
+      if (!token) {
+        console.error("No authentication token found")
+        return
+      }
+      const response = await axios.post(
+        `http://localhost:8080/create-order/${cartId}`,
+        {
+          email,
+          firstName: firstName,
+          lastName,
+          city,
+          postalCode,
+          address,
+          phoneNumber: phoneNumber.replace(/\D/g, ""),
+          paymentMethod: selectedPaymentMethod,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      console.log("Order created successfully:", response.data)
+    } catch (error) {
+      console.log("Nije kreirana narudzbina", error)
+    }
+  }
+
   return (
     <Container>
       <InnerContainer>
@@ -31,6 +97,7 @@ export function MyInformation() {
           type="text"
           styleInput={{ width: "90%" }}
           styleLabel={{ width: "92%" }}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <Row>
           <Column>
@@ -39,6 +106,7 @@ export function MyInformation() {
               type="text"
               styleInput={{ width: "81%" }}
               styleLabel={{ width: "85%" }}
+              onChange={(e) => setFirstName(e.target.value)}
             />
           </Column>
           <Column>
@@ -47,6 +115,7 @@ export function MyInformation() {
               type="text"
               styleInput={{ width: "81%" }}
               styleLabel={{ width: "85%" }}
+              onChange={(e) => setLastName(e.target.value)}
             />
           </Column>
         </Row>
@@ -59,6 +128,7 @@ export function MyInformation() {
           type="text"
           styleInput={{ width: "90%" }}
           styleLabel={{ width: "92%" }}
+          onChange={(e) => setAddress(e.target.value)}
         />
         <Row>
           <Column>
@@ -67,6 +137,7 @@ export function MyInformation() {
               type="text"
               styleInput={{ width: "81%" }}
               styleLabel={{ width: "85%" }}
+              onChange={(e) => setCity(e.target.value)}
             />
           </Column>
           <Column>
@@ -75,11 +146,15 @@ export function MyInformation() {
               type="text"
               styleInput={{ width: "81%" }}
               styleLabel={{ width: "85%" }}
+              onChange={(e) => setPostalCode(e.target.value)}
             />
           </Column>
         </Row>
         <PhoneInputWrapper>
-          <PhoneInputComponent />
+          <PhoneInputComponent
+            phoneNumber={phoneNumber}
+            setPhoneNumber={setPhoneNumber}
+          />
         </PhoneInputWrapper>
       </InnerContainer>
 
@@ -98,7 +173,11 @@ export function MyInformation() {
         />
       </InnerContainer>
       <InnerContainer>
-        <BlackButton buttonName="Confirm Order" width={{ width: "90%" }} />
+        <BlackButton
+          buttonName="Confirm Order"
+          width={{ width: "90%" }}
+          onClick={handleCreateOrder}
+        />
       </InnerContainer>
     </Container>
   )

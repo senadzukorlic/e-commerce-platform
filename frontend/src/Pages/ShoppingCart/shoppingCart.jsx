@@ -21,7 +21,7 @@ export function ShoppingCart() {
   const [productQuantityAndTotalPrice, setProductQuantityAndTotalPrice] =
     useState([])
   const [totalPrice, setTotalPrice] = useState([])
-  const [cartId, setCartId] = useState([])
+  const [cartId, setCartId] = useState(null)
 
   const handleFetchOwnProducts = async () => {
     try {
@@ -32,6 +32,7 @@ export function ShoppingCart() {
           headers: { Authorization: `Bearer ${token}` },
         }
       )
+      console.log("Cart response:", response.data)
       const extractProd = response.data.cart.CartProducts.map(
         (cp) => cp.product
       )
@@ -89,7 +90,13 @@ export function ShoppingCart() {
 
   const navigate = useNavigate()
 
-  const handleContinueToCheckout = (cartId) => {
+  const handleContinueToCheckout = () => {
+    // Dodajte proveru
+    console.log("Cart ID:", cartId)
+    if (!cartId) {
+      console.log("Nema cartId-a!")
+      return
+    }
     navigate("/checkout", {
       state: { cartId },
     })

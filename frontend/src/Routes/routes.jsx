@@ -54,7 +54,7 @@ export function RoutesComponent() {
           </ProtectedRoute>
         }
       />
-      <Route path="/checkout" element={<Checkout />} />
+      <Route path="/checkout/:cartId" element={<Checkout />} />
       <Route path="/create-account" element={<CreateAcc />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

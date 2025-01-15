@@ -4,9 +4,7 @@ import "react-phone-input-2/lib/style.css"
 import PhoneInput from "react-phone-input-2"
 import { Wrapper, InnerWrapper, CustomPhoneInput } from "./stylePhoneInput"
 
-function PhoneInputComponent() {
-  const [phoneNumber, setPhoneNumber] = React.useState("")
-
+function PhoneInputComponent({ phoneNumber, setPhoneNumber }) {
   return (
     <Wrapper>
       <InnerWrapper>

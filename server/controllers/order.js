@@ -83,8 +83,8 @@ const OrderProducts = require("../models/order-products")
 
 exports.createOrder = (req, res, next) => {
   const cartId = req.params.cartId
-  console.log("Primljeni cartId:", cartId)
-  console.log("Primljeni req.params:", req.params)
+  // console.log("Primljeni cartId:", cartId)
+  // console.log("Primljeni req.params:", req.params)
 
   const {
     email,
@@ -100,27 +100,6 @@ exports.createOrder = (req, res, next) => {
   let IdOfUser
   let priceOfCart
 
-  const requiredFields = [
-    "email",
-    "firstName",
-    "lastName",
-    "address",
-    "city",
-    "postalCode",
-    "phoneNumber",
-    "paymentMethod",
-  ]
-  const missingFields = requiredFields.filter((field) => !req.body[field])
-
-  if (missingFields.length > 0) {
-    const error = new Error(
-      `Missing required fields: ${missingFields.join(", ")}`
-    )
-    error.statusCode = 400
-    return next(error)
-  }
-
-  // Prvo pronađi korisnika
   User.findByPk(req.userId)
     .then((user) => {
       if (!user) {
@@ -130,7 +109,6 @@ exports.createOrder = (req, res, next) => {
       }
       IdOfUser = user.id
 
-      // Zatim pronađi korpu
       return Cart.findOne({
         where: {
           id: cartId,
@@ -144,10 +122,9 @@ exports.createOrder = (req, res, next) => {
       }
       priceOfCart = cart.totalPrice
 
-      // Pronađi proizvode u korpi
       return CartProducts.findAll({
         where: {
-          cartId: cart.id, // Koristi ID korpe koju smo upravo pronašli
+          cartId: cart.id,
         },
       })
     })
@@ -156,7 +133,6 @@ exports.createOrder = (req, res, next) => {
         throw new Error("Nema proizvoda u korpi")
       }
 
-      // Kreiraj narudžbu
       return Order.create({
         userId: IdOfUser,
         cartId: cartId,
@@ -170,7 +146,6 @@ exports.createOrder = (req, res, next) => {
         phoneNumber,
         paymentMethod,
       }).then((order) => {
-        // Nakon kreiranja narudžbe, kreiraj OrderProducts za svaki proizvod
         const orderProductPromises = cartProducts.map((cartProduct) => {
           return OrderProducts.create({
             orderId: order.id,
@@ -180,19 +155,19 @@ exports.createOrder = (req, res, next) => {
         })
 
         return Promise.all(orderProductPromises)
-          .then(() => {
-            // Nakon što su kreirani svi OrderProducts, obriši CartProducts
-            return CartProducts.destroy({
-              where: { cartId: cartId },
-            })
-          })
-          .then(() => {
-            // Nakon brisanja CartProducts, obriši Cart
-            return Cart.destroy({
-              where: { id: cartId },
-            })
-          })
-          .then(() => order)
+        // .then(() => {
+
+        //   return CartProducts.destroy({
+        //     where: { cartId: cartId },
+        //   })
+        // })
+        // .then(() => {
+
+        //   return Cart.destroy({
+        //     where: { id: cartId },
+        //   })
+        // })
+        // .then(() => order)
       })
     })
     .then((order) => {

@@ -1,13 +1,13 @@
-🛍️ Jacpi Store
+🛍️ Jacpi Store :
 Jacpi Store is an e-commerce application that allows users to browse and purchase products, manage their cart and orders, as well as register and log into their accounts.
 
-🚀 Technologies
+🚀 Technologies :
 Frontend: React (Hosted on Vercel)
 Backend: Express.js (Hosted on Railway)
 Database: MySQL
 Dockerized: Yes
 
-🔥 Features
+🔥 Features :
 CRUD operations for products
 Cart creation and review
 Order creation and tracking
